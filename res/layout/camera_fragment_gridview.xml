@@ -1,14 +1,13 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content" >
 
     <ImageView
         android:id="@+id/cameraImageView1"
-        android:layout_width="106dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@null"
-        android:layout_gravity="center_horizontal"
         android:contentDescription="@string/img_describer"
         android:scaleType="fitCenter" />
 
@@ -16,7 +15,6 @@
         android:id="@+id/cameraBookmarkIv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="top|right"
         android:contentDescription="@string/img_describer"
         android:src="@drawable/star_active"
         android:scaleType="fitCenter" />
@@ -25,8 +23,9 @@
         android:id="@+id/cameraTextView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
         android:singleLine="true"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
         android:text="@string/camera_textview1" />
 
-</FrameLayout>
+</RelativeLayout>

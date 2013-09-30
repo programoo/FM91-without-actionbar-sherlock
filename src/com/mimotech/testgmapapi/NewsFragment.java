@@ -66,7 +66,7 @@ import android.widget.Toast;
 public class NewsFragment extends Fragment implements OnItemClickListener,
 		OnClickListener
 {
-	private String tag = this.getClass().getSimpleName();
+	private String TAG = this.getClass().getSimpleName();
 	private View viewMainFragment;
 	private ListView lv;
 	private ArrayList<News> newsList;
@@ -75,7 +75,9 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 	private DateTimeFormatter formatter;
 	private LocationManager locationManager;
 	private LocationListener locationListener;
-	
+	private boolean alreadyFire = false;
+	private boolean lastFocusOnMainListView = true;
+	private ArrayList<News> filterByDistanceList;
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -84,16 +86,26 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 		formatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
 		locationManager = (LocationManager) getActivity().getSystemService(
 				Context.LOCATION_SERVICE);
-		
+		newsList = new ArrayList<News>();
 		locationListener = new MyLocationListener();
+		
+		//read config
+		String settingCsv = Info.getInstance().readProfiles(
+				getActivity(), "settings.csv");
+		if (!settingCsv.equalsIgnoreCase("undefined"))
+		{
+			Log.i(TAG, "read profile: " + settingCsv);
+			Info.getInstance().latLnConfig = settingCsv.split(",")[3];
+			Info.getInstance().radius = settingCsv.split(",")[4];
+			Info.getInstance().rewind = settingCsv.split(",")[5];
+			// reload new view
+		}
 		
 	}
 	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState)
 	{
-		newsList = new ArrayList<News>();
-		
 		this.viewMainFragment = inflater.inflate(R.layout.news_fragment,
 				container, false);
 		
@@ -104,7 +116,7 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 		
 		lv.setAdapter(ardap);
 		
-		Log.d(tag, "onCreateView");
+		Log.d(TAG, "onCreateView");
 		
 		lv.setOnItemClickListener(this);
 		
@@ -122,53 +134,66 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 	
 	public void onViewCreated(View view, Bundle savedInstanceState)
 	{
-		Log.d(tag, "onViewCreated");
+		Log.d(TAG, "onViewCreated");
 		super.onViewCreated(view, savedInstanceState);
-		new RequestTask("getRandomStr")
-				.execute("http://api.traffy.in.th/apis/getKey.php?appid=abcb6710");
+		if(!alreadyFire){
+			new RequestTask("getRandomStr")
+			.execute("http://api.traffy.in.th/apis/getKey.php?appid=abcb6710");
+			
+			// update from old memory
+			readNews();
+			writeNews();
+			reloadViewAfterRequestTaskComplete(this.newsList);
+			
+			// update already read list
+			lv = (ListView) viewMainFragment.findViewById(R.id.list1Fragment);
+			NewsListViewAdapter ardap = new NewsListViewAdapter(getActivity(),
+					newsList);
+			lv.setAdapter(ardap);
+			
+			// update badge count unRead
+			TextView tvBadgeCount = (TextView) getActivity().findViewById(
+					R.id.badge_count);
+			tvBadgeCount.setText(this.unReadNumber(this.newsList) + "");
+			
+			// get current location by gps
+			Log.d(TAG, "Request location");
+			locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+					5000, 10, locationListener);
+			
+			alreadyFire = true;
+		}
 		
 	}
 	
 	public void onStart()
 	{
 		super.onStart();
-		Log.d(tag, "onStart");
-		
-		// update from old memory
-		readNews();
-		writeNews();
-		reloadViewAfterRequestTaskComplete();
-		
-		// update already read list
-		lv = (ListView) viewMainFragment.findViewById(R.id.list1Fragment);
-		NewsListViewAdapter ardap = new NewsListViewAdapter(getActivity(),
-				newsList);
-		lv.setAdapter(ardap);
-		
-		// update badge count unRead
-		TextView tvBadgeCount = (TextView) getActivity().findViewById(
-				R.id.badge_count);
-		tvBadgeCount.setText(this.unReadNumber() + "");
-		
-		// get current location by gps
-		Log.d(tag, "Request location");
-		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
-				5000, 10, locationListener);
-		
+		Log.d(TAG, "onStart");
+		if(lastFocusOnMainListView){
+			this.reloadViewAfterRequestTaskComplete(this.newsList);
+			newsBtn.setTextColor(Color.parseColor("#8dc342"));
+			eventBtn.setTextColor(Color.parseColor("#808080"));
+		}
+		else{
+			this.reloadViewAfterRequestTaskComplete(filterByDistanceList);
+			newsBtn.setTextColor(Color.parseColor("#808080"));
+			eventBtn.setTextColor(Color.parseColor("#8dc342"));
+		}
 	}
 	
-	public void sortNewsList()
+	public void sortNewsList(ArrayList<News> unsortedNewsList)
 	{
-		for (int i = 0; i < this.newsList.size(); i++)
+		for (int i = 0; i < unsortedNewsList.size(); i++)
 		{
-			for (int j = 0; j < this.newsList.size() - 1; j++)
+			for (int j = 0; j < unsortedNewsList.size() - 1; j++)
 			{
-				News jA = this.newsList.get(j);
-				News jB = this.newsList.get(j + 1);
+				News jA = unsortedNewsList.get(j);
+				News jB = unsortedNewsList.get(j + 1);
 				if (jB.unixTime > jA.unixTime)
 				{
-					this.newsList.set(j + 1, jA);
-					this.newsList.set(j, jB);
+					unsortedNewsList.set(j + 1, jA);
+					unsortedNewsList.set(j, jB);
 				}
 			}
 		}
@@ -178,31 +203,31 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 	public void onActivityCreated(final Bundle savedInstanceState)
 	{
 		super.onActivityCreated(savedInstanceState);
-		Log.d(tag, "onActivityCreated");
+		Log.d(TAG, "onActivityCreated");
 		
 	}
 	
-	public void reloadViewAfterRequestTaskComplete()
+	public void reloadViewAfterRequestTaskComplete(ArrayList<News> listForLoad)
 	{
-		Log.d(tag, "reloadViewAfterRequestTaskComplete");
+		Log.d(TAG, "reloadViewAfterRequestTaskComplete");
 		try
 		{
-			this.sortNewsList();
+			this.sortNewsList(listForLoad);
 			NewsListViewAdapter ardap = new NewsListViewAdapter(getActivity(),
-					newsList);
+					listForLoad);
 			lv.setAdapter(ardap);
 			
 			TextView tvBadgeCount = (TextView) getActivity().findViewById(
 					R.id.badge_count);
 			// if zero hide it
-			if (this.unReadNumber() == 0)
+			if (this.unReadNumber(listForLoad) == 0)
 			{
 				tvBadgeCount.setVisibility(View.GONE);
 			} else
 			{
 				tvBadgeCount.setVisibility(View.VISIBLE);
 			}
-			tvBadgeCount.setText(this.unReadNumber() + "");
+			tvBadgeCount.setText(this.unReadNumber(listForLoad) + "");
 			
 		} catch (Exception e)
 		{
@@ -277,7 +302,13 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 						Boolean.parseBoolean(tmpNews[18]),
 						getHumanLanguageTime(formatter.parseDateTime(startTime)),
 						formatter.parseDateTime(startTime).getMillis());
-				this.uniqueAdd(n);
+				//before show filter by rewind
+				DateTime currentTime = new DateTime();
+				Duration dur = new Duration(formatter.parseDateTime(startTime), currentTime);
+				if(dur.getStandardDays() < Double.parseDouble(Info.getInstance().rewind)){
+					this.uniqueAdd(n);
+				}
+				
 			}
 			bufferedReader.close();
 			
@@ -299,15 +330,15 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 	{
 		// TODO Auto-generated method stub
 		super.onPause();
-		this.reloadViewAfterRequestTaskComplete();
+		//this.reloadViewAfterRequestTaskComplete();
 	}
 	
-	public int unReadNumber()
+	public int unReadNumber(ArrayList<News> unCountList)
 	{
-		int count = newsList.size();
-		for (int i = 0; i < newsList.size(); i++)
+		int count = unCountList.size();
+		for (int i = 0; i < unCountList.size(); i++)
 		{
-			if (newsList.get(i).isRead == true)
+			if (unCountList.get(i).isRead == true)
 			{
 				--count;
 			}
@@ -356,7 +387,7 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 			String longitude = "Longitude: " + loc.getLongitude();
 			String latitude = "Latitude: " + loc.getLatitude();
 			
-			Log.i(tag, "your current location:" + latitude + "," + longitude);
+			Log.i(TAG, "your current location:" + latitude + "," + longitude);
 			
 			Info.lat = loc.getLatitude();
 			Info.lng = loc.getLongitude();
@@ -473,7 +504,7 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 				readNews();
 				this.traffyNewsXmlParser(result);
 				writeNews();
-				reloadViewAfterRequestTaskComplete();
+				reloadViewAfterRequestTaskComplete(newsList);
 				
 				try
 				{
@@ -678,7 +709,7 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3)
 	{
 		// TODO Auto-generated method stub
-		Log.d(tag, "item click: " + arg1 + "," + arg2);
+		Log.d(TAG, "item click: " + arg1 + "," + arg2);
 		// mark as read
 		News n = getNews(arg3 + "");
 		n.isRead = true;
@@ -701,21 +732,130 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 	public void onClick(View v)
 	{
 		// TODO Auto-generated method stub
-		Log.d(tag, "btn id" + v.getId());
+		Log.d(TAG, "btn id" + v.getId());
 		switch (v.getId())
 		{
 			case R.id.newsBtn:
-				Log.d(tag, "news btn click");
+				Log.d(TAG, "news btn click");
 				newsBtn.setTextColor(Color.parseColor("#8dc342"));
 				eventBtn.setTextColor(Color.parseColor("#808080"));
-				
+				reloadViewAfterRequestTaskComplete(this.newsList);
+				lastFocusOnMainListView = true;
+
 				break;
 			case R.id.eventBtn:
-				Log.d(tag, "eventBtn btn click");
+				Log.d(TAG, "eventBtn btn click");
 				newsBtn.setTextColor(Color.parseColor("#808080"));
 				eventBtn.setTextColor(Color.parseColor("#8dc342"));
+				// filternew by distance and display
+				// read distance first
+				lastFocusOnMainListView = false;
+				
+				String settingCsv = Info.getInstance().readProfiles(
+						getActivity(), "settings.csv");
+				if (!settingCsv.equalsIgnoreCase("undefined") && !settingCsv.equalsIgnoreCase("false,false,false,0 0,0,0"))
+				{
+					Log.i(TAG, "read profile: " + settingCsv);
+					
+					Info.getInstance().latLnConfig = settingCsv.split(",")[3];
+					Info.getInstance().radius = settingCsv.split(",")[4];
+					Info.getInstance().rewind = settingCsv.split(",")[5];
+					// reload new view
+					
+					filterByDistanceList = new ArrayList<News>();
+					
+					for (int i = 0; i < this.newsList.size(); i++)
+					{
+						try
+						{
+							
+							double lat1 = Double
+									.parseDouble(Info.getInstance().latLnConfig
+											.split(" ")[0]);
+							double lng1 = Double
+									.parseDouble(Info.getInstance().latLnConfig
+											.split(" ")[1]);
+							
+							double lat2 = Double.parseDouble(this.newsList
+									.get(i).startPointLat);
+							double lng2 = Double.parseDouble(this.newsList
+									.get(i).startPointLong);
+							
+							double howFar = Info.getInstance().distance(lat1,
+									lng1, lat2, lng2, "k");
+							double maxAllow = Double.parseDouble(Info
+									.getInstance().radius);
+							if (howFar <= maxAllow)
+							{
+								filterByDistanceList.add(this.newsList.get(i));
+							}
+						} catch (Exception e)
+						{	//if cannot cast this mean is zero point
+							e.printStackTrace();
+						}
+						
+					}
+					
+					this.sortNewsList(filterByDistanceList);
+					
+					NewsListViewAdapter ardap = new NewsListViewAdapter(
+							getActivity(), filterByDistanceList);
+					lv.setAdapter(ardap);
+					
+					TextView tvBadgeCount = (TextView) getActivity()
+							.findViewById(R.id.badge_count);
+					// if zero hide it
+					if (this.unReadNumber(filterByDistanceList) == 0)
+					{
+						tvBadgeCount.setVisibility(View.GONE);
+					} else
+					{
+						tvBadgeCount.setVisibility(View.VISIBLE);
+					}
+					tvBadgeCount.setText(this
+							.unReadNumber(filterByDistanceList) + "0");
+				}
+				else{
+					//force to settings page ja
+					Log.i(TAG,"force to settings page ja");
+					// redirect to user profile page
+					AlertDialog.Builder builder1 = new AlertDialog.Builder(
+							getActivity());
+					builder1.setMessage(getString(R.string.instart_place_setting_text));
+					builder1.setCancelable(true);
+					builder1.setPositiveButton("Yes",
+							new DialogInterface.OnClickListener()
+							{
+								public void onClick(DialogInterface dialog, int id)
+								{
+									dialog.cancel();
+									
+									FM91MainActivity mainObj = (FM91MainActivity) getActivity();
+									//setting tab at index 4
+									mainObj.mTabHost.setCurrentTab(4);
+									//Intent it = new Intent(getActivity(),
+									//		InsertProfileActivity.class);
+									//startActivity(it);
+								}
+							});
+					builder1.setNegativeButton("No",
+							new DialogInterface.OnClickListener()
+							{
+								public void onClick(DialogInterface dialog, int id)
+								{
+
+									newsBtn.setTextColor(Color.parseColor("#8dc342"));
+									eventBtn.setTextColor(Color.parseColor("#808080"));
+									dialog.cancel();
+								}
+							});
+					
+					AlertDialog alert11 = builder1.create();
+					alert11.show();
+				}
+				
+				
 				break;
 		}
 	}
-	
 }

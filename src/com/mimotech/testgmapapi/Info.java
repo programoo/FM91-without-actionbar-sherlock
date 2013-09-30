@@ -18,35 +18,43 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Log;
 
-public class Info {
-	//Bangkok as default
+public class Info
+{
+	// Bangkok as default
 	public static double lat = 13.724714;
 	public static double lng = 100.633111;
-	public static String reverseGpsName="";
+	public static String reverseGpsName = "";
 	public ArrayList<Camera> camList;
 	public static final int RESULT_OK = 500;
 	public static final int RESULT_CANCELED = 501;
 	public static final int RESULT_SELECTED_IMAGE = 502;
 	public static final int RESULT_SELECTED_POSITION = 503;
-
+	
 	public static boolean crimTick = false;
 	public static boolean accidentTick = false;
 	public static boolean otherTick = false;
-	public static String latLnConfig;
-	public static String radius;
-	public static String rewind;
-	//singleton pattern
+	public String latLnConfig;
+	public String radius;
+	public String rewind;
+	// singleton pattern
 	private static Info instance = null;
-    private Info() {}
- 
-    public static Info getInstance() {
-        if (instance == null) {
-            instance = new Info();
-        }
-        return instance;
-    }
+	
+	private Info()
+	{
+	}
+	
+	public static Info getInstance()
+	{
+		if (instance == null)
+		{
+			instance = new Info();
+		}
+		return instance;
+	}
+	
 	public double distance(double lat1, double lon1, double lat2, double lon2,
-			String unit) {
+			String unit)
+	{
 		double theta = lon1 - lon2;
 		double dist = Math.sin(deg2rad(lat1)) * Math.sin(deg2rad(lat2))
 				+ Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2))
@@ -54,32 +62,39 @@ public class Info {
 		dist = Math.acos(dist);
 		dist = rad2deg(dist);
 		dist = dist * 60 * 1.1515;
-		if (unit.equalsIgnoreCase("K")) {
+		if (unit.equalsIgnoreCase("K"))
+		{
 			dist = dist * 1.609344;
-		} else if (unit.equalsIgnoreCase("N")) {
+		} else if (unit.equalsIgnoreCase("N"))
+		{
 			dist = dist * 0.8684;
 		}
 		return (dist);
 	}
-
-	private double deg2rad(double deg) {
+	
+	private double deg2rad(double deg)
+	{
 		return (deg * Math.PI / 180.0);
 	}
-
-	private double rad2deg(double rad) {
+	
+	private double rad2deg(double rad)
+	{
 		return (rad * 180.0 / Math.PI);
 	}
-
-	public Camera getCamById(String id) {
-		for (int i = 0; i < Info.getInstance().camList.size(); i++) {
-			if (Info.getInstance().camList.get(i).id.equalsIgnoreCase(id)) {
+	
+	public Camera getCamById(String id)
+	{
+		for (int i = 0; i < Info.getInstance().camList.size(); i++)
+		{
+			if (Info.getInstance().camList.get(i).id.equalsIgnoreCase(id))
+			{
 				return Info.getInstance().camList.get(i);
 			}
 		}
 		return null;
 	}
-
-	public static Bitmap decodeFile(File f,int requireSize)
+	
+	public static Bitmap decodeFile(File f, int requireSize)
 	{
 		try
 		{
@@ -108,7 +123,7 @@ public class Info {
 		return null;
 	}
 	
-	public void writeProfile(Context ctx,String fileName,String data)
+	public void writeProfile(Context ctx, String fileName, String data)
 	{
 		BufferedWriter bufferedWriter;
 		try
@@ -124,7 +139,7 @@ public class Info {
 		}
 	}
 	
-	public String readProfiles(Context ctx,String fileName)
+	public String readProfiles(Context ctx, String fileName)
 	{
 		BufferedReader bufferedReader;
 		String read = "undefined";
@@ -132,8 +147,7 @@ public class Info {
 		try
 		{
 			bufferedReader = new BufferedReader(new FileReader(new File(
-					ctx.getFilesDir() + File.separator
-							+ fileName)));
+					ctx.getFilesDir() + File.separator + fileName)));
 			String temp = "undefined";
 			while ((temp = bufferedReader.readLine()) != null)
 			{
@@ -163,7 +177,7 @@ public class Info {
 		cursor.moveToFirst();
 		return cursor.getString(column_index);
 	}
-
+	
 	public void sortCamByBookmark(ArrayList<Camera> camUnsorted)
 	{
 		for (int i = 0; i < camUnsorted.size(); i++)
@@ -172,7 +186,7 @@ public class Info {
 			{
 				Camera jA = camUnsorted.get(j);
 				Camera jB = camUnsorted.get(j + 1);
-				if (jB.isBookmark )
+				if (jB.isBookmark)
 				{
 					camUnsorted.set(j + 1, jA);
 					camUnsorted.set(j, jB);

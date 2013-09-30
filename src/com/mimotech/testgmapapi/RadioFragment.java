@@ -28,6 +28,12 @@ public class RadioFragment extends Fragment
 	private SeekBar volumeSeekbar;
 	private AudioManager audioManager;
 	private boolean isPlay =false;
+	@Override
+	public void onCreate(Bundle savedInstanceState)
+	{
+		super.onCreate(savedInstanceState);
+		initializeMediaPlayer();
+	}
 	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState)
@@ -37,11 +43,15 @@ public class RadioFragment extends Fragment
 		
 		initControls();
 		
-		initializeMediaPlayer();
-		
 		playTg = (ImageButton) this.viewMainFragment
 				.findViewById(R.id.playRadioTg);
-		playTg.setImageResource(R.drawable.play_img);
+		
+		if(!isPlay){
+			playTg.setImageResource(R.drawable.play_img);
+		}
+		else{
+			playTg.setImageResource(R.drawable.pause_img);
+		}
 		
 		playTg.setOnClickListener(new OnClickListener()
 		{
@@ -112,20 +122,11 @@ public class RadioFragment extends Fragment
 	{
 		super.onActivityCreated(savedInstanceState);
 		Log.d(tag, "onActivityCreated");
-		
 	}
 	
 	public void reloadViewAfterRequestTaskComplete()
 	{
 		Log.d(tag, "reloadViewAfterRequestTaskComplete");
-		
-	}
-	
-	/** Called when the activity is first created. */
-	@Override
-	public void onCreate(Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
 		
 	}
 	

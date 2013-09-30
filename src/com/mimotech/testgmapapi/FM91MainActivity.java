@@ -16,7 +16,7 @@ public class FM91MainActivity extends FragmentActivity
 {
 	String tag = getClass().getSimpleName();
 	private ViewPager mViewPager;
-	private TabHost mTabHost;
+	public TabHost mTabHost;
 	private int badgeCount = 0;
 	 
 	@Override
