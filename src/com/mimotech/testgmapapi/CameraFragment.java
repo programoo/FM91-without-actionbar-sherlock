@@ -224,7 +224,7 @@ public class CameraFragment extends Fragment implements TextWatcher
 	public void onResume()
 	{
 		super.onResume();
-		
+		reloadGridView();
 	}
 	
 	public void onActivityCreated(final Bundle savedInstanceState)

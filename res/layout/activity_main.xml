@@ -13,18 +13,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/fmBanner"
-        android:background="@drawable/menu_bg" >
+        android:background="@null" >
 
         <TabHost
             android:id="@android:id/tabhost"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/menu_bg" >
+            android:background="@null" >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/menu_bg"
+                android:background="@null"
                 android:orientation="vertical" >
 
                 <TabWidget
@@ -33,7 +33,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="0dp"
                     android:layout_weight="0"
-                    android:background="@drawable/menu_bg"
+                    android:background="@null"
                     android:orientation="horizontal" />
 
                 <FrameLayout
@@ -41,14 +41,14 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_weight="0"
-                    android:background="@drawable/menu_bg" />
+                    android:background="@null" />
 
                 <android.support.v4.view.ViewPager
                     android:id="@+id/pager"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:background="@drawable/menu_bg" />
+                    android:background="@null" />
             </LinearLayout>
         </TabHost>
     </RelativeLayout>

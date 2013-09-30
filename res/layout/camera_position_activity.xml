@@ -4,7 +4,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
     
+    <EditText
+        android:id="@+id/positionCameraSearhEdt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/search_here_text">
+        
+        
+    </EditText>
+    
     <fragment
+        android:layout_below="@+id/positionCameraSearhEdt"
         android:id="@+id/cameraPositionMap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

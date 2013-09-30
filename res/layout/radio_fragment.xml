@@ -12,19 +12,16 @@
         android:contentDescription="@string/hello_world"
         android:src="@drawable/radio_banner_img" />
 
-    <ToggleButton
+    <ImageButton
         android:id="@+id/playRadioTg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/radioBannerIv"
         android:layout_centerHorizontal="true"
-        android:background="@android:color/transparent"
-        android:button="@drawable/toggle_playradio_btn"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:textOff=""
-        android:textOn="" >
-    </ToggleButton>
+        android:contentDescription="@string/hello_world"
+        android:background="@drawable/play_img"
+        >
+    </ImageButton>
 
     <SeekBar
         android:id="@+id/seekBar1"

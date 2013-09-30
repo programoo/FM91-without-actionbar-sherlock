@@ -36,18 +36,14 @@
             android:text="@string/crime_dialog_text" >
         </TextView>
 
-        <ToggleButton
+        <ImageButton
             android:id="@+id/crimeTgBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:background="@android:color/transparent"
-            android:button="@drawable/toggle_img_btn"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
-            android:textOff=""
-            android:textOn="" >
-        </ToggleButton>
+            android:contentDescription="@string/hello_world"
+            android:background="@null"
+            android:src="@drawable/inactive_btn"/>
     
     
     </RelativeLayout>
@@ -67,17 +63,15 @@
             android:text="@string/accident_dialog_text" >
         </TextView>
 
-        <ToggleButton
+        <ImageButton
             android:id="@+id/accidentTgBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/hello_world"
             android:layout_alignParentRight="true"
-            android:background="@android:color/transparent"
-            android:button="@drawable/toggle_img_btn"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
-            android:textOff=""
-            android:textOn="" />
+            android:src="@drawable/inactive_btn"
+            android:background="@null"/>
+        
     </RelativeLayout>
 
     <RelativeLayout
@@ -95,17 +89,16 @@
             android:text="@string/other_dialog_text" >
         </TextView>
 
-        <ToggleButton
+        <ImageButton
             android:id="@+id/otherTgBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:src="@drawable/inactive_btn"
+            android:contentDescription="@string/hello_world"
             android:layout_alignParentRight="true"
-            android:background="@android:color/transparent"
-            android:button="@drawable/toggle_img_btn"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
-            android:textOff=""
-            android:textOn="" />
+            android:background="@null"/>
+        
+        
     </RelativeLayout>
 
     <ListView

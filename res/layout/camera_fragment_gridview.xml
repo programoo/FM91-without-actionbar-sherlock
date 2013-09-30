@@ -5,7 +5,7 @@
 
     <ImageView
         android:id="@+id/cameraImageView1"
-        android:layout_width="wrap_content"
+        android:layout_width="106dp"
         android:layout_height="wrap_content"
         android:background="@null"
         android:layout_gravity="center_horizontal"

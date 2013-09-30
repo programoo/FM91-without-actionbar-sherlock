@@ -87,12 +87,16 @@ public class EmergencyCallActivity extends Activity implements
 	{
 	}
 	
+
 	public void emergencyBtnOnClick(View view)
 	{
+		/*
 		Log.d(TAG, "emergencyBtnOnClick");
-		//Intent shareBtn = new Intent(NewsDetailsActivity.this,
-		//		EmergencyCallActivity.class);
-		//startActivity(shareBtn);
+		Intent shareBtn = new Intent(EmergencyCallActivity.this,
+				EmergencyCallActivity.class);
+		startActivity(shareBtn);
+		*/
 	}
+	
 	
 }

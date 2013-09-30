@@ -7,9 +7,10 @@
         android:id="@+id/imageDialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@null"
         android:layout_alignParentRight="true"
         android:contentDescription="@string/hello_world"
-        android:src="@drawable/ic_launcher" >
+        android:src="@drawable/map_listview_img" >
     </ImageButton>
 
     <EditText

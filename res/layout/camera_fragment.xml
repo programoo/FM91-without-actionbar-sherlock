@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/listview_img"
     android:orientation="vertical" >
 
     
@@ -10,7 +11,7 @@
         android:id="@+id/cctvBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/submenu_bg"
+        android:background="@drawable/submenu_img"
         android:onClick="cctvBtnOnClick"
         android:text="@string/cctv_btn_text" />
 
@@ -19,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/cctvBtn"
-        android:background="@drawable/submenu_bg"
+        android:background="@drawable/submenu_img"
         android:text="@string/position_btn_text" />
 
     <EditText

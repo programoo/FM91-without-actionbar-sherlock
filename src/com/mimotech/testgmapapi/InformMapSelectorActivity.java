@@ -63,7 +63,7 @@ public class InformMapSelectorActivity extends FragmentActivity implements
 	private RelativeLayout listViewLayout;
 	boolean showMapView = true;
 	private EditText filterEdt;
-	
+	private ImageButton imageDialog;
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -96,7 +96,7 @@ public class InformMapSelectorActivity extends FragmentActivity implements
 				
 			}
 		});
-		ImageButton imageDialog = (ImageButton) findViewById(R.id.imageDialog);
+		imageDialog = (ImageButton) findViewById(R.id.imageDialog);
 		imageDialog.setOnClickListener(new OnClickListener()
 		{
 			public void onClick(View view)
@@ -105,11 +105,13 @@ public class InformMapSelectorActivity extends FragmentActivity implements
 				{
 					mapViewLayout.setVisibility(View.GONE);
 					listViewLayout.setVisibility(View.VISIBLE);
+					imageDialog.setImageResource(R.drawable.map_mapview_img);
 					showMapView = false;
 				} else
 				{
 					mapViewLayout.setVisibility(View.VISIBLE);
 					listViewLayout.setVisibility(View.GONE);
+					imageDialog.setImageResource(R.drawable.map_listview_img);
 					showMapView = true;
 				}
 				reloadView();

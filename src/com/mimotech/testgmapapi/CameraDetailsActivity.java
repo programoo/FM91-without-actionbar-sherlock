@@ -28,11 +28,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import com.androidquery.AQuery;
 
@@ -43,7 +43,7 @@ public class CameraDetailsActivity extends FragmentActivity
 	ImageView iv;
 	TextView tv;
 	private boolean run = true;
-	private ToggleButton bookMarkImgBtn;
+	private ImageButton bookMarkImgBtn;
 	private Camera cam;
 	private Context ctx;
 	private SocialAuthAdapter adapter;
@@ -51,6 +51,7 @@ public class CameraDetailsActivity extends FragmentActivity
 	private RelativeLayout mainSharedLayout;
 	private AQuery aq;
 	private EditText userCommentEdt;
+	private boolean isCheck = false;
 
 	@Override
 	public void onAttachFragment(Fragment fragment)
@@ -103,9 +104,17 @@ public class CameraDetailsActivity extends FragmentActivity
 			}
 		});
 		
-		bookMarkImgBtn = (ToggleButton) findViewById(R.id.bookmarkBookMarkImgBtn);
+		bookMarkImgBtn = (ImageButton) findViewById(R.id.bookmarkBookMarkImgBtn);
 		
-		bookMarkImgBtn.setChecked(cam.isBookmark);
+		
+		if(cam.isBookmark){
+			bookMarkImgBtn.setImageResource(R.drawable.star_active);
+			isCheck = true;
+		}
+		else{
+			bookMarkImgBtn.setImageResource(R.drawable.star_inactive);
+			isCheck = false;
+		}
 		
 		bookMarkImgBtn.setOnClickListener(new OnClickListener()
 		{
@@ -113,8 +122,16 @@ public class CameraDetailsActivity extends FragmentActivity
 			@Override
 			public void onClick(View v)
 			{
-				Log.i(TAG, "booked it" + bookMarkImgBtn.isChecked() + ","
+				Log.i(TAG, "booked it" + isCheck + ","
 						+ cam.id);
+				if(isCheck){
+					bookMarkImgBtn.setImageResource(R.drawable.star_inactive);
+					isCheck = false;
+				}
+				else{
+					bookMarkImgBtn.setImageResource(R.drawable.star_active);
+					isCheck = true;
+				}
 			}
 		});
 		
@@ -178,7 +195,7 @@ public class CameraDetailsActivity extends FragmentActivity
 		run = false;
 		
 		// save state of camera
-		cam.isBookmark = bookMarkImgBtn.isChecked();
+		cam.isBookmark = isCheck;
 		String bufferCameraCSV = "";
 		for (int i = 0; i < Info.getInstance().camList.size(); i++)
 		{
@@ -418,6 +435,7 @@ public class CameraDetailsActivity extends FragmentActivity
 		{
 			super.onPostExecute(result);
 			Log.d(TAG, "image posted complete");
+			Toast.makeText(ctx, "Upload image complete", Toast.LENGTH_LONG).show();
 		}
 		
 	}

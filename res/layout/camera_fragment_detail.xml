@@ -87,18 +87,18 @@
                 android:background="@drawable/share_active"
                 android:contentDescription="@string/hello_world" />
 
-            <ToggleButton
+            <ImageButton
                 android:id="@+id/bookmarkBookMarkImgBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@+id/shareCctvImgBtn"
                 android:background="@null"
-                android:button="@drawable/toggle_bookmark_btn"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:textOff=""
-                android:textOn="" >
-            </ToggleButton>
+                android:src="@drawable/star_inactive"
+                android:contentDescription="@string/hello_world"
+                >
+            </ImageButton>
+            
+            
         </RelativeLayout>
 
         <RelativeLayout

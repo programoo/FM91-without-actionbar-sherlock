@@ -24,9 +24,10 @@ public class RadioFragment extends Fragment
 	private String tag = this.getClass().getSimpleName();
 	private View viewMainFragment;
 	private MediaPlayer player;
-	private ToggleButton playTg;
+	private ImageButton playTg;
 	private SeekBar volumeSeekbar;
 	private AudioManager audioManager;
+	private boolean isPlay =false;
 	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState)
@@ -38,19 +39,27 @@ public class RadioFragment extends Fragment
 		
 		initializeMediaPlayer();
 		
-		playTg = (ToggleButton) this.viewMainFragment
+		playTg = (ImageButton) this.viewMainFragment
 				.findViewById(R.id.playRadioTg);
+		playTg.setImageResource(R.drawable.play_img);
+		
 		playTg.setOnClickListener(new OnClickListener()
 		{
 			@Override
 			public void onClick(View v)
 			{
-				if (playTg.isChecked())
+				if (!isPlay)
 				{
+					isPlay = true;
 					startPlaying();
+					playTg.setImageResource(R.drawable.pause_img);
+
 				} else
 				{
+					isPlay = false;
 					stopPlaying();
+					playTg.setImageResource(R.drawable.play_img);
+
 				}
 			}
 		});

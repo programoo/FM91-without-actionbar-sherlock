@@ -10,14 +10,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import android.app.Activity;
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -66,7 +64,6 @@ public class InsertProfileActivity extends Activity implements OnClickListener
 			aq = new AQuery(this);
 			
 			aq.id(imgBtn).image(temProfile.split(",")[0], true, true, 200, 0);
-			
 			usernameEdt.setText(temProfile.split(",")[1]);
 			userPhoneNumberEdt.setText(temProfile.split(",")[2]);
 		}
@@ -233,4 +230,13 @@ public class InsertProfileActivity extends Activity implements OnClickListener
 		return read;
 		
 	}
+
+	public void emergencyBtnOnClick(View view)
+	{
+		Log.d(TAG, "emergencyBtnOnClick");
+		Intent shareBtn = new Intent(InsertProfileActivity.this,
+				EmergencyCallActivity.class);
+		startActivity(shareBtn);
+	}
+	
 }

@@ -27,6 +27,7 @@
     <string name="comment_hint_text">Comment</string>
 
     <!-- thai translate text -->
+    <string name="search_here_text">ค้นหาที่นี่</string>
     <string name="support_by_text">สนับสนุนโดย</string>
     <string name="report_picture_text">ภาพรายงาน</string>
     <string name="day_text">วัน</string>

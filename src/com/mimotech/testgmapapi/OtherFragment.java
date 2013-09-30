@@ -23,6 +23,7 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -43,10 +44,10 @@ public class OtherFragment extends Fragment implements OnItemClickListener
 	private String radius;
 	private String rewind;
 	
-	private ToggleButton crimTg;
-	private ToggleButton accidentTg;
-	private ToggleButton otherTg;
-	private Dialog radiusSettingDialog ;
+	private ImageButton crimTg;
+	private ImageButton accidentTg;
+	private ImageButton otherTg;
+	private Dialog radiusSettingDialog;
 	
 	private ListView lvSettingDialog;
 	private RadioButton oneKm;
@@ -109,20 +110,17 @@ public class OtherFragment extends Fragment implements OnItemClickListener
 		{
 			Intent it = new Intent(getActivity(), InsertProfileActivity.class);
 			startActivity(it);
-		}
-		else if (dialogName.equalsIgnoreCase("facebook"))
+		} else if (dialogName.equalsIgnoreCase("facebook"))
 		{
 			Intent it = new Intent(getActivity(), WebViewActivity.class);
 			it.putExtra("provider", "https://www.facebook.com/trafficradiofm91");
 			startActivity(it);
-		}
-		else if (dialogName.equalsIgnoreCase("twitter"))
+		} else if (dialogName.equalsIgnoreCase("twitter"))
 		{
 			Intent it = new Intent(getActivity(), WebViewActivity.class);
 			it.putExtra("provider", "https://twitter.com/fm91trafficpro");
 			startActivity(it);
-		}
-		else if (dialogName.equalsIgnoreCase("setting"))
+		} else if (dialogName.equalsIgnoreCase("setting"))
 		{
 			settingDialog = new Dialog(getActivity(),
 					android.R.style.Theme_Light_NoTitleBar);
@@ -163,15 +161,88 @@ public class OtherFragment extends Fragment implements OnItemClickListener
 					R.layout.other_fragment_settings_listview);
 			lvSettingDialog.setAdapter(settingsAdapter);
 			
-			crimTg = (ToggleButton) settingDialog.findViewById(R.id.crimeTgBtn);
-			accidentTg = (ToggleButton) settingDialog
-					.findViewById(R.id.accidentTgBtn);
-			otherTg = (ToggleButton) settingDialog
-					.findViewById(R.id.otherTgBtn);
+			crimTg = (ImageButton) settingDialog.findViewById(R.id.crimeTgBtn);
 			
-			crimTg.setChecked(this.crimTick);
-			accidentTg.setChecked(this.accidentTick);
-			otherTg.setChecked(this.otherTick);
+			crimTg.setOnClickListener(new OnClickListener()
+			{
+				
+				@Override
+				public void onClick(View v)
+				{
+					if (crimTick)
+					{
+						crimTg.setImageResource(R.drawable.inactive_btn);
+						crimTick = false;
+					} else
+					{
+						crimTg.setImageResource(R.drawable.active_btn);
+						crimTick = true;
+					}
+					
+				}
+			});
+			
+			accidentTg = (ImageButton) settingDialog
+					.findViewById(R.id.accidentTgBtn);
+			accidentTg.setOnClickListener(new OnClickListener()
+			{
+				
+				@Override
+				public void onClick(View v)
+				{
+					if (accidentTick)
+					{
+						accidentTg.setImageResource(R.drawable.inactive_btn);
+						accidentTick = false;
+					} else
+					{
+						accidentTg.setImageResource(R.drawable.active_btn);
+						accidentTick = true;
+					}
+					
+				}
+			});
+			
+			otherTg = (ImageButton) settingDialog
+					.findViewById(R.id.otherTgBtn);
+			otherTg.setOnClickListener(new OnClickListener()
+			{
+				
+				@Override
+				public void onClick(View v)
+				{
+					if (accidentTick)
+					{
+						otherTg.setImageResource(R.drawable.inactive_btn);
+						otherTick = false;
+					} else
+					{
+						otherTg.setImageResource(R.drawable.active_btn);
+						otherTick = true;
+					}
+				}
+			});
+			// crimTg.setChecked(this.crimTick);
+			if (crimTick)
+			{
+				crimTg.setImageResource(R.drawable.active_btn);
+				crimTick = true;
+			}
+			
+			if (accidentTick)
+			{
+				accidentTg.setImageResource(R.drawable.active_btn);
+				accidentTick = true;
+			}
+			
+			if (otherTick)
+			{
+				otherTg.setImageResource(R.drawable.active_btn);
+				otherTick = true;
+			}
+			
+			//accidentTg.setChecked(this.accidentTick);
+			//otherTg.setChecked(this.otherTick);
 			
 			Log.i(TAG, "is check: " + this.crimTick);
 			Log.i(TAG, "is check: " + this.accidentTick);
@@ -182,22 +253,21 @@ public class OtherFragment extends Fragment implements OnItemClickListener
 				@Override
 				public void onCancel(DialogInterface dialog)
 				{
-					crimTick = crimTg.isChecked();
-					accidentTick = accidentTg.isChecked();
-					otherTick = otherTg.isChecked();
+					// crimTick = crimTick;
+					//accidentTick = accidentTg.isChecked();
+					//otherTick = otherTg.isChecked();
 					
-					Log.i(TAG, "is check: " + crimTg.isChecked());
-					Log.i(TAG, "is check: " + accidentTg.isChecked());
-					Log.i(TAG, "is check: " + otherTg.isChecked());
+					Log.i(TAG, "is check: " + crimTick);
+					Log.i(TAG, "is check: " + accidentTick);
+					Log.i(TAG, "is check: " + otherTick);
 					
 					// kep all settings value here
 					String writeStrCsv = "";
-					writeStrCsv = crimTg.isChecked() + ","
-							+ accidentTg.isChecked() + ","
-							+ otherTg.isChecked() + "," + latLnConfig + ","
+					writeStrCsv = crimTick + "," + accidentTick + ","
+							+ otherTick + "," + latLnConfig + ","
 							+ radius + "," + rewind;
 					// attatch this to global variable
-					Info.crimTick = crimTg.isChecked();
+					Info.crimTick = crimTick;
 					Info.accidentTick = accidentTick;
 					Info.otherTick = otherTick;
 					Info.latLnConfig = latLnConfig;
@@ -230,8 +300,7 @@ public class OtherFragment extends Fragment implements OnItemClickListener
 					{
 						Log.i(TAG, "rewind text setting click");
 						
-						radiusSettingDialog = new Dialog(
-								getActivity());
+						radiusSettingDialog = new Dialog(getActivity());
 						radiusSettingDialog.getWindow();
 						radiusSettingDialog
 								.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -323,8 +392,7 @@ public class OtherFragment extends Fragment implements OnItemClickListener
 					{
 						Log.i(TAG, "radius text setting click");
 						
-						radiusSettingDialog = new Dialog(
-								getActivity());
+						radiusSettingDialog = new Dialog(getActivity());
 						radiusSettingDialog.getWindow();
 						radiusSettingDialog
 								.requestWindowFeature(Window.FEATURE_NO_TITLE);

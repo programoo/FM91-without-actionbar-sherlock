@@ -5,7 +5,10 @@ import java.util.ArrayList;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.widget.EditText;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -31,9 +34,40 @@ public class CameraPositionMapActivity extends FragmentActivity implements
 		setContentView(R.layout.camera_position_activity);
 
 		camList = Info.getInstance().camList;
-		camListFilter = Info.getInstance().camList;// new ArrayList<Camera>();
+		camListFilter = Info.getInstance().camList;
 		markerList = new ArrayList<Marker>();
 		Log.d(TAG, "onCreate");
+		
+		
+		EditText searchCamEdt = (EditText) findViewById(R.id.positionCameraSearhEdt);
+		searchCamEdt.addTextChangedListener(new TextWatcher()
+		{
+			
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count)
+			{
+			}
+			
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after)
+			{
+			}
+			
+			@Override
+			public void afterTextChanged(Editable s)
+			{
+				Log.i(TAG,"textChange: "+s.toString());
+				camListFilter = new ArrayList<Camera>();
+				for(int i=0;i<Info.getInstance().camList.size();i++){
+					if(Info.getInstance().camList.get(i).toString().indexOf(s.toString( ) ) != -1 )    {
+						camListFilter.add(Info.getInstance().camList.get(i));
+					}
+				}
+				markAll();
+			}
+		});
+		
 
 	}
 
@@ -48,10 +82,9 @@ public class CameraPositionMapActivity extends FragmentActivity implements
 
 		Log.i(TAG, "set up map marker");
 		// remove old marker
-		for (int i = 0; i < this.markerList.size(); i++) {
-			this.markerList.get(i).remove();
+		if(mMap != null){
+			mMap.clear();
 		}
-
 		// re-draw marker again
 		for (int i = 0; i < camListFilter.size(); i++) {
 			myMarker(camListFilter.get(i).lat, camListFilter.get(i).lng,

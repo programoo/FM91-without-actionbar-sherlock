@@ -131,9 +131,8 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_below="@+id/informDetailEdt"
-            android:background="@null"
             android:contentDescription="@string/hello_world"
-            android:scaleType="fitStart"
+            android:scaleType="fitCenter"
             android:src="@drawable/add_image" />
 
         <ImageButton
@@ -142,9 +141,8 @@
             android:layout_height="100dp"
             android:layout_below="@+id/informDetailEdt"
             android:layout_toRightOf="@+id/addImgInformImgBtn"
-            android:background="@null"
             android:contentDescription="@string/hello_world"
-            android:scaleType="fitStart"
+            android:scaleType="fitCenter"
             android:src="@drawable/add_location" />
 
         <Button
