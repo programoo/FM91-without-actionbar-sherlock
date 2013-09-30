@@ -1,0 +1,24 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- header -->
+    <dimen name="header_btn_width">60dp</dimen>
+    <dimen name="header_btn_height">26dp</dimen>
+    <dimen name="header_btn_text_size">13dp</dimen>
+
+    <!-- tab -->
+    <dimen name="tabbar_title_text_size">12dp</dimen>
+    <dimen name="tab_height">70dp</dimen>
+    <dimen name="fm_banner_size">32dp</dimen>
+
+    <!-- news babbar -->
+    <dimen name="is_read_icon">15dp</dimen>
+    <dimen name="tab_font_size">15dp</dimen>
+    <dimen name="news_event_btn_font_size">12dp</dimen>
+    <dimen name="news_listview_icon_width">66dp</dimen>
+    <dimen name="news_listview_icon_height">66dp</dimen>
+
+</resources>

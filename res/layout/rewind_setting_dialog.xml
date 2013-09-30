@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activityRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/settingTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:text="@string/rewind_settings_dialog_text" />
+
+    <RelativeLayout
+        android:id="@+id/oneKiloLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/settingTv"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/oneKilometerTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="@string/one_day_text" >
+        </TextView>
+
+        <RadioButton
+            android:id="@+id/oneDayRadio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/threeKiloLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/oneKiloLayout"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/threeKilometerTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="@string/three_day_text" >
+        </TextView>
+
+        <RadioButton
+            android:id="@+id/threeDayRadio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/fiveKiloLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/threeKiloLayout"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/fiveKilometerTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="@string/seven_day_text" >
+        </TextView>
+
+        <RadioButton
+            android:id="@+id/sevenDayRadio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/okCancelLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/fiveKiloLayout" >
+
+        <Button
+            android:id="@+id/cancelRadiusBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancel" >
+        </Button>
+
+        <Button
+            android:id="@+id/okRadiusBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/cancelRadiusBtn"
+            android:text="OK" >
+        </Button>
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- predefine color name -->
+    <color name="white">#ffffff</color>
+    <color name="grey">#463738</color>
+    <color name="kak">#ff333333</color>
+    <color name="news_badge">#0000FF</color>
+    <color name="transparent">#000000</color>
+
+    <!-- header -->
+    <color name="fm_header_color">#ffffff</color>
+    <color name="header_btn_clolor">#d12229</color>
+
+    <!-- news tabbar -->
+    <color name="badge_count_color">#ffffff</color>
+
+    <!-- tab -->
+    <color name="activetab_background">#a8bb30</color>
+    <color name="tab_background">#ffffff</color>
+    <color name="pressedtab_background">#ffffff</color>
+    <color name="tab_text">#7a7e81</color>
+    <color name="activetab_text">#ffffff</color>
+    <color name="pressedtab_text">#bfd22b</color>
+
+    <!-- dial fragment -->
+    <color name="dialfont_active">#ffffff</color>
+    <color name="dialfont">#bcbdc0</color>
+    <color name="dialbox">#f4f5f5</color>
+    <color name="dialbox_text">#645049</color>
+    <color name="dialbox_border">#d3c8bb</color>
+    <color name="dialpad_border">#393f47</color>
+    <color name="warm_grey">#463738</color>
+
+    <!-- all list -->
+    <color name="name">#463738</color>
+    <color name="list_line_divider">#E0E0DF</color>
+    <color name="list_bg">#FFFFFF</color>
+
+    <!-- list selector -->
+    <color name="selected">#869701</color>
+
+    <!-- call log list -->
+    <color name="phone">#BFD22B</color>
+    <color name="time">#676767</color>
+
+    <!-- contact list -->
+    <color name="section_bg">#473738</color>
+    <color name="section_text_color">#FFFFFF</color>
+
+    <!-- contact detail -->
+    <color name="detail_bg">#FFFFFF</color>
+    <color name="detail_header_bg">#bfd22b</color>
+    <color name="detail_name_text">#FFFFFF</color>
+    <color name="detail_type_text">#463738</color>
+    <color name="detail_phone_text">#bfd22b</color>
+    <color name="detail_time_text">#676767</color>
+    <color name="detail_section_bg">#473738</color>
+    <color name="detail_section_text">#FFFFFF</color>
+
+    <!-- title view -->
+    <color name="title_bar_text">#FFFFFF</color>
+
+    <!-- context menu -->
+    <color name="context_menu_bg">#FFFFFF</color>
+    <color name="context_menu_border">#CDBFB6</color>
+    <color name="context_menu_text">#544037</color>
+    <color name="context_button_text">#FFFFFF</color>
+    <color name="context_menu_header_text">#bfd131</color>
+    <color name="custom_theme_color">#ff00ffff</color>
+
+    <!-- all -->
+    <color name="myTheme_bg">#FFFFFF</color>
+    <color name="infoTheme_bg">#F1F1F2</color>
+    <color name="line_color">#E0E0DF</color>
+    <color name="dialog_loading_center">#ECF4FF</color>
+    <color name="dialog_loading_start">#E0E0DF</color>
+    <color name="dialog_loading_end">#a8bb30</color>
+
+</resources>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="0dip"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/badge_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/news_tabbar_icon"
+        android:scaleType="fitXY" />
+
+    <TextView
+        android:id="@+id/badge_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/badge_icon"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/tabbar_text_color"
+        android:textSize="@dimen/tabbar_title_text_size" />
+
+    <TextView
+        android:id="@+id/badge_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/circle"
+        android:paddingBottom="2dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="2dp"
+        android:textColor="@color/badge_count_color"
+        android:textSize="@dimen/tabbar_title_text_size"
+        android:textStyle="bold" />
+
+</RelativeLayout>

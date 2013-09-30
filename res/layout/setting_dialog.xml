@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activityRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/settingTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:text="@string/radius_settings_text" />
+
+    <TextView
+        android:id="@+id/settingReceiveNews"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/settingTv"
+        android:text="@string/setting_dialog_setting_receivenews_text" />
+
+    <RelativeLayout
+        android:id="@+id/crimeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/settingReceiveNews"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/crimeTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="@string/crime_dialog_text" >
+        </TextView>
+
+        <ToggleButton
+            android:id="@+id/crimeTgBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@android:color/transparent"
+            android:button="@drawable/toggle_img_btn"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:textOff=""
+            android:textOn="" >
+        </ToggleButton>
+    
+    
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/accidentLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/crimeLayout"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/accidentTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="@string/accident_dialog_text" >
+        </TextView>
+
+        <ToggleButton
+            android:id="@+id/accidentTgBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@android:color/transparent"
+            android:button="@drawable/toggle_img_btn"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:textOff=""
+            android:textOn="" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/ohterLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/accidentLayout"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/otherTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="@string/other_dialog_text" >
+        </TextView>
+
+        <ToggleButton
+            android:id="@+id/otherTgBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@android:color/transparent"
+            android:button="@drawable/toggle_img_btn"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:textOff=""
+            android:textOn="" />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/settingDialogLv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ohterLayout" >
+    </ListView>
+
+</RelativeLayout>

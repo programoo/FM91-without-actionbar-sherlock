@@ -1,0 +1,64 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <include
+        android:id="@+id/fmBanner"
+        layout="@layout/blank_activity" />
+
+    <RelativeLayout
+        android:id="@+id/profileShowLayout"
+        android:layout_below="@+id/fmBanner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/profileTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="@string/profile_settings_text" />
+
+        <Button
+            android:id="@+id/saveProfileBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="@string/save_text" />
+    </RelativeLayout>
+
+    <ImageButton
+        android:id="@+id/insertImgProfileBtn"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/profileShowLayout"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/hello_world"
+        android:scaleType="fitStart"
+        android:src="@drawable/ic_launcher" />
+
+    <EditText
+        android:id="@+id/userNameEdt"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/insertImgProfileBtn"
+        android:ems="10"
+        android:hint="@string/name_text"
+        android:textColor="#000000"
+        android:textSize="12sp" />
+
+    <EditText
+        android:id="@+id/userPhoneNumberEdt"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/userNameEdt"
+        android:digits="0123456789+"
+        android:ems="10"
+        android:hint="@string/phone_text"
+        android:inputType="phone"
+        android:textColor="#000000"
+        android:textSize="12sp" />
+
+</RelativeLayout>

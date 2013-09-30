@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/fm_banner"
+        layout="@layout/blank_activity" />
+
+    <RelativeLayout
+        android:id="@+id/news_detail_share_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fm_banner" >
+
+        <ImageButton
+            android:id="@+id/uploadImgBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/default_img_describer"
+            android:src="@drawable/ic_launcher" />
+
+        <EditText
+            android:id="@+id/newsDetailsShareEditText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/uploadImgBtn"
+            android:hint="@string/news_share_edittext_hint"
+            android:textColor="#000000"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/news_details_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/uploadImgBtn"
+            android:text="@string/fm_banner_text"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/newsDetailsShareBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:text="@string/news_details_share_btn_name" />
+
+        <ImageView
+            android:id="@+id/uploadImgIv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/news_details_msg"
+            android:contentDescription="@string/default_img_describer" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/news_detail_normal_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fm_banner" >
+
+        <TextView
+            android:id="@+id/newsTextDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@+id/news_headline_text" />
+
+        <Button
+            android:id="@+id/shareBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/newsTextDetail"
+            android:contentDescription="@string/default_img_describer"
+            android:background="@drawable/share_active"
+             />
+
+        <fragment
+            android:id="@+id/newsMap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/shareBtn"
+            class="com.google.android.gms.maps.SupportMapFragment" />
+    </RelativeLayout>
+
+</RelativeLayout>

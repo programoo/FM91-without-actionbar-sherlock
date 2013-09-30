@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/fm_banner"
+        layout="@layout/blank_activity" />
+
+    <RelativeLayout
+        android:id="@+id/camera_detail_body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fm_banner" >
+
+        <TextView
+            android:id="@+id/reportPictureText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/report_picture_text" />
+
+        <Button
+            android:id="@+id/shareCctvImgBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/share_active"
+            android:contentDescription="@string/hello_world" />
+
+        <ToggleButton
+            android:id="@+id/bookmarkBookMarkImgBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/shareCctvImgBtn"
+            android:background="@null"
+            android:button="@drawable/toggle_bookmark_btn"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:textOff=""
+            android:textOn="" >
+        </ToggleButton>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/camera_image_detail_body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/camera_detail_body" >
+
+        <TextView
+            android:id="@+id/cameraDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/news_headline_text" />
+
+        <TextView
+            android:id="@+id/supporterCameraTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cameraDescription"
+            android:text="@string/hello_world" />
+
+        <TextView
+            android:id="@+id/timeCameraTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/supporterCameraTv"
+            android:text="@string/hello_world" />
+
+        <ImageView
+            android:id="@+id/cameraDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/timeCameraTv"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="0dp"
+            android:contentDescription="@string/default_img_describer" />
+        <Button
+            android:id="@+id/closeCameraBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/cameraDetail"
+            android:text="@string/close_text"></Button>
+        
+        
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">FM91</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="emergency_btn_text">ฉุกเฉิน</string>
+    <string name="news_tabbar">ข่าว</string>
+    <string name="news_btn_text">ข่าวใหม่</string>
+    <string name="event_btn_text">เหตุการณ์สถานที่</string>
+    <string name="news_headline_text">head line ja</string>
+    <string name="camera_tabbar">กล้อง</string>
+    <string name="camera_textview1">camera textview1</string>
+    <string name="cctv_btn_text">CCTV</string>
+    <string name="position_btn_text">POSITION</string>
+    <string name="search_hint">ค้นหาที่นี่</string>
+    <string name="fm_banner_text">FM 91</string>
+    <string name="news_times_text">10 นาที</string>
+    <string name="news_reporter_text">longdoo (twitter)</string>
+    <string name="default_img_describer">default_img_describer</string>
+
+    <!-- eng translate text -->
+    <string name="profile_settings_text">Profile</string>
+    <string name="search_emergency_text">Search</string>
+    <string name="close_text">Close</string>
+
+    <!-- thai translate text -->
+    <string name="support_by_text">สนับสนุนโดย</string>
+    <string name="report_picture_text">ภาพรายงาน</string>
+    <string name="day_text">วัน</string>
+    <string name="seven_day_text">7 วัน</string>
+    <string name="three_day_text">3 วัน</string>
+    <string name="one_day_text">1 วัน</string>
+    <string name="rewind_settings_dialog_text">การตั้งค่ารับข่าวย้อนหลัง</string>
+    <string name="kilometer_text">กิโลเมตร</string>
+    <string name="radius_settings_text">การตั้งค่ารัศมี</string>
+    <string name="five_kilo_text">5 กิโลเมตร</string>
+    <string name="three_kilo_text">3 กิโลเมตร</string>
+    <string name="one_kilo_text">1 กิโลเมตร</string>
+    <string name="undefined_text">ยังไม่ได้กำหนด</string>
+    <string name="other_tabbar_text">อื่นๆ</string>
+    <string name="find_here_text">ค้นหาที่นี่</string>
+    <string name="what_about_text">เกี่ยวกับอะไร</string>
+    <string name="save_text">บันทึก</string>
+    <string name="name_text">ชื่อ</string>
+    <string name="phone_text">เบอร์โทรศัพท์</string>
+    <string name="insert_your_data">กรุณาใส่ข้อมูลของคุณ</string>
+    <string name="chooser_label">เลือกรูปภาพ</string>
+    <string name="you_here_msg">คุณอยู่ที่นี่</string>
+    <string name="farfromyou_msg">ห่างจากคุณ</string>
+    <string name="pass_day_text">วัน</string>
+    <string name="pass_hour_text">ชั่วโมง</string>
+    <string name="pass_minute_text">นาที</string>
+    <string name="pass_second_text">วินาทีที่แล้ว</string>
+    <string name="internet_disconnect_alert">การเชื่อมต่อมีปัญหา กรุณาตรวจสอบการเชื่อมต่ออีกครั้ง</string>
+    <string name="gps_disconnect_alert">การเชื่อมต่อจีพีเอสมีปัญหา กรุณาตรวจสอบการเชื่อมต่ออีกครั้ง</string>
+    <string name="internet_connect_alert">การเชื่อมต่อสำเร็จ</string>
+    <string name="news_share_edittext_hint">ความคิดเห็นของคุณ</string>
+    <!-- header -->
+    <string name="header_img_describer">header_img_describer</string>
+
+    <!-- Image description -->
+    <string name="img_describer">img_describer</string>
+
+    <!-- news tabbar -->
+    <string name="news_tabbar_icon">news tabbar icon</string>
+    <string name="news_by_thai_text">โดย</string>
+    <string name="share_btn_name">share</string>
+
+    <!-- news details -->
+    <string name="news_details_share_btn_name">share</string>
+
+    <!-- radio tabbar -->
+    <string name="radio_tabbar_text">วิทยุ</string>
+
+    <!-- inform tabbar -->
+    <string name="inform_tabbar_text">แจ้งเหตุ</string>
+    <string name="traffic_text">จราจร</string>
+    <string name="accident_text">อุบัติเหตุ</string>
+    <string name="crime_text">อาชญากร</string>
+    <string name="transport_text">ขนส่งมวลชน</string>
+    <string name="powershutdown_text">ไฟดับ</string>
+    <string name="hydrant_text">น้ำไม่ไหล</string>
+    <string name="firealarm_text">ไฟไหม้</string>
+    <string name="other_text">อื่นๆ</string>
+
+    <!-- more tabbar -->
+    <string name="other_dialog_text">อื่นๆ</string>
+    <string name="accident_dialog_text">อุบัติเหตุจราจร</string>
+    <string name="crime_dialog_text">อาชญากร</string>
+    <string name="setting_dialog_text">Setting</string>
+    <string name="rewind_setting_text">ย้อนหลัง</string>
+    <string name="radious_setting_text">รัศมี</string>
+    <string name="newstype_setting_text">ข่าวสารที่ต้องการ</string>
+    <string name="place_setting_text">สถานที่รับข่าวสาร</string>
+    <string name="setting_dialog_setting_receivenews_text">ตั้งค่าการรับข่าวสาร</string>
+    <string name="more_tabbar_text">อื่นๆ</string>
+    <string name="title_activity_insert_profile">InsertProfileActivity</string>
+    <string name="title_activity_infom_map_selector">InfomMapSelectorActivity</string>
+    <string name="title_activity_other">OtherActivity</string>
+
+</resources>
