@@ -17,6 +17,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -26,6 +27,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -48,6 +50,7 @@ public class CameraDetailsActivity extends FragmentActivity
 	private RelativeLayout mainCameraLayout;
 	private RelativeLayout mainSharedLayout;
 	private AQuery aq;
+	private EditText userCommentEdt;
 
 	@Override
 	public void onAttachFragment(Fragment fragment)
@@ -140,7 +143,7 @@ public class CameraDetailsActivity extends FragmentActivity
 		aq.id(camShareIv).image(cam.imgUrl);
 		
 		Button postCameraToWallBtn = (Button) findViewById(R.id.cameraPostShareBtn);
-		
+		userCommentEdt = (EditText) findViewById(R.id.cameraShareEdt);
 		
 		postCameraToWallBtn.setOnClickListener(new OnClickListener()
 		{
@@ -149,6 +152,11 @@ public class CameraDetailsActivity extends FragmentActivity
 			public void onClick(View v)
 			{
 				Log.i(TAG,"Post onclick");
+				String message = userCommentEdt.getText().toString()+"\n"+cam.thaiName+" "+cam.englishName;
+				new uploadImgBgTask().execute(message);
+
+				mainCameraLayout.setVisibility(View.VISIBLE);;
+				mainSharedLayout.setVisibility(View.GONE);;
 				
 			}
 		});
@@ -216,7 +224,8 @@ public class CameraDetailsActivity extends FragmentActivity
 			int index = Integer.parseInt(text) % 5;
 			
 			if (bitMapList.size() > index && bitMapList.get(index) != null)
-			{
+			{	
+				cam.imgBmp = bitMapList.get(0);
 				iv.setImageBitmap(bitMapList.get(index));
 			}
 		}
@@ -383,5 +392,36 @@ public class CameraDetailsActivity extends FragmentActivity
 		}
 		return null;
 	}
+	
+	private class uploadImgBgTask extends AsyncTask<String, String, String>
+	{
+		
+		@Override
+		protected String doInBackground(String... params)
+		{
+			
+			try
+			{
+				Log.i(TAG,"up load: "+params[0]+",,,,"+cam.imgUrl+",,,,"+cam.imgBmp);
+				adapter.uploadImage(params[0], "cctvImage.jpg", cam.imgBmp,
+						100);
+			} catch (Exception e)
+			{
+				e.printStackTrace();
+				return null;
+			}
+			return "ok";
+		}
+		
+		@Override
+		protected void onPostExecute(String result)
+		{
+			super.onPostExecute(result);
+			Log.d(TAG, "image posted complete");
+		}
+		
+	}
+
+	
 	
 }
