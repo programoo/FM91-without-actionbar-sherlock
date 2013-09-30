@@ -104,9 +104,9 @@
 
     <RelativeLayout
         android:id="@+id/informDetailLayout"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
+        android:layout_centerHorizontal="true"
         android:layout_below="@+id/informMainLayout" >
 
         <TextView
@@ -120,7 +120,6 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/typeOfInformTv"
-            android:ems="10"
             android:hint="@string/what_about_text"
             android:textColor="#000000"
             android:textSize="12sp" >
@@ -142,7 +141,6 @@
             android:layout_height="100dp"
             android:layout_alignParentRight="true"
             android:layout_below="@+id/informDetailEdt"
-            android:layout_toRightOf="@+id/addImgInformImgBtn"
             android:contentDescription="@string/hello_world"
             android:scaleType="fitCenter"
             android:src="@drawable/add_location" />

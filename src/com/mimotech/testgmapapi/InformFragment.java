@@ -77,7 +77,8 @@ public class InformFragment extends Fragment implements OnClickListener,
 	private ImageButton addImgImgBtn;
 	private ImageButton addPlaceImgBtn;
 	private Button sendBtn;
-	
+	private Button clearBtn;
+
 	// data for sending to server
 	private String pathImgSelected;
 	private String imgName;
@@ -110,6 +111,18 @@ public class InformFragment extends Fragment implements OnClickListener,
 		
 		mainLayout = (RelativeLayout) v.findViewById(R.id.informMainLayout);
 		detailLayout = (RelativeLayout) v.findViewById(R.id.informDetailLayout);
+		
+		clearBtn = (Button) v.findViewById(R.id.clearBtn);
+		clearBtn.setOnClickListener(new OnClickListener()
+		{
+			
+			@Override
+			public void onClick(View v)
+			{
+				mainLayout.setVisibility(View.VISIBLE);
+				detailLayout.setVisibility(View.GONE);
+			}
+		});
 		
 		sendBtn = (Button) v.findViewById(R.id.sendBtn);
 		sendBtn.setOnClickListener(new OnClickListener()
@@ -148,6 +161,9 @@ public class InformFragment extends Fragment implements OnClickListener,
 					}
 					
 				});
+
+				mainLayout.setVisibility(View.VISIBLE);
+				detailLayout.setVisibility(View.GONE);
 				
 			}
 		});
