@@ -57,6 +57,17 @@ public class CameraGridViewAdapter extends BaseAdapter {
 		ImageView iv = (ImageView) convertView
 				.findViewById(R.id.cameraImageView1);
 
+		ImageView boomarkIv = (ImageView) convertView.findViewById(R.id.cameraBookmarkIv);
+		
+		if(camList.get(position).isBookmark){
+			//set visible
+			boomarkIv.setVisibility(View.VISIBLE);
+		}
+		else{
+			boomarkIv.setVisibility(View.GONE);
+		}
+		
+		
 		tv.setText(camList.get(position).thaiName);
 		aq.id(iv).image(camList.get(position).imgUrl, true, true, 200, 0);
 

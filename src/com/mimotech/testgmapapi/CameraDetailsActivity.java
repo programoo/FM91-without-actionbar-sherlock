@@ -2,12 +2,21 @@ package com.mimotech.testgmapapi;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
+
+import org.brickred.socialauth.android.DialogListener;
+import org.brickred.socialauth.android.SocialAuthAdapter;
+import org.brickred.socialauth.android.SocialAuthAdapter.Provider;
+import org.brickred.socialauth.android.SocialAuthError;
+import org.brickred.socialauth.android.SocialAuthListener;
 
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -18,8 +27,12 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
+
+import com.androidquery.AQuery;
 
 public class CameraDetailsActivity extends FragmentActivity
 {
@@ -31,6 +44,11 @@ public class CameraDetailsActivity extends FragmentActivity
 	private ToggleButton bookMarkImgBtn;
 	private Camera cam;
 	private Context ctx;
+	private SocialAuthAdapter adapter;
+	private RelativeLayout mainCameraLayout;
+	private RelativeLayout mainSharedLayout;
+	private AQuery aq;
+
 	@Override
 	public void onAttachFragment(Fragment fragment)
 	{
@@ -45,7 +63,11 @@ public class CameraDetailsActivity extends FragmentActivity
 		
 		setContentView(R.layout.camera_fragment_detail);
 		ctx = this;
+		aq = new AQuery(this);
 		bitMapList = new ArrayList<Bitmap>();
+		this.mainCameraLayout =(RelativeLayout) findViewById(R.id.cameraMainLayout);
+		this.mainSharedLayout =(RelativeLayout) findViewById(R.id.cameraSharedLayout);
+		this.mainSharedLayout.setVisibility(View.GONE);
 		
 		Intent intent = getIntent();
 		String[] imgList = intent.getStringExtra("imgList").split(",");
@@ -62,8 +84,9 @@ public class CameraDetailsActivity extends FragmentActivity
 		TextView supporterTv = (TextView) findViewById(R.id.supporterCameraTv);
 		TextView timeTv = (TextView) findViewById(R.id.timeCameraTv);
 		
-		tv.setText(cam.thaiName+" "+cam.englishName);
-		supporterTv.setText(getString(R.string.support_by_text)+" "+cam.source);
+		tv.setText(cam.thaiName + " " + cam.englishName);
+		supporterTv.setText(getString(R.string.support_by_text) + " "
+				+ cam.source);
 		timeTv.setText(cam.lastUpdate);
 		
 		Button closeBtn = (Button) findViewById(R.id.closeCameraBtn);
@@ -79,7 +102,6 @@ public class CameraDetailsActivity extends FragmentActivity
 		
 		bookMarkImgBtn = (ToggleButton) findViewById(R.id.bookmarkBookMarkImgBtn);
 		
-		
 		bookMarkImgBtn.setChecked(cam.isBookmark);
 		
 		bookMarkImgBtn.setOnClickListener(new OnClickListener()
@@ -88,14 +110,50 @@ public class CameraDetailsActivity extends FragmentActivity
 			@Override
 			public void onClick(View v)
 			{
-				Log.i(TAG, "booked it" + bookMarkImgBtn.isChecked()+","+cam.id);
+				Log.i(TAG, "booked it" + bookMarkImgBtn.isChecked() + ","
+						+ cam.id);
 			}
 		});
+		
+		
+		//SHARE LAYOUT
+		
+		Button share = (Button) findViewById(R.id.shareCctvImgBtn);
+		adapter = new SocialAuthAdapter(new ResponseListener());
+		// Add providers
+		adapter.addProvider(Provider.FACEBOOK, R.drawable.facebook);
+		adapter.addProvider(Provider.TWITTER, R.drawable.twitter);
+		// Providers require setting user call Back url
+		adapter.addCallBack(Provider.TWITTER,
+				"http://socialauth.in/socialauthdemo/socialAuthSuccessAction.do");
+		// Enable Provider
+		adapter.enable((Button) share);
+		
+		TextView desCamShare = (TextView) findViewById(R.id.descriptionCameraShareTv);
+		desCamShare.setText(cam.thaiName+" "+cam.englishName);
+		
+		TextView sourceCamShare = (TextView) findViewById(R.id.sourceCameraShareTv);
+		sourceCamShare.setText(getString(R.string.support_by_text)+" "+cam.source);
+		
+		ImageView camShareIv = (ImageView) findViewById(R.id.cameraShareIv);
+		//camShareIv.setImageBitmap(cam.im);
+		aq.id(camShareIv).image(cam.imgUrl);
+		
+		Button postCameraToWallBtn = (Button) findViewById(R.id.cameraPostShareBtn);
+		
+		
+		postCameraToWallBtn.setOnClickListener(new OnClickListener()
+		{
+			
+			@Override
+			public void onClick(View v)
+			{
+				Log.i(TAG,"Post onclick");
+				
+			}
+		});
+		
 	}
-	
-	
-	
-	
 	
 	@Override
 	protected void onPause()
@@ -111,11 +169,13 @@ public class CameraDetailsActivity extends FragmentActivity
 		Log.i(TAG, "arr size: " + bitMapList.size());
 		run = false;
 		
-		//save state of camera
+		// save state of camera
 		cam.isBookmark = bookMarkImgBtn.isChecked();
-		String bufferCameraCSV="";
-		for(int i=0;i<Info.getInstance().camList.size();i++){
-			bufferCameraCSV += Info.getInstance().camList.get(i).id+"-"+Info.getInstance().camList.get(i).isBookmark+",";
+		String bufferCameraCSV = "";
+		for (int i = 0; i < Info.getInstance().camList.size(); i++)
+		{
+			bufferCameraCSV += Info.getInstance().camList.get(i).id + "-"
+					+ Info.getInstance().camList.get(i).isBookmark + ",";
 		}
 		Info.getInstance().writeProfile(this, "camera.csv", bufferCameraCSV);
 		
@@ -227,6 +287,101 @@ public class CameraDetailsActivity extends FragmentActivity
 		}
 		return read;
 		
+	}
+	
+	private final class ResponseListener implements DialogListener
+	{
+		@Override
+		public void onComplete(Bundle values)
+		{
+			
+			Log.d("ShareButton", "Authentication Successful");
+			
+			// Get name of provider after authentication
+			final String providerName = values
+					.getString(SocialAuthAdapter.PROVIDER);
+			Log.d("ShareButton", "Provider Name = " + providerName);
+			Toast.makeText(CameraDetailsActivity.this,
+					providerName + " connected", Toast.LENGTH_LONG).show();
+			
+			//hide main layout
+			mainCameraLayout.setVisibility(View.GONE);
+			mainSharedLayout.setVisibility(View.VISIBLE);
+
+		}
+		
+		@Override
+		public void onError(SocialAuthError error)
+		{
+			Log.d("ShareButton", "Authentication Error: " + error.getMessage());
+		}
+		
+		@Override
+		public void onCancel()
+		{
+			Log.d("ShareButton", "Authentication Cancelled");
+		}
+		
+		@Override
+		public void onBack()
+		{
+			Log.d("Share-Button", "Dialog Closed by pressing Back Key");
+		}
+		
+	}
+	
+	// To get status of message after authentication
+	private final class MessageListener implements SocialAuthListener<Integer>
+	{
+		@Override
+		public void onExecute(String provider, Integer t)
+		{
+			Integer status = t;
+			if (status.intValue() == 200 || status.intValue() == 201
+					|| status.intValue() == 204)
+				Toast.makeText(CameraDetailsActivity.this,
+						"Message posted on " + provider, Toast.LENGTH_LONG)
+						.show();
+			else
+				Toast.makeText(CameraDetailsActivity.this,
+						"Message not posted on " + provider, Toast.LENGTH_LONG)
+						.show();
+		}
+		
+		@Override
+		public void onError(SocialAuthError e)
+		{
+			
+		}
+	}
+	
+	private Bitmap decodeFile(File f)
+	{
+		try
+		{
+			// Decode image size
+			BitmapFactory.Options o = new BitmapFactory.Options();
+			o.inJustDecodeBounds = true;
+			BitmapFactory.decodeStream(new FileInputStream(f), null, o);
+			
+			// The new size we want to scale to
+			final int REQUIRED_SIZE = 256;
+			
+			// Find the correct scale value. It should be the power of 2.
+			int scale = 1;
+			while (o.outWidth / scale / 2 >= REQUIRED_SIZE
+					&& o.outHeight / scale / 2 >= REQUIRED_SIZE)
+				scale *= 2;
+			
+			// Decode with inSampleSize
+			BitmapFactory.Options o2 = new BitmapFactory.Options();
+			o2.inSampleSize = scale;
+			return BitmapFactory.decodeStream(new FileInputStream(f), null, o2);
+		} catch (FileNotFoundException e)
+		{
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 }

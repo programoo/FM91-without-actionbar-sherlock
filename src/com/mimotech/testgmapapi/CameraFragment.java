@@ -193,6 +193,7 @@ public class CameraFragment extends Fragment implements TextWatcher
 					}
 				}
 				
+				Info.getInstance().sortCamByBookmark(camListFilter);
 				CameraGridViewAdapter ardap = new CameraGridViewAdapter(
 						getActivity().getApplicationContext(), camListFilter);
 				
@@ -217,6 +218,7 @@ public class CameraFragment extends Fragment implements TextWatcher
 	public void onStart()
 	{
 		super.onStart();
+		reloadGridView();
 	}
 	
 	public void onResume()
@@ -474,12 +476,17 @@ public class CameraFragment extends Fragment implements TextWatcher
 				camListFilter.add(Info.getInstance().camList.get(i));
 			}
 		}
+		reloadGridView();
+		
+	}
+	
+	public void reloadGridView()
+	{
 		// re-draw gridview
+		Info.getInstance().sortCamByBookmark(camListFilter);
 		CameraGridViewAdapter ardap = new CameraGridViewAdapter(getActivity()
 				.getApplicationContext(), camListFilter);
 		gv.setAdapter(ardap);
-		
-		// re-draw camera
 		
 	}
 	

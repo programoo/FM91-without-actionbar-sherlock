@@ -5,10 +5,20 @@
 
     <ImageView
         android:id="@+id/cameraImageView1"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
         android:layout_gravity="center_horizontal"
         android:contentDescription="@string/img_describer"
+        android:scaleType="fitCenter" />
+
+    <ImageView
+        android:id="@+id/cameraBookmarkIv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|right"
+        android:contentDescription="@string/img_describer"
+        android:src="@drawable/star_active"
         android:scaleType="fitCenter" />
 
     <TextView

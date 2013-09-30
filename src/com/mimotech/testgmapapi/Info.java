@@ -164,13 +164,21 @@ public class Info {
 		return cursor.getString(column_index);
 	}
 
-	public void sortCamByBookmark(){
-		//bubble sort
-		for(int i=0;i<Info.getInstance().camList.size();i++){
-			
-			
+	public void sortCamByBookmark(ArrayList<Camera> camUnsorted)
+	{
+		for (int i = 0; i < camUnsorted.size(); i++)
+		{
+			for (int j = 0; j < camUnsorted.size() - 1; j++)
+			{
+				Camera jA = camUnsorted.get(j);
+				Camera jB = camUnsorted.get(j + 1);
+				if (jB.isBookmark )
+				{
+					camUnsorted.set(j + 1, jA);
+					camUnsorted.set(j, jB);
+				}
+			}
 		}
-		
 	}
 	
 }

@@ -23,6 +23,8 @@
     <string name="profile_settings_text">Profile</string>
     <string name="search_emergency_text">Search</string>
     <string name="close_text">Close</string>
+    <string name="posttowall_text">Post to Wall</string>
+    <string name="comment_hint_text">Comment</string>
 
     <!-- thai translate text -->
     <string name="support_by_text">สนับสนุนโดย</string>
@@ -69,6 +71,9 @@
 
     <!-- news details -->
     <string name="news_details_share_btn_name">share</string>
+
+    <!-- camera tabbar -->
+    <string name="share_post_camera_name">Share</string>
 
     <!-- radio tabbar -->
     <string name="radio_tabbar_text">วิทยุ</string>
