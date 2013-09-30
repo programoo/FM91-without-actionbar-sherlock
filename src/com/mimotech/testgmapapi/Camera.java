@@ -15,6 +15,7 @@ public class Camera {
 	public String source;
 	public String imgList;
 	// handle graphic logic
+	
 	public Bitmap imgBmp;
 	public boolean isBookmark=false;
 
