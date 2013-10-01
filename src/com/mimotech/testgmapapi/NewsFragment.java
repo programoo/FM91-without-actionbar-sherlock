@@ -86,7 +86,6 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 				Context.LOCATION_SERVICE);
 		newsList = new ArrayList<News>();
 		locationListener = new MyLocationListener();
-		
 		// read config
 		String settingCsv = Info.getInstance().readProfiles(getActivity(),
 				"settings.csv");
@@ -124,8 +123,8 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 		eventBtn.setOnClickListener(this);
 		
 		// set default sub-menu color
-		//newsBtn.setTextColor(Color.parseColor("#8dc342"));
-		//eventBtn.setTextColor(Color.parseColor("#808080"));
+		newsBtn.setImageResource(R.drawable.news_submenu_active);
+		eventBtn.setImageResource(R.drawable.location_inactive);
 		
 		return viewMainFragment;
 	}
@@ -172,13 +171,16 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 		if (lastFocusOnMainListView)
 		{
 			this.reloadViewAfterRequestTaskComplete(this.newsList);
-			//newsBtn.setTextColor(Color.parseColor("#8dc342"));
-			//eventBtn.setTextColor(Color.parseColor("#808080"));
+
+			newsBtn.setImageResource(R.drawable.news_submenu_active);
+			eventBtn.setImageResource(R.drawable.location_inactive);
+			
 		} else
 		{
 			this.reloadViewAfterRequestTaskComplete(filterByDistanceList);
-			//newsBtn.setTextColor(Color.parseColor("#808080"));
-			//eventBtn.setTextColor(Color.parseColor("#8dc342"));
+			newsBtn.setImageResource(R.drawable.news_submenu_inactive);
+			eventBtn.setImageResource(R.drawable.location_active);
+			
 		}
 	}
 	
@@ -737,16 +739,19 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 		{
 			case R.id.newsBtn:
 				Log.d(TAG, "news btn click");
-				//newsBtn.setTextColor(Color.parseColor("#8dc342"));
-				//eventBtn.setTextColor(Color.parseColor("#808080"));
+				newsBtn.setImageResource(R.drawable.news_submenu_active);
+				eventBtn.setImageResource(R.drawable.location_inactive);
 				reloadViewAfterRequestTaskComplete(this.newsList);
 				lastFocusOnMainListView = true;
 				
 				break;
 			case R.id.eventBtn:
 				Log.d(TAG, "eventBtn btn click");
-				//newsBtn.setTextColor(Color.parseColor("#808080"));
-				//eventBtn.setTextColor(Color.parseColor("#8dc342"));
+				
+
+				newsBtn.setImageResource(R.drawable.news_submenu_inactive);
+				eventBtn.setImageResource(R.drawable.location_active);
+				
 				// read distance first
 				lastFocusOnMainListView = false;
 				
