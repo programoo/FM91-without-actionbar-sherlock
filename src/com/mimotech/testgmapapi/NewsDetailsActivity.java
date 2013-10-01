@@ -31,6 +31,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.SnapshotReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
@@ -40,8 +41,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class NewsDetailsActivity extends FragmentActivity implements
 		OnClickListener
 {
-	private String tag = getClass().getSimpleName();
+	private String TAG = getClass().getSimpleName();
 	private GoogleMap mMap;
+	private Bitmap snapShot;
 	private SocialAuthAdapter adapter;
 	private String description;
 	private RelativeLayout newsDetailNormalLayout;
@@ -62,7 +64,7 @@ public class NewsDetailsActivity extends FragmentActivity implements
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.news_fragment_detail_activity);
 		
-		Log.d(tag, "onCreate1");
+		Log.d(TAG, "onCreate1");
 		newsDetailNormalLayout = (RelativeLayout) findViewById(R.id.news_detail_normal_layout);
 		newsDetailShareLayout = (RelativeLayout) findViewById(R.id.news_detail_share_layout);
 		
@@ -76,7 +78,6 @@ public class NewsDetailsActivity extends FragmentActivity implements
 		description = intent.getStringExtra("description");
 		String source = intent.getStringExtra("source");
 		String time = intent.getStringExtra("time");
-
 		
 		// normal layout
 		uploadIv = (ImageView) findViewById(R.id.uploadImgIv);
@@ -84,18 +85,18 @@ public class NewsDetailsActivity extends FragmentActivity implements
 		TextView titleTv = (TextView) findViewById(R.id.titleNewsTv);
 		titleTv.setText(title);
 		
-		
 		TextView tv = (TextView) findViewById(R.id.newsTextDetail);
 		tv.setText(description);
 		
 		TextView sourceNewTv = (TextView) findViewById(R.id.sourceNewsTv);
-		sourceNewTv.setText(getString(R.string.by_text)+" "+source);
+		sourceNewTv.setText(getString(R.string.by_text) + " " + source);
 		
 		TextView timeNewsTv = (TextView) findViewById(R.id.timeNewsTv);
 		timeNewsTv.setText(time);
 		
 		this.myMarker(sLat, sLng, title);
 		Button share = (Button) findViewById(R.id.shareBtn);
+		
 		adapter = new SocialAuthAdapter(new ResponseListener());
 		// Add providers
 		adapter.addProvider(Provider.FACEBOOK, R.drawable.facebook);
@@ -109,22 +110,14 @@ public class NewsDetailsActivity extends FragmentActivity implements
 		// share layout
 		TextView shareDetailTv = (TextView) findViewById(R.id.news_details_msg);
 		shareDetailTv.setText(description);
+
+		TextView shareSourceTv = (TextView) findViewById(R.id.news_details_share_srcTv);
+		shareSourceTv.setText(getString(R.string.by_text)+": "+source);
+		
 		Button shareButton = (Button) findViewById(R.id.newsDetailsShareBtn);
 		shareButton.setOnClickListener(this);
 		
 		newsDetailsShareEditText = (EditText) findViewById(R.id.newsDetailsShareEditText);
-		
-		ImageButton uploadImgBtn = (ImageButton) findViewById(R.id.uploadImgBtn);
-		uploadImgBtn.setOnClickListener(new View.OnClickListener()
-		{
-			public void onClick(View v)
-			{
-				// Perform action on click
-				Log.i(tag, "upload image click");
-				showChooser();
-			}
-		});
-		
 	}
 	
 	@Override
@@ -137,7 +130,7 @@ public class NewsDetailsActivity extends FragmentActivity implements
 	{
 		
 		LatLng accidentLatLng = new LatLng(0, 0);
-		Log.i(tag, "set up map");
+		Log.i(TAG, "set up map");
 		// set accident lat long
 		if (!sLat.equalsIgnoreCase("undefined")
 				&& !sLng.equalsIgnoreCase("undefined"))
@@ -162,7 +155,7 @@ public class NewsDetailsActivity extends FragmentActivity implements
 		
 		if (mMap != null)
 		{
-			Log.i(tag, "Map not null");
+			Log.i(TAG, "Map not null");
 			
 			// calculate distance between user and event
 			double howFar = (int) (Info.getInstance().distance(
@@ -179,7 +172,7 @@ public class NewsDetailsActivity extends FragmentActivity implements
 			Marker marker = mMap.addMarker(new MarkerOptions()
 					.position(accidentLatLng).title(title)
 					.snippet(titileDetail));
-			Log.d(tag, "setUpMarkerNewsMarker");
+			Log.d(TAG, "setUpMarkerNewsMarker");
 			
 			// user marker
 			new LatLng(Info.lat, Info.lng);
@@ -192,7 +185,7 @@ public class NewsDetailsActivity extends FragmentActivity implements
 					.icon(BitmapDescriptorFactory
 							.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
 			
-			Log.d(tag, "setUpMarkerNewsMarker");
+			Log.d(TAG, "setUpMarkerNewsMarker");
 			
 			mMap.getUiSettings().setZoomControlsEnabled(true);
 			mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(accidentLatLng,
@@ -226,7 +219,7 @@ public class NewsDetailsActivity extends FragmentActivity implements
 						try
 						{
 							File file = new File(uri.toString());
-							Log.i(tag, "path: " + file.getAbsolutePath());
+							Log.i(TAG, "path: " + file.getAbsolutePath());
 							pathImgSelected = Info.getInstance()
 									.getRealPathFromURI(this, uri);
 							bitmapSelected = decodeFile(file);
@@ -258,11 +251,12 @@ public class NewsDetailsActivity extends FragmentActivity implements
 			Toast.makeText(NewsDetailsActivity.this,
 					providerName + " connected", Toast.LENGTH_LONG).show();
 			
+			CaptureMapScreen();
 			newsDetailNormalLayout.setVisibility(View.GONE);
 			newsDetailShareLayout.setVisibility(View.VISIBLE);
 			
 			// after connected complete redirect to share page
-			Log.d(tag, "emergencyBtnOnClick");
+			Log.d(TAG, "emergencyBtnOnClick");
 			// adapter.updateStatus(description, new MessageListener(), false);
 			
 		}
@@ -316,26 +310,18 @@ public class NewsDetailsActivity extends FragmentActivity implements
 	public void onClick(View v)
 	{
 		
-		String quotMsg = newsDetailsShareEditText.getText().toString() + "\n"
+		String quotMsg = newsDetailsShareEditText.getText().toString() + "\n\n"
 				+ description;
 		adapter.updateStatus(quotMsg, new MessageListener(), false);
 		
 		// prevent re-post return to first step
 		newsDetailNormalLayout.setVisibility(View.VISIBLE);
 		newsDetailShareLayout.setVisibility(View.GONE);
-		
 		try
 		{
 			
 			Toast.makeText(NewsDetailsActivity.this, "Posting message...",
 					Toast.LENGTH_LONG).show();
-			
-			// adapter.uploadImage(quotMsg, pathImgSelected, bitmapSelected,
-			// 100);
-			
-			// adapter.uploadImageAsync(quotMsg, pathImgSelected,
-			// bitmapSelected,
-			// 100, null);
 			
 			new uploadImgBgTask().execute(quotMsg);
 			
@@ -384,7 +370,7 @@ public class NewsDetailsActivity extends FragmentActivity implements
 			
 			try
 			{
-				adapter.uploadImage(params[0], pathImgSelected, bitmapSelected,
+				adapter.uploadImage(params[0], "googleMap.jpg", snapShot,
 						100);
 			} catch (Exception e)
 			{
@@ -398,14 +384,38 @@ public class NewsDetailsActivity extends FragmentActivity implements
 		protected void onPostExecute(String result)
 		{
 			super.onPostExecute(result);
-			Log.d(tag, "image posted complete");
+			Log.d(TAG, "image posted complete");
 		}
 		
 	}
 	
+	public void CaptureMapScreen()
+	{
+		Log.i(TAG,"Snapshot initialize");
+		SnapshotReadyCallback callback = new SnapshotReadyCallback()
+		{
+			
+			@Override
+			public void onSnapshotReady(Bitmap snapshot)
+			{
+				// TODO Auto-generated method stub
+				snapShot = snapshot;
+				uploadIv.setImageBitmap(snapShot);
+				Log.i(TAG,"Capture complete");
+			}
+		};
+		
+		mMap.snapshot(callback);
+		
+		// myMap is object of GoogleMap +> GoogleMap myMap;
+		// which is initialized in onCreate() =>
+		// myMap = ((SupportMapFragment)
+		// getSupportFragmentManager().findFragmentById(R.id.map_pass_home_call)).getMap();
+	}
+	
 	public void emergencyBtnOnClick(View view)
 	{
-		Log.d(tag, "emergencyBtnOnClick");
+		Log.d(TAG, "emergencyBtnOnClick");
 		Intent shareBtn = new Intent(NewsDetailsActivity.this,
 				EmergencyCallActivity.class);
 		startActivity(shareBtn);

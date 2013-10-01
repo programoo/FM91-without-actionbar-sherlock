@@ -20,7 +20,6 @@ import java.util.Locale;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -38,13 +37,11 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -58,7 +55,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -70,8 +67,8 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 	private View viewMainFragment;
 	private ListView lv;
 	private ArrayList<News> newsList;
-	private Button newsBtn;
-	private Button eventBtn;
+	private ImageButton newsBtn;
+	private ImageButton eventBtn;
 	private DateTimeFormatter formatter;
 	private LocationManager locationManager;
 	private LocationListener locationListener;
@@ -121,14 +118,14 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 		
 		lv.setOnItemClickListener(this);
 		
-		newsBtn = (Button) viewMainFragment.findViewById(R.id.newsBtn);
+		newsBtn = (ImageButton) viewMainFragment.findViewById(R.id.newsBtn);
 		newsBtn.setOnClickListener(this);
-		eventBtn = (Button) viewMainFragment.findViewById(R.id.eventBtn);
+		eventBtn = (ImageButton) viewMainFragment.findViewById(R.id.eventBtn);
 		eventBtn.setOnClickListener(this);
 		
 		// set default sub-menu color
-		newsBtn.setTextColor(Color.parseColor("#8dc342"));
-		eventBtn.setTextColor(Color.parseColor("#808080"));
+		//newsBtn.setTextColor(Color.parseColor("#8dc342"));
+		//eventBtn.setTextColor(Color.parseColor("#808080"));
 		
 		return viewMainFragment;
 	}
@@ -175,13 +172,13 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 		if (lastFocusOnMainListView)
 		{
 			this.reloadViewAfterRequestTaskComplete(this.newsList);
-			newsBtn.setTextColor(Color.parseColor("#8dc342"));
-			eventBtn.setTextColor(Color.parseColor("#808080"));
+			//newsBtn.setTextColor(Color.parseColor("#8dc342"));
+			//eventBtn.setTextColor(Color.parseColor("#808080"));
 		} else
 		{
 			this.reloadViewAfterRequestTaskComplete(filterByDistanceList);
-			newsBtn.setTextColor(Color.parseColor("#808080"));
-			eventBtn.setTextColor(Color.parseColor("#8dc342"));
+			//newsBtn.setTextColor(Color.parseColor("#808080"));
+			//eventBtn.setTextColor(Color.parseColor("#8dc342"));
 		}
 	}
 	
@@ -740,16 +737,16 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 		{
 			case R.id.newsBtn:
 				Log.d(TAG, "news btn click");
-				newsBtn.setTextColor(Color.parseColor("#8dc342"));
-				eventBtn.setTextColor(Color.parseColor("#808080"));
+				//newsBtn.setTextColor(Color.parseColor("#8dc342"));
+				//eventBtn.setTextColor(Color.parseColor("#808080"));
 				reloadViewAfterRequestTaskComplete(this.newsList);
 				lastFocusOnMainListView = true;
 				
 				break;
 			case R.id.eventBtn:
 				Log.d(TAG, "eventBtn btn click");
-				newsBtn.setTextColor(Color.parseColor("#808080"));
-				eventBtn.setTextColor(Color.parseColor("#8dc342"));
+				//newsBtn.setTextColor(Color.parseColor("#808080"));
+				//eventBtn.setTextColor(Color.parseColor("#8dc342"));
 				// read distance first
 				lastFocusOnMainListView = false;
 				
@@ -837,11 +834,12 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 								public void onClick(DialogInterface dialog,
 										int id)
 								{
-									
+									/*
 									newsBtn.setTextColor(Color
 											.parseColor("#8dc342"));
 									eventBtn.setTextColor(Color
 											.parseColor("#808080"));
+											*/
 									dialog.cancel();
 								}
 							});

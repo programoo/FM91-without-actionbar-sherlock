@@ -234,9 +234,17 @@ public class CameraFragment extends Fragment implements TextWatcher
 		reloadGridView();
 	}
 	
+	@Override
+	public void onPause()
+	{
+		super.onPause();
+		reloadGridView();
+	}
+	
 	public void onActivityCreated(final Bundle savedInstanceState)
 	{
 		super.onActivityCreated(savedInstanceState);
+		reloadGridView();
 	}
 	
 	private void reloadViewAfterRequestTaskComplete()
@@ -348,6 +356,7 @@ public class CameraFragment extends Fragment implements TextWatcher
 				// this mean we get real data from traffy already
 				this.traffyCameraXmlParser(result);
 				reloadViewAfterRequestTaskComplete();
+				reloadGridView();
 			}
 			
 		}
@@ -489,10 +498,21 @@ public class CameraFragment extends Fragment implements TextWatcher
 	
 	public void reloadGridView()
 	{
-		// re-draw gridview
+		camListFilter = new ArrayList<Camera>();
+		Log.i(TAG,"Reload Gridview");
+		for (int i = 0; i < Info.getInstance().camList.size(); i++)
+		{
+			if (Info.getInstance().camList.get(i).toString()
+					.indexOf(searchCameraEdt.getText().toString()) != -1)
+			{
+				camListFilter.add(Info.getInstance().camList.get(i));
+			}
+		}
+		
 		Info.getInstance().sortCamByBookmark(camListFilter);
-		CameraGridViewAdapter ardap = new CameraGridViewAdapter(getActivity()
-				.getApplicationContext(), camListFilter);
+		CameraGridViewAdapter ardap = new CameraGridViewAdapter(
+				getActivity().getApplicationContext(), camListFilter);
+		
 		gv.setAdapter(ardap);
 		
 	}
@@ -585,10 +605,15 @@ public class CameraFragment extends Fragment implements TextWatcher
 		@Override
 		public void onStatusChanged(String provider, int status, Bundle extras)
 		{
-			Toast.makeText(getActivity(),
-					"onStatusChanged" + R.string.gps_disconnect_alert,
-					Toast.LENGTH_LONG).show();
-			
+			try{
+
+				Toast.makeText(getActivity(),
+						"onStatusChanged" + R.string.gps_disconnect_alert,
+						Toast.LENGTH_LONG).show();
+			}
+			catch(Exception e){
+				e.printStackTrace();
+			}
 		}
 	}
 	

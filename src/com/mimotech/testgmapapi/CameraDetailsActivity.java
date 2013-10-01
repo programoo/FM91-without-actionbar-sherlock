@@ -127,10 +127,13 @@ public class CameraDetailsActivity extends FragmentActivity
 				if(isCheck){
 					bookMarkImgBtn.setImageResource(R.drawable.star_inactive);
 					isCheck = false;
+					cam.isBookmark = isCheck;
+
 				}
 				else{
 					bookMarkImgBtn.setImageResource(R.drawable.star_active);
 					isCheck = true;
+					cam.isBookmark = isCheck;
 				}
 			}
 		});

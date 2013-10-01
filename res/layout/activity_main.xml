@@ -5,8 +5,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <include layout="@layout/blank_activity"
-        android:id="@+id/fmBanner" />
+    <include
+        android:id="@+id/fmBanner"
+        layout="@layout/blank_activity" />
 
     <RelativeLayout
         android:id="@+id/fm_body"
@@ -33,7 +34,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="0dp"
                     android:layout_weight="0"
-                    android:background="@null"
+                    android:background="@drawable/tabbar_img"
                     android:orientation="horizontal" />
 
                 <FrameLayout

@@ -497,17 +497,23 @@ public class InformFragment extends Fragment implements OnClickListener,
 		String userProfileSetting = this.readProfiles();
 		if (!userProfileSetting.equalsIgnoreCase("undefined"))
 		{
-			// have user profile read it and share to
-			this.mainLayout.setVisibility(View.GONE);
-			this.detailLayout.setVisibility(View.VISIBLE);
-			titleTraffy = v.getTag().toString();
-			userImgUrl = userProfileSetting.split(",")[0];
-			userName = userProfileSetting.split(",")[1];
-			phoneNum = userProfileSetting.split(",")[2];
+			try{
+				// have user profile read it and share to
+				this.mainLayout.setVisibility(View.GONE);
+				this.detailLayout.setVisibility(View.VISIBLE);
+				titleTraffy = v.getTag().toString();
+				userImgUrl = userProfileSetting.split(",")[0];
+				userName = userProfileSetting.split(",")[1];
+				phoneNum = userProfileSetting.split(",")[2];
+				
+				tv.setText(v.getTag().toString());
+				Log.i(TAG, "inform type: " + v.getTag().toString());
+				Log.i(TAG, "user settings data: " + userProfileSetting);
+			}
+			catch(Exception e){
+				e.printStackTrace();
+			}
 			
-			tv.setText(v.getTag().toString());
-			Log.i(TAG, "inform type: " + v.getTag().toString());
-			Log.i(TAG, "user settings data: " + userProfileSetting);
 			
 		} else
 		{

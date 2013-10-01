@@ -8,32 +8,27 @@
         android:id="@+id/submenuNewsLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:padding="5dp" >
 
-        <Button
+        <ImageButton
             android:id="@+id/newsBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="5dp"
             android:layout_weight="1"
-            android:background="@drawable/submenu_img"
-            android:text="@string/news_btn_text"
+            android:background="@null"
+            android:contentDescription="@string/hello_world"
+            android:src="@drawable/news_submenu_active"
             android:textColor="@color/submenu_text_color" />
 
-        <Button
+        <ImageButton
             android:id="@+id/eventBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="5dp"
             android:layout_weight="1"
-            android:background="@drawable/submenu_img"
-            android:text="@string/event_btn_text"
+            android:background="@null"
+            android:contentDescription="@string/hello_world"
+            android:src="@drawable/location_active"
             android:textColor="@color/submenu_text_color" />
     </LinearLayout>
 
@@ -41,6 +36,10 @@
         android:id="@+id/list1Fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:cacheColorHint="#00000000" />
+        android:cacheColorHint="#00000000"
+        android:divider="#00000000"
+        android:dividerHeight="5sp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp" />
 
 </LinearLayout>
