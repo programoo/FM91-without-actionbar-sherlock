@@ -59,12 +59,42 @@
         android:id="@+id/news_detail_normal_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/fm_banner" >
+        android:layout_below="@+id/fm_banner"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="20dp" >
+
+        <TextView
+            android:id="@+id/titleNewsTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:text="@+id/news_headline_text"
+            android:textSize="16dp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/newsTextDetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/titleNewsTv"
+            android:text="@+id/news_headline_text" />
+
+        <TextView
+            android:id="@+id/sourceNewsTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/newsTextDetail"
+            android:text="@+id/news_headline_text" />
+
+        <TextView
+            android:id="@+id/timeNewsTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/sourceNewsTv"
+            android:paddingBottom="20dp"
+            android:paddingTop="20dp"
             android:text="@+id/news_headline_text" />
 
         <Button
@@ -72,16 +102,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/newsTextDetail"
-            android:contentDescription="@string/default_img_describer"
             android:background="@drawable/share_active"
-             />
+            android:contentDescription="@string/default_img_describer" />
 
         <fragment
             android:id="@+id/newsMap"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/shareBtn"
+            android:layout_below="@+id/timeNewsTv"
             class="com.google.android.gms.maps.SupportMapFragment" />
     </RelativeLayout>
 

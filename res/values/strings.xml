@@ -27,6 +27,7 @@
     <string name="comment_hint_text">Comment</string>
 
     <!-- thai translate text -->
+    <string name="by_text">โดย</string>
     <string name="instart_place_setting_text">คุณยังไม่ได้ตั้งค่าสถานที่รับข่าวสาร</string>
     <string name="search_here_text">ค้นหาที่นี่</string>
     <string name="support_by_text">สนับสนุนโดย</string>

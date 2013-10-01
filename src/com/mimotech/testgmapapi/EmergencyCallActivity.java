@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -35,6 +36,10 @@ public class EmergencyCallActivity extends Activity implements
 		
 		lv = (ListView) findViewById(R.id.emergencyLv);
 		searchEmergencyEdt = (EditText) findViewById(R.id.searchEmergencyEdt);
+		
+		ImageButton emerImgBtn = (ImageButton) findViewById(R.id.emergency_btn);
+		emerImgBtn.setVisibility(View.GONE);
+		
 		
 		contactList = new ArrayList<Contact>();
 		contactList.add(new Contact("1555", "home", "undefined"));

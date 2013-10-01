@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true" >
 
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/row1DashboardInform"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -19,32 +19,33 @@
 
             <ImageButton
                 android:id="@+id/trafficImgBtn"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:background="@null"
                 android:contentDescription="@string/hello_world"
                 android:src="@drawable/traffic_img" />
 
             <ImageButton
                 android:id="@+id/accidentImgBtn"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/trafficImgBtn"
+                android:layout_weight="1"
                 android:background="@null"
                 android:contentDescription="@string/hello_world"
                 android:src="@drawable/accident_img" />
 
             <ImageButton
                 android:id="@+id/crimeImgBtn"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/accidentImgBtn"
+                android:layout_weight="1"
                 android:background="@null"
                 android:contentDescription="@string/hello_world"
                 android:src="@drawable/crime_img" />
-        </RelativeLayout>
+        </LinearLayout>
 
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/row2DashboardInform"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -52,32 +53,33 @@
 
             <ImageButton
                 android:id="@+id/transportImgBtn"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:background="@null"
                 android:contentDescription="@string/hello_world"
                 android:src="@drawable/transport_img" />
 
             <ImageButton
                 android:id="@+id/powerShutdownImgBtn"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/transportImgBtn"
+                android:layout_weight="1"
                 android:background="@null"
                 android:contentDescription="@string/hello_world"
                 android:src="@drawable/powershutdow_img" />
 
             <ImageButton
                 android:id="@+id/hydrantImgBtn"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/powerShutdownImgBtn"
+                android:layout_weight="1"
                 android:background="@null"
                 android:contentDescription="@string/hello_world"
                 android:src="@drawable/hydrant_img" />
-        </RelativeLayout>
+        </LinearLayout>
 
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/row3DashboardInform"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -85,29 +87,35 @@
 
             <ImageButton
                 android:id="@+id/firealarmImgBtn"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:background="@null"
                 android:contentDescription="@string/hello_world"
                 android:src="@drawable/firealarm_img" />
 
             <ImageButton
                 android:id="@+id/otherImgBtn"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/firealarmImgBtn"
+                android:layout_weight="1"
                 android:background="@null"
                 android:contentDescription="@string/hello_world"
                 android:src="@drawable/other_img" />
-        </RelativeLayout>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </LinearLayout>
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/informDetailLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/informMainLayout" >
+        android:layout_below="@+id/informMainLayout"
+        android:layout_centerHorizontal="true" >
 
         <TextView
             android:id="@+id/typeOfInformTv"
@@ -125,40 +133,53 @@
             android:textSize="12sp" >
         </EditText>
 
-        <ImageButton
-            android:id="@+id/addImgInformImgBtn"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/informDetailEdt"
-            android:contentDescription="@string/hello_world"
-            android:scaleType="fitCenter"
-            android:src="@drawable/add_image" />
-
-        <ImageButton
-            android:id="@+id/addPlaceInformImgBtn"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/informDetailEdt"
-            android:contentDescription="@string/hello_world"
-            android:scaleType="fitCenter"
-            android:src="@drawable/add_location" />
-
-        <Button
-            android:id="@+id/clearBtn"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/pushDataImgBtnDashboardInform"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/addPlaceInformImgBtn"
-            android:text="Clear" />
+            android:layout_below="@+id/informDetailEdt"
+            android:orientation="horizontal" >
 
-        <Button
-            android:id="@+id/sendBtn"
-            android:layout_width="wrap_content"
+            <ImageButton
+                android:id="@+id/addImgInformImgBtn"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/hello_world"
+                android:scaleType="fitCenter"
+                android:src="@drawable/add_image" />
+
+            <ImageButton
+                android:id="@+id/addPlaceInformImgBtn"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/hello_world"
+                android:scaleType="fitCenter"
+                android:src="@drawable/add_location" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/pushDataBtnDashboardInform"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/addPlaceInformImgBtn"
-            android:layout_toRightOf="@+id/clearBtn"
-            android:text="Send" />
+            android:layout_below="@+id/pushDataImgBtnDashboardInform"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/clearBtn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Clear" />
+
+            <Button
+                android:id="@+id/sendBtn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Send" />
+        </LinearLayout>
     </RelativeLayout>
 
 </RelativeLayout>

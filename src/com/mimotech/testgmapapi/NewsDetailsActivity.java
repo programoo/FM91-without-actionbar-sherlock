@@ -74,12 +74,26 @@ public class NewsDetailsActivity extends FragmentActivity implements
 		String sLng = intent.getStringExtra("startPointLong");
 		String title = intent.getStringExtra("title");
 		description = intent.getStringExtra("description");
+		String source = intent.getStringExtra("source");
+		String time = intent.getStringExtra("time");
+
 		
 		// normal layout
 		uploadIv = (ImageView) findViewById(R.id.uploadImgIv);
 		
+		TextView titleTv = (TextView) findViewById(R.id.titleNewsTv);
+		titleTv.setText(title);
+		
+		
 		TextView tv = (TextView) findViewById(R.id.newsTextDetail);
 		tv.setText(description);
+		
+		TextView sourceNewTv = (TextView) findViewById(R.id.sourceNewsTv);
+		sourceNewTv.setText(getString(R.string.by_text)+" "+source);
+		
+		TextView timeNewsTv = (TextView) findViewById(R.id.timeNewsTv);
+		timeNewsTv.setText(time);
+		
 		this.myMarker(sLat, sLng, title);
 		Button share = (Button) findViewById(R.id.shareBtn);
 		adapter = new SocialAuthAdapter(new ResponseListener());

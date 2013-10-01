@@ -29,6 +29,7 @@ import org.xml.sax.SAXException;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -200,6 +201,12 @@ public class CameraFragment extends Fragment implements TextWatcher
 				gv.setAdapter(ardap);
 			}
 		});
+		
+
+		cctvBtn.setTextColor(Color.parseColor("#8dc342"));
+		positionBtn.setTextColor(Color.parseColor("#808080"));
+		
+		
 		
 		Log.i(TAG, "onCreateView");
 		return v;
