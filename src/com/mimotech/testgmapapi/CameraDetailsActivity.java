@@ -86,23 +86,10 @@ public class CameraDetailsActivity extends FragmentActivity
 		
 		tv = (TextView) findViewById(R.id.cameraDescription);
 		TextView supporterTv = (TextView) findViewById(R.id.supporterCameraTv);
-		TextView timeTv = (TextView) findViewById(R.id.timeCameraTv);
 		
 		tv.setText(cam.thaiName + " " + cam.englishName);
 		supporterTv.setText(getString(R.string.support_by_text) + " "
 				+ cam.source);
-		timeTv.setText(cam.lastUpdate);
-		
-		Button closeBtn = (Button) findViewById(R.id.closeCameraBtn);
-		closeBtn.setOnClickListener(new OnClickListener()
-		{
-			
-			@Override
-			public void onClick(View v)
-			{
-				onBackPressed();
-			}
-		});
 		
 		bookMarkImgBtn = (ImageButton) findViewById(R.id.bookmarkBookMarkImgBtn);
 		
@@ -172,7 +159,7 @@ public class CameraDetailsActivity extends FragmentActivity
 			public void onClick(View v)
 			{
 				Log.i(TAG,"Post onclick");
-				String message = userCommentEdt.getText().toString()+"\n"+cam.thaiName+" "+cam.englishName;
+				String message = userCommentEdt.getText().toString()+"\n\n"+cam.thaiName+" "+cam.englishName;
 				new uploadImgBgTask().execute(message);
 
 				mainCameraLayout.setVisibility(View.VISIBLE);;

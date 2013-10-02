@@ -2,49 +2,56 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/listview_img"
     android:orientation="vertical" >
 
     <LinearLayout
         android:id="@+id/submenuCameraLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:padding="5dp" >
 
-        <Button
+        <ImageButton
             android:id="@+id/cctvBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/submenu_img"
+            android:background="@null"
+            android:contentDescription="@string/hello_world"
             android:onClick="cctvBtnOnClick"
-            android:text="@string/cctv_btn_text" />
+            android:src="@drawable/cctv_submenu_active" />
 
-        <Button
+        <ImageButton
             android:id="@+id/positionBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/submenu_img"
-            android:text="@string/position_btn_text" />
+            android:background="@null"
+            android:contentDescription="@string/hello_world"
+            android:src="@drawable/position_submenu_img" />
     </LinearLayout>
 
     <EditText
         android:id="@+id/searchCameraEdt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:hint="@string/search_hint"
         android:textColor="#000000"
         android:textSize="12sp" />
 
     <GridView
         android:id="@+id/cameraGridView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:columnWidth="100dp"
-        android:gravity="center"
+        android:columnWidth="90dp"
+        android:gravity="top"
+        android:horizontalSpacing="10dp"
         android:numColumns="auto_fit"
-        android:stretchMode="columnWidth" >
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="10dp" >
     </GridView>
 
 </LinearLayout>

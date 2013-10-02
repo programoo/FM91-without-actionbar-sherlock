@@ -29,7 +29,6 @@ import org.xml.sax.SAXException;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -45,9 +44,9 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.androidquery.AQuery;
@@ -156,7 +155,7 @@ public class CameraFragment extends Fragment implements TextWatcher
 		});
 		
 		// handle click event
-		Button positionBtn = (Button) v.findViewById(R.id.positionBtn);
+		ImageButton positionBtn = (ImageButton) v.findViewById(R.id.positionBtn);
 		positionBtn.setOnClickListener(new OnClickListener()
 		{
 			
@@ -174,7 +173,7 @@ public class CameraFragment extends Fragment implements TextWatcher
 			}
 		});
 		
-		Button cctvBtn = (Button) v.findViewById(R.id.cctvBtn);
+		ImageButton cctvBtn = (ImageButton) v.findViewById(R.id.cctvBtn);
 		cctvBtn.setOnClickListener(new OnClickListener()
 		{
 			
@@ -203,8 +202,8 @@ public class CameraFragment extends Fragment implements TextWatcher
 		});
 		
 
-		cctvBtn.setTextColor(Color.parseColor("#8dc342"));
-		positionBtn.setTextColor(Color.parseColor("#808080"));
+		//cctvBtn.setTextColor(Color.parseColor("#8dc342"));
+		//positionBtn.setTextColor(Color.parseColor("#808080"));
 		
 		
 		

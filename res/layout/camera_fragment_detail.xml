@@ -14,70 +14,108 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/fm_banner" >
 
-        <TextView
-            android:id="@+id/postToWallTv"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/cameraSharedHeaderLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:text="@string/posttowall_text" />
+            android:background="@drawable/tabbar_img" >
 
-        <Button
-            android:id="@+id/cameraPostShareBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="@string/share_post_camera_name" />
+            <TextView
+                android:id="@+id/postToWallTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="@string/posttowall_text"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/cameraPostShareBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/share_img_btn" />
+        </RelativeLayout>
 
         <EditText
             android:id="@+id/cameraShareEdt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/cameraPostShareBtn"
-            android:hint="@string/comment_hint_text" />
+            android:layout_below="@+id/cameraSharedHeaderLayout"
+            android:layout_margin="5dp"
+            android:hint="@string/news_share_edittext_hint"
+            android:textSize="12sp" />
 
-        <TextView
-            android:id="@+id/descriptionCameraShareTv"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/cameraShareBodyLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/cameraShareEdt"
-            android:text="@string/hello_world" />
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp" >
 
-        <TextView
-            android:id="@+id/sourceCameraShareTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/descriptionCameraShareTv"
-            android:text="@string/hello_world" />
+            <TextView
+                android:id="@+id/reportTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/report_picture_text"
+                android:textStyle="bold"
+                android:textSize="16sp" />
 
-        <ImageView
-            android:id="@+id/cameraShareIv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/sourceCameraShareTv"
-            android:layout_centerHorizontal="true"
-            android:src="@drawable/ic_launcher"
-            android:contentDescription="@string/hello_world"
-            android:scaleType="fitCenter"
-            android:text="@string/hello_world" />
+            <TextView
+                android:id="@+id/descriptionCameraShareTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/reportTv"
+                android:text="@string/hello_world"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/sourceCameraShareTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/descriptionCameraShareTv"
+                android:text="@string/hello_world"
+                android:textColor="@color/grey_light"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:id="@+id/cameraShareIv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sourceCameraShareTv"
+                android:layout_centerHorizontal="true"
+                android:contentDescription="@string/hello_world"
+                android:paddingTop="10dp"
+                android:scaleType="fitCenter" />
+        </RelativeLayout>
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/cameraMainLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/fm_banner" >
+        android:layout_below="@+id/fm_banner"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" >
 
         <RelativeLayout
             android:id="@+id/camera_detail_body"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp" >
 
             <TextView
                 android:id="@+id/reportPictureText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/report_picture_text" />
+                android:paddingTop="2dp"
+                android:text="@string/report_picture_text"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/shareCctvImgBtn"
@@ -93,12 +131,10 @@
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@+id/shareCctvImgBtn"
                 android:background="@null"
-                android:src="@drawable/star_inactive"
                 android:contentDescription="@string/hello_world"
-                >
+                android:paddingTop="4dp"
+                android:src="@drawable/star_inactive" >
             </ImageButton>
-            
-            
         </RelativeLayout>
 
         <RelativeLayout
@@ -111,40 +147,25 @@
                 android:id="@+id/cameraDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/news_headline_text" />
+                android:text="@string/news_headline_text"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/supporterCameraTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/cameraDescription"
-                android:text="@string/hello_world" />
-
-            <TextView
-                android:id="@+id/timeCameraTv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_below="@+id/supporterCameraTv"
-                android:text="@string/hello_world" />
+                android:textColor="@color/grey_light"
+                android:textSize="12sp" />
 
             <ImageView
                 android:id="@+id/cameraDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/timeCameraTv"
+                android:layout_below="@+id/supporterCameraTv"
                 android:layout_centerHorizontal="true"
-                android:layout_margin="0dp"
-                android:contentDescription="@string/default_img_describer" />
-
-            <Button
-                android:id="@+id/closeCameraBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/cameraDetail"
-                android:layout_centerHorizontal="true"
-                android:text="@string/close_text" >
-            </Button>
+                android:contentDescription="@string/hello_world"
+                android:scaleType="fitCenter" />
         </RelativeLayout>
     </RelativeLayout>
 

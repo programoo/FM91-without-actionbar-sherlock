@@ -1,9 +1,5 @@
 package com.mimotech.testgmapapi;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-
 import org.brickred.socialauth.android.DialogListener;
 import org.brickred.socialauth.android.SocialAuthAdapter;
 import org.brickred.socialauth.android.SocialAuthAdapter.Provider;
@@ -12,8 +8,6 @@ import org.brickred.socialauth.android.SocialAuthListener;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -23,7 +17,6 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -52,10 +45,6 @@ public class NewsDetailsActivity extends FragmentActivity implements
 	
 	// share layout
 	private ImageView uploadIv;
-	private Bitmap bitmapSelected;
-	private String pathImgSelected;
-	
-	private static final int REQUEST_CODE = 6384;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -111,6 +100,10 @@ public class NewsDetailsActivity extends FragmentActivity implements
 		TextView shareDetailTv = (TextView) findViewById(R.id.news_details_msg);
 		shareDetailTv.setText(description);
 
+		TextView shareTitleTv = (TextView) findViewById(R.id.news_title_msg);
+		shareTitleTv.setText(title);
+
+		
 		TextView shareSourceTv = (TextView) findViewById(R.id.news_details_share_srcTv);
 		shareSourceTv.setText(getString(R.string.by_text)+": "+source);
 		
@@ -178,7 +171,7 @@ public class NewsDetailsActivity extends FragmentActivity implements
 			new LatLng(Info.lat, Info.lng);
 			titileDetail = getString(R.string.farfromyou_msg) + ": " + howFar
 					+ " km";
-			Marker myMarker = mMap.addMarker(new MarkerOptions()
+			mMap.addMarker(new MarkerOptions()
 					.position(new LatLng(Info.lat, Info.lng))
 					.title(getString(R.string.you_here_msg))
 					.snippet(Info.reverseGpsName)
@@ -196,45 +189,7 @@ public class NewsDetailsActivity extends FragmentActivity implements
 		}
 	}
 	
-	private void showChooser()
-	{
-		Intent intent = new Intent();
-		intent.setType("image/*");
-		intent.setAction(Intent.ACTION_GET_CONTENT);
-		startActivityForResult(intent, REQUEST_CODE);
-	}
 	
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data)
-	{
-		switch (requestCode)
-		{
-			case REQUEST_CODE:
-				// If the file selection was successful
-				if (resultCode == RESULT_OK)
-				{
-					if (data != null)
-					{
-						Uri uri = data.getData();
-						try
-						{
-							File file = new File(uri.toString());
-							Log.i(TAG, "path: " + file.getAbsolutePath());
-							pathImgSelected = Info.getInstance()
-									.getRealPathFromURI(this, uri);
-							bitmapSelected = decodeFile(file);
-							uploadIv.setImageBitmap(bitmapSelected);
-						} catch (Exception e)
-						{
-							Log.e("FileSelectorTestActivity",
-									"File select error", e);
-						}
-					}
-				}
-				break;
-		}
-		super.onActivityResult(requestCode, resultCode, data);
-	}
 	
 	private final class ResponseListener implements DialogListener
 	{
@@ -312,7 +267,7 @@ public class NewsDetailsActivity extends FragmentActivity implements
 		
 		String quotMsg = newsDetailsShareEditText.getText().toString() + "\n\n"
 				+ description;
-		adapter.updateStatus(quotMsg, new MessageListener(), false);
+		//adapter.updateStatus(quotMsg, new MessageListener(), false);
 		
 		// prevent re-post return to first step
 		newsDetailNormalLayout.setVisibility(View.VISIBLE);
@@ -330,35 +285,6 @@ public class NewsDetailsActivity extends FragmentActivity implements
 			e.printStackTrace();
 		}
 		
-	}
-	
-	private Bitmap decodeFile(File f)
-	{
-		try
-		{
-			// Decode image size
-			BitmapFactory.Options o = new BitmapFactory.Options();
-			o.inJustDecodeBounds = true;
-			BitmapFactory.decodeStream(new FileInputStream(f), null, o);
-			
-			// The new size we want to scale to
-			final int REQUIRED_SIZE = 256;
-			
-			// Find the correct scale value. It should be the power of 2.
-			int scale = 1;
-			while (o.outWidth / scale / 2 >= REQUIRED_SIZE
-					&& o.outHeight / scale / 2 >= REQUIRED_SIZE)
-				scale *= 2;
-			
-			// Decode with inSampleSize
-			BitmapFactory.Options o2 = new BitmapFactory.Options();
-			o2.inSampleSize = scale;
-			return BitmapFactory.decodeStream(new FileInputStream(f), null, o2);
-		} catch (FileNotFoundException e)
-		{
-			e.printStackTrace();
-		}
-		return null;
 	}
 	
 	private class uploadImgBgTask extends AsyncTask<String, String, String>
@@ -406,11 +332,6 @@ public class NewsDetailsActivity extends FragmentActivity implements
 		};
 		
 		mMap.snapshot(callback);
-		
-		// myMap is object of GoogleMap +> GoogleMap myMap;
-		// which is initialized in onCreate() =>
-		// myMap = ((SupportMapFragment)
-		// getSupportFragmentManager().findFragmentById(R.id.map_pass_home_call)).getMap();
 	}
 	
 	public void emergencyBtnOnClick(View view)

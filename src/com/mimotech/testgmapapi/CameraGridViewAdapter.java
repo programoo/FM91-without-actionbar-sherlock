@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -56,7 +57,12 @@ public class CameraGridViewAdapter extends BaseAdapter {
 		TextView tv = (TextView) convertView.findViewById(R.id.cameraTextView1);
 		ImageView iv = (ImageView) convertView
 				.findViewById(R.id.cameraImageView1);
-
+		/*
+		iv.setLayoutParams(new GridView.LayoutParams(85, 85));
+		iv.setScaleType(ImageView.ScaleType.CENTER_CROP);
+		iv.setPadding(8, 8, 8, 8);
+//		*/
+		
 		ImageView boomarkIv = (ImageView) convertView.findViewById(R.id.cameraBookmarkIv);
 		
 		if(camList.get(position).isBookmark){

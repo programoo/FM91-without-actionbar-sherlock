@@ -21,4 +21,8 @@
     <dimen name="news_listview_icon_width">66dp</dimen>
     <dimen name="news_listview_icon_height">66dp</dimen>
 
+    <!-- gridview -->
+    <dimen name="width">100dp</dimen>
+    <dimen name="height">100dp</dimen>
+
 </resources>
