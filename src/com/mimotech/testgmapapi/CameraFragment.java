@@ -45,7 +45,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
-import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -59,7 +58,7 @@ public class CameraFragment extends Fragment implements TextWatcher
 	private ArrayList<Camera> camListFilter;
 	private LocationManager locationManager;
 	private LocationListener locationListener;
-	private GridView gv;
+	private ExpandableHeightGridView gv;
 	private EditText searchCameraEdt;
 	private AQuery aq;
 	private String camSaveState;
@@ -122,7 +121,8 @@ public class CameraFragment extends Fragment implements TextWatcher
 	{
 		this.v = inflater.inflate(R.layout.camera_fragment, container, false);
 		
-		gv = (GridView) v.findViewById(R.id.cameraGridView);
+		gv = (ExpandableHeightGridView) v.findViewById(R.id.cameraGridView);
+		gv.setExpanded(true);
 		CameraGridViewAdapter ardap = new CameraGridViewAdapter(getActivity()
 				.getApplicationContext(), Info.getInstance().camList);
 		

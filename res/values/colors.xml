@@ -3,9 +3,9 @@
 
     <!-- predefine color name -->
     <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
     <color name="grey">#e5e5e5</color>
     <color name="grey_light">#999999</color>
-    
     <color name="kak">#ff333333</color>
     <color name="news_badge">#0000FF</color>
     <color name="transparent">#000000</color>

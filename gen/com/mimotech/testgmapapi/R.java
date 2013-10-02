@@ -131,11 +131,12 @@ containing a value of this type.
     public static final class color {
         /**  tab 
          */
-        public static final int activetab_background=0x7f040013;
-        public static final int activetab_text=0x7f040017;
+        public static final int activetab_background=0x7f040014;
+        public static final int activetab_text=0x7f040018;
         /**  news tabbar 
          */
-        public static final int badge_count_color=0x7f040012;
+        public static final int badge_count_color=0x7f040013;
+        public static final int black=0x7f04000b;
         public static final int common_action_bar_splitter=0x7f040009;
         /**  Sign-in Button Colors 
          */
@@ -148,77 +149,77 @@ containing a value of this type.
         public static final int common_signin_btn_light_text_disabled=0x7f040006;
         public static final int common_signin_btn_light_text_focused=0x7f040007;
         public static final int common_signin_btn_light_text_pressed=0x7f040005;
-        public static final int common_signin_btn_text_dark=0x7f04003d;
-        public static final int common_signin_btn_text_light=0x7f04003e;
-        public static final int context_button_text=0x7f040034;
+        public static final int common_signin_btn_text_dark=0x7f04003e;
+        public static final int common_signin_btn_text_light=0x7f04003f;
+        public static final int context_button_text=0x7f040035;
         /**  context menu 
          */
-        public static final int context_menu_bg=0x7f040031;
-        public static final int context_menu_border=0x7f040032;
-        public static final int context_menu_header_text=0x7f040035;
-        public static final int context_menu_text=0x7f040033;
-        public static final int custom_theme_color=0x7f040036;
+        public static final int context_menu_bg=0x7f040032;
+        public static final int context_menu_border=0x7f040033;
+        public static final int context_menu_header_text=0x7f040036;
+        public static final int context_menu_text=0x7f040034;
+        public static final int custom_theme_color=0x7f040037;
         /**  contact detail 
          */
-        public static final int detail_bg=0x7f040028;
-        public static final int detail_header_bg=0x7f040029;
-        public static final int detail_name_text=0x7f04002a;
-        public static final int detail_phone_text=0x7f04002c;
-        public static final int detail_section_bg=0x7f04002e;
-        public static final int detail_section_text=0x7f04002f;
-        public static final int detail_time_text=0x7f04002d;
-        public static final int detail_type_text=0x7f04002b;
-        public static final int dialbox=0x7f04001b;
-        public static final int dialbox_border=0x7f04001d;
-        public static final int dialbox_text=0x7f04001c;
-        public static final int dialfont=0x7f04001a;
+        public static final int detail_bg=0x7f040029;
+        public static final int detail_header_bg=0x7f04002a;
+        public static final int detail_name_text=0x7f04002b;
+        public static final int detail_phone_text=0x7f04002d;
+        public static final int detail_section_bg=0x7f04002f;
+        public static final int detail_section_text=0x7f040030;
+        public static final int detail_time_text=0x7f04002e;
+        public static final int detail_type_text=0x7f04002c;
+        public static final int dialbox=0x7f04001c;
+        public static final int dialbox_border=0x7f04001e;
+        public static final int dialbox_text=0x7f04001d;
+        public static final int dialfont=0x7f04001b;
         /**  dial fragment 
          */
-        public static final int dialfont_active=0x7f040019;
-        public static final int dialog_loading_center=0x7f04003a;
-        public static final int dialog_loading_end=0x7f04003c;
-        public static final int dialog_loading_start=0x7f04003b;
-        public static final int dialpad_border=0x7f04001e;
+        public static final int dialfont_active=0x7f04001a;
+        public static final int dialog_loading_center=0x7f04003b;
+        public static final int dialog_loading_end=0x7f04003d;
+        public static final int dialog_loading_start=0x7f04003c;
+        public static final int dialpad_border=0x7f04001f;
         /**  header 
          */
-        public static final int fm_header_color=0x7f040010;
-        public static final int grey=0x7f04000b;
-        public static final int grey_light=0x7f04000c;
-        public static final int header_btn_clolor=0x7f040011;
-        public static final int infoTheme_bg=0x7f040038;
-        public static final int kak=0x7f04000d;
-        public static final int line_color=0x7f040039;
-        public static final int list_bg=0x7f040022;
-        public static final int list_line_divider=0x7f040021;
+        public static final int fm_header_color=0x7f040011;
+        public static final int grey=0x7f04000c;
+        public static final int grey_light=0x7f04000d;
+        public static final int header_btn_clolor=0x7f040012;
+        public static final int infoTheme_bg=0x7f040039;
+        public static final int kak=0x7f04000e;
+        public static final int line_color=0x7f04003a;
+        public static final int list_bg=0x7f040023;
+        public static final int list_line_divider=0x7f040022;
         /**  all 
          */
-        public static final int myTheme_bg=0x7f040037;
+        public static final int myTheme_bg=0x7f040038;
         /**  all list 
          */
-        public static final int name=0x7f040020;
-        public static final int news_badge=0x7f04000e;
+        public static final int name=0x7f040021;
+        public static final int news_badge=0x7f04000f;
         /**  call log list 
          */
-        public static final int phone=0x7f040024;
-        public static final int pressedtab_background=0x7f040015;
-        public static final int pressedtab_text=0x7f040018;
+        public static final int phone=0x7f040025;
+        public static final int pressedtab_background=0x7f040016;
+        public static final int pressedtab_text=0x7f040019;
         /**  contact list 
          */
-        public static final int section_bg=0x7f040026;
-        public static final int section_text_color=0x7f040027;
+        public static final int section_bg=0x7f040027;
+        public static final int section_text_color=0x7f040028;
         /**  list selector 
          */
-        public static final int selected=0x7f040023;
-        public static final int submenu_text_color=0x7f04003f;
-        public static final int tab_background=0x7f040014;
-        public static final int tab_text=0x7f040016;
-        public static final int tabbar_text_color=0x7f040040;
-        public static final int time=0x7f040025;
+        public static final int selected=0x7f040024;
+        public static final int submenu_text_color=0x7f040040;
+        public static final int tab_background=0x7f040015;
+        public static final int tab_text=0x7f040017;
+        public static final int tabbar_text_color=0x7f040041;
+        public static final int time=0x7f040026;
         /**  title view 
          */
-        public static final int title_bar_text=0x7f040030;
-        public static final int transparent=0x7f04000f;
-        public static final int warm_grey=0x7f04001f;
+        public static final int title_bar_text=0x7f040031;
+        public static final int transparent=0x7f040010;
+        public static final int warm_grey=0x7f040020;
         /**  predefine color name 
          */
         public static final int white=0x7f04000a;
