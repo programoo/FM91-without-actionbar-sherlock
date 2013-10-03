@@ -496,8 +496,14 @@ public class CameraFragment extends Fragment implements TextWatcher
 				camListFilter.add(Info.getInstance().camList.get(i));
 			}
 		}
-		camNum.setText(camListFilter.size());
+		try{
+			camNum.setText(camListFilter.size());
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 		reloadGridView();
+
 		
 	}
 	

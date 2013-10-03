@@ -20,6 +20,7 @@
     <string name="default_img_describer">default_img_describer</string>
 
     <!-- eng translate text -->
+    <string name="zero_text">0</string>
     <string name="profile_settings_text">Profile</string>
     <string name="search_emergency_text">Search</string>
     <string name="close_text">Close</string>
