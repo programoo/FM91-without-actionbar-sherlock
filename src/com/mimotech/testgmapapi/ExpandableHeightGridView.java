@@ -2,15 +2,14 @@ package com.mimotech.testgmapapi;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.Display;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.GridView;
 
 public class ExpandableHeightGridView extends GridView
 {
 	boolean expanded = false;
 	private Context context;
+	private int heightSpec;
 	public ExpandableHeightGridView(Context context)
 	{
 		super(context);
@@ -36,18 +35,30 @@ public class ExpandableHeightGridView extends GridView
 	@Override
 	public void onMeasure(int widthMeasureSpec, int heightMeasureSpec)
 	{
+		
+		/*
+		if (getLayoutParams().height == LayoutParams.WRAP_CONTENT) {
+            // The great Android "hackatlon", the love, the magic.
+            // The two leftmost bits in the height measure spec have
+            // a special meaning, hence we can't use them to describe height.
+            heightSpec = MeasureSpec.makeMeasureSpec(
+                    Integer.MAX_VALUE , MeasureSpec.AT_MOST);
+        }
+        else {
+            // Any other height should be respected as is.
+            heightSpec = heightMeasureSpec;
+        }
+
+        super.onMeasure(widthMeasureSpec, heightSpec);
+        */
+		
 		// HACK! TAKE THAT ANDROID!
-		if (isExpanded())
+		if (true)
 		{
-			/*
-			WindowManager wm = (WindowManager) this.context.getSystemService(Context.WINDOW_SERVICE);
-			Display display = wm.getDefaultDisplay();
-			int width = display.getWidth();  // deprecated
-			int height = display.getHeight();  // deprecated
-			*/
+			
 			// Calculate entire height by providing a very large height hint.
 			// View.MEASURED_SIZE_MASK represents the largest height possible.
-			int expandSpec = MeasureSpec.makeMeasureSpec(10000,
+			int expandSpec = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE,
 					MeasureSpec.AT_MOST);
 			super.onMeasure(widthMeasureSpec, expandSpec);
 			
@@ -55,8 +66,11 @@ public class ExpandableHeightGridView extends GridView
 			params.height = getMeasuredHeight();
 		} else
 		{
-			super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+			//super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 		}
+		
+		
+		
 	}
 	
 	public void setExpanded(boolean expanded)

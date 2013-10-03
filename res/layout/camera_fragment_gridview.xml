@@ -6,11 +6,10 @@
     <ImageView
         android:id="@+id/cameraImageView1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_height="70dp"
         android:background="@null"
         android:contentDescription="@string/img_describer"
-        android:src="@drawable/ic_launcher" />
+        android:scaleType="fitXY" />
 
     <ImageView
         android:id="@+id/cameraBookmarkIv"
@@ -25,10 +24,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/cameraImageView1"
-        android:layout_alignLeft="@+id/cameraImageView1"
-        android:layout_alignRight="@+id/cameraImageView1"
         android:background="@color/black"
-        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:textSize="14sp"
+        android:maxLines="2"
         android:text="@string/camera_textview1"
         android:textColor="@color/white" />
 

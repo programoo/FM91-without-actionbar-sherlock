@@ -7,13 +7,12 @@
 
     <ImageView
         android:id="@+id/header_img"
-        android:layout_centerVertical="true"
         android:layout_width="wrap_content"
-        android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-        
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:contentDescription="@string/default_img_describer"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
         android:src="@drawable/icon_fm" />
 
     <com.ais.sand.helper.AisTextView
@@ -32,11 +31,13 @@
         android:id="@+id/emergency_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@null"
-        android:paddingRight="5dp"
-        android:contentDescription="@string/hello_world"
         android:layout_alignParentRight="true"
-        android:src="@drawable/emergency_btn_img"
-        android:onClick="emergencyBtnOnClick" />
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@null"
+        android:contentDescription="@string/hello_world"
+        android:onClick="emergencyBtnOnClick"
+        android:paddingRight="5dp"
+        android:src="@drawable/emergency_btn_img" />
 
 </RelativeLayout>

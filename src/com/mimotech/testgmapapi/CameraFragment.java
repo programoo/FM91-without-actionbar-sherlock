@@ -45,7 +45,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.androidquery.AQuery;
@@ -58,10 +60,11 @@ public class CameraFragment extends Fragment implements TextWatcher
 	private ArrayList<Camera> camListFilter;
 	private LocationManager locationManager;
 	private LocationListener locationListener;
-	private ExpandableHeightGridView gv;
+	private GridView gv;
 	private EditText searchCameraEdt;
 	private AQuery aq;
 	private String camSaveState;
+	private TextView camNum;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -120,9 +123,9 @@ public class CameraFragment extends Fragment implements TextWatcher
 			Bundle savedInstanceState)
 	{
 		this.v = inflater.inflate(R.layout.camera_fragment, container, false);
-		
-		gv = (ExpandableHeightGridView) v.findViewById(R.id.cameraGridView);
-		gv.setExpanded(true);
+		camNum = (TextView)this.v.findViewById(R.id.cameraNumTv);
+		gv = (GridView) v.findViewById(R.id.cameraGridView);
+		//gv.setExpanded(true);
 		CameraGridViewAdapter ardap = new CameraGridViewAdapter(getActivity()
 				.getApplicationContext(), Info.getInstance().camList);
 		
@@ -155,7 +158,8 @@ public class CameraFragment extends Fragment implements TextWatcher
 		});
 		
 		// handle click event
-		ImageButton positionBtn = (ImageButton) v.findViewById(R.id.positionBtn);
+		ImageButton positionBtn = (ImageButton) v
+				.findViewById(R.id.positionBtn);
 		positionBtn.setOnClickListener(new OnClickListener()
 		{
 			
@@ -201,11 +205,8 @@ public class CameraFragment extends Fragment implements TextWatcher
 			}
 		});
 		
-
-		//cctvBtn.setTextColor(Color.parseColor("#8dc342"));
-		//positionBtn.setTextColor(Color.parseColor("#808080"));
-		
-		
+		// cctvBtn.setTextColor(Color.parseColor("#8dc342"));
+		// positionBtn.setTextColor(Color.parseColor("#808080"));
 		
 		Log.i(TAG, "onCreateView");
 		return v;
@@ -264,6 +265,10 @@ public class CameraFragment extends Fragment implements TextWatcher
 				camListFilter.add(Info.getInstance().camList.get(i));
 			}
 		}
+		
+
+		camNum.setText(camListFilter.size()+"");
+		reloadGridView();
 		
 		// request for gpis
 		asyncJson();
@@ -491,6 +496,7 @@ public class CameraFragment extends Fragment implements TextWatcher
 				camListFilter.add(Info.getInstance().camList.get(i));
 			}
 		}
+		camNum.setText(camListFilter.size());
 		reloadGridView();
 		
 	}
@@ -498,7 +504,7 @@ public class CameraFragment extends Fragment implements TextWatcher
 	public void reloadGridView()
 	{
 		camListFilter = new ArrayList<Camera>();
-		Log.i(TAG,"Reload Gridview");
+		Log.i(TAG, "Reload Gridview");
 		for (int i = 0; i < Info.getInstance().camList.size(); i++)
 		{
 			if (Info.getInstance().camList.get(i).toString()
@@ -509,8 +515,8 @@ public class CameraFragment extends Fragment implements TextWatcher
 		}
 		
 		Info.getInstance().sortCamByBookmark(camListFilter);
-		CameraGridViewAdapter ardap = new CameraGridViewAdapter(
-				getActivity().getApplicationContext(), camListFilter);
+		CameraGridViewAdapter ardap = new CameraGridViewAdapter(getActivity()
+				.getApplicationContext(), camListFilter);
 		
 		gv.setAdapter(ardap);
 		
@@ -604,13 +610,14 @@ public class CameraFragment extends Fragment implements TextWatcher
 		@Override
 		public void onStatusChanged(String provider, int status, Bundle extras)
 		{
-			try{
-
+			try
+			{
+				
 				Toast.makeText(getActivity(),
 						"onStatusChanged" + R.string.gps_disconnect_alert,
 						Toast.LENGTH_LONG).show();
-			}
-			catch(Exception e){
+			} catch (Exception e)
+			{
 				e.printStackTrace();
 			}
 		}

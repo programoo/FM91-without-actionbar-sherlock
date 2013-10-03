@@ -1,105 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/activityRoot"
-    android:layout_width="match_parent"
+    android:layout_width="270dp"
     android:layout_height="match_parent"
+    android:background="@color/lime_green"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/settingTv"
+    <RelativeLayout
+        android:id="@+id/radiusLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerInParent="true"
-        android:text="@string/rewind_settings_dialog_text" />
+        android:background="@drawable/headpopup_img"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/settingTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="@string/rewind_settings_dialog_text"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/oneKiloLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/settingTv"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:paddingLeft="10dp" >
 
         <TextView
             android:id="@+id/oneKilometerTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:text="@string/one_day_text" >
+            android:layout_centerVertical="true"
+            android:text="@string/one_day_text"
+            android:textColor="@color/white" >
         </TextView>
 
         <RadioButton
             android:id="@+id/oneDayRadio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true" />
+            android:layout_alignParentRight="true"
+            android:button="@drawable/radio_btn_img"
+            android:padding="5dp" />
     </RelativeLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@color/white" />
 
     <RelativeLayout
         android:id="@+id/threeKiloLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/oneKiloLayout"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:paddingLeft="10dp" >
 
         <TextView
             android:id="@+id/threeKilometerTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:text="@string/three_day_text" >
+            android:layout_centerVertical="true"
+            android:text="@string/three_day_text"
+            android:textColor="@color/white" >
         </TextView>
 
         <RadioButton
             android:id="@+id/threeDayRadio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true" />
+            android:layout_alignParentRight="true"
+            android:button="@drawable/radio_btn_img"
+            android:padding="5dp" />
     </RelativeLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@color/white" />
 
     <RelativeLayout
         android:id="@+id/fiveKiloLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/threeKiloLayout"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:paddingLeft="10dp" >
 
         <TextView
             android:id="@+id/fiveKilometerTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:text="@string/seven_day_text" >
+            android:layout_centerVertical="true"
+            android:text="@string/seven_day_text"
+            android:textColor="@color/white" >
         </TextView>
 
         <RadioButton
             android:id="@+id/sevenDayRadio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true" />
+            android:layout_alignParentRight="true"
+            android:button="@drawable/radio_btn_img"
+            android:padding="5dp" />
     </RelativeLayout>
 
-    <RelativeLayout
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@color/white" />
+
+    <LinearLayout
         android:id="@+id/okCancelLayout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_below="@+id/fiveKiloLayout" >
+        android:orientation="horizontal" >
 
-        <Button
+        <ImageButton
             android:id="@+id/cancelRadiusBtn"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Cancel" >
-        </Button>
+            android:layout_weight="1"
+            android:background="@null"
+            android:contentDescription="@string/hello_world"
+            android:padding="5dp"
+            android:src="@drawable/cancel_btn_img" >
+        </ImageButton>
 
-        <Button
+        <ImageButton
             android:id="@+id/okRadiusBtn"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/cancelRadiusBtn"
-            android:text="OK" >
-        </Button>
-    </RelativeLayout>
+            android:layout_weight="1"
+            android:background="@null"
+            android:contentDescription="@string/hello_world"
+            android:padding="5dp"
+            android:src="@drawable/ok_btn_img" >
+        </ImageButton>
+    </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>

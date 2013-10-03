@@ -15,7 +15,9 @@ import android.content.DialogInterface.OnCancelListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager.LayoutParams;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -55,16 +57,17 @@ public class OtherFragment extends Fragment implements OnItemClickListener
 	private RadioButton fiveKm;
 	private Dialog settingDialog;
 	private Context ctx;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		latLnConfig = "0 0";
-		crimTick = false;
-		accidentTick = false;
-		otherTick = false;
-		radius = "0";
-		rewind = "0";
+		crimTick = true;
+		accidentTick = true;
+		otherTick = true;
+		radius = "1";
+		rewind = "1";
 		ctx = getActivity();
 		strList = new ArrayList<String>();
 		
@@ -131,7 +134,8 @@ public class OtherFragment extends Fragment implements OnItemClickListener
 			settingDialog.show();
 			
 			// SET DEFALUT VALUE BY READ CONFIG
-			String settingCsv = Info.getInstance().readProfiles(getActivity(), "settings.csv");
+			String settingCsv = Info.getInstance().readProfiles(getActivity(),
+					"settings.csv");
 			if (!settingCsv.equalsIgnoreCase("undefined"))
 			{
 				Log.i(TAG, settingCsv);
@@ -144,6 +148,22 @@ public class OtherFragment extends Fragment implements OnItemClickListener
 				this.radius = settingCsv.split(",")[4];
 				this.rewind = settingCsv.split(",")[5];
 			}
+			
+			ImageButton emergencyBtn = (ImageButton) settingDialog
+					.findViewById(R.id.emergency_btn);
+			emergencyBtn.setOnClickListener(new OnClickListener()
+			{
+				
+				@Override
+				public void onClick(View v)
+				{
+					Log.d(TAG, "emergencyBtnOnClick");
+					Intent shareBtn = new Intent(getActivity(),
+							EmergencyCallActivity.class);
+					startActivity(shareBtn);
+				}
+				
+			});
 			
 			lvSettingDialog = (ListView) settingDialog
 					.findViewById(R.id.settingDialogLv);
@@ -203,8 +223,7 @@ public class OtherFragment extends Fragment implements OnItemClickListener
 				}
 			});
 			
-			otherTg = (ImageButton) settingDialog
-					.findViewById(R.id.otherTgBtn);
+			otherTg = (ImageButton) settingDialog.findViewById(R.id.otherTgBtn);
 			otherTg.setOnClickListener(new OnClickListener()
 			{
 				
@@ -241,8 +260,8 @@ public class OtherFragment extends Fragment implements OnItemClickListener
 				otherTick = true;
 			}
 			
-			//accidentTg.setChecked(this.accidentTick);
-			//otherTg.setChecked(this.otherTick);
+			// accidentTg.setChecked(this.accidentTick);
+			// otherTg.setChecked(this.otherTick);
 			
 			Log.i(TAG, "is check: " + this.crimTick);
 			Log.i(TAG, "is check: " + this.accidentTick);
@@ -254,8 +273,8 @@ public class OtherFragment extends Fragment implements OnItemClickListener
 				public void onCancel(DialogInterface dialog)
 				{
 					// crimTick = crimTick;
-					//accidentTick = accidentTg.isChecked();
-					//otherTick = otherTg.isChecked();
+					// accidentTick = accidentTg.isChecked();
+					// otherTick = otherTg.isChecked();
 					
 					Log.i(TAG, "is check: " + crimTick);
 					Log.i(TAG, "is check: " + accidentTick);
@@ -264,8 +283,8 @@ public class OtherFragment extends Fragment implements OnItemClickListener
 					// kep all settings value here
 					String writeStrCsv = "";
 					writeStrCsv = crimTick + "," + accidentTick + ","
-							+ otherTick + "," + latLnConfig + ","
-							+ radius + "," + rewind;
+							+ otherTick + "," + latLnConfig + "," + radius
+							+ "," + rewind;
 					// attatch this to global variable
 					Info.crimTick = crimTick;
 					Info.accidentTick = accidentTick;
@@ -300,8 +319,7 @@ public class OtherFragment extends Fragment implements OnItemClickListener
 					{
 						Log.i(TAG, "rewind text setting click");
 						
-						radiusSettingDialog = new Dialog(getActivity(),
-								R.style.FM91CustomDialog);
+						radiusSettingDialog = new Dialog(getActivity());
 						radiusSettingDialog.getWindow();
 						radiusSettingDialog
 								.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -316,20 +334,21 @@ public class OtherFragment extends Fragment implements OnItemClickListener
 								.findViewById(R.id.threeDayRadio);
 						fiveKm = (RadioButton) radiusSettingDialog
 								.findViewById(R.id.sevenDayRadio);
-						//retrieve rewind old state
-						if(rewind.equals("1")){
+						// retrieve rewind old state
+						if (rewind.equals("1"))
+						{
 							oneKm.setChecked(true);
-						}
-						else if( rewind.equals("3")){
+						} else if (rewind.equals("3"))
+						{
 							threeKm.setChecked(true);
-						}
-						else if ( rewind.equals("7")){
+						} else if (rewind.equals("7"))
+						{
 							fiveKm.setChecked(true);
 						}
 						
-						Button okRadiusBtn = (Button) radiusSettingDialog
+						ImageButton okRadiusBtn = (ImageButton) radiusSettingDialog
 								.findViewById(R.id.okRadiusBtn);
-						Button cancelRadiusBtn = (Button) radiusSettingDialog
+						ImageButton cancelRadiusBtn = (ImageButton) radiusSettingDialog
 								.findViewById(R.id.cancelRadiusBtn);
 						
 						okRadiusBtn.setOnClickListener(new OnClickListener()
@@ -339,16 +358,17 @@ public class OtherFragment extends Fragment implements OnItemClickListener
 							public void onClick(View v)
 							{
 								Log.i(TAG, "select radius complete");
-								//keep selected rewind state
-								if(oneKm.isChecked()){
-									rewind = 1+"";
-								}
-								else if( threeKm.isChecked()){
-									rewind = 3+"";
-
-								}
-								else if ( fiveKm.isChecked()){
-									rewind = 7+"";
+								// keep selected rewind state
+								if (oneKm.isChecked())
+								{
+									rewind = 1 + "";
+								} else if (threeKm.isChecked())
+								{
+									rewind = 3 + "";
+									
+								} else if (fiveKm.isChecked())
+								{
+									rewind = 7 + "";
 								}
 								TextView radiusShowAfterSettingsTv = (TextView) viewSelected
 										.findViewById(R.id.otherSelectedDataTv);
@@ -378,7 +398,7 @@ public class OtherFragment extends Fragment implements OnItemClickListener
 								oneKm.setChecked(true);
 								threeKm.setChecked(false);
 								fiveKm.setChecked(false);
-								//rewind = 1 + "";
+								// rewind = 1 + "";
 							}
 						});
 						
@@ -391,7 +411,7 @@ public class OtherFragment extends Fragment implements OnItemClickListener
 								oneKm.setChecked(false);
 								threeKm.setChecked(true);
 								fiveKm.setChecked(false);
-								//rewind = 3 + "";
+								// rewind = 3 + "";
 								
 							}
 						});
@@ -404,7 +424,7 @@ public class OtherFragment extends Fragment implements OnItemClickListener
 								oneKm.setChecked(false);
 								threeKm.setChecked(false);
 								fiveKm.setChecked(true);
-								//rewind = 7 + "";
+								// rewind = 7 + "";
 								
 							}
 						});
@@ -414,14 +434,25 @@ public class OtherFragment extends Fragment implements OnItemClickListener
 					{
 						Log.i(TAG, "radius text setting click");
 						
-						radiusSettingDialog = new Dialog(getActivity(),
-								R.style.FM91CustomDialog);
+						radiusSettingDialog = new Dialog(getActivity());
 						radiusSettingDialog.getWindow();
 						radiusSettingDialog
 								.requestWindowFeature(Window.FEATURE_NO_TITLE);
 						radiusSettingDialog
 								.setContentView(R.layout.radious_setting_dialog);
 						radiusSettingDialog.setCancelable(true);
+						
+						android.view.WindowManager.LayoutParams lp = radiusSettingDialog
+								.getWindow().getAttributes();
+						//lp.x = 100;
+						//lp.y = 100;
+						lp.width = LayoutParams.WRAP_CONTENT;
+						lp.height = LayoutParams.WRAP_CONTENT;
+						lp.gravity = Gravity.CENTER;
+						//lp.dimAmount = 0;
+						//lp.flags = LayoutParams.WRAP_CONTENT
+						//		| LayoutParams.WRAP_CONTENT;
+						//
 						radiusSettingDialog.show();
 						
 						oneKm = (RadioButton) radiusSettingDialog
@@ -431,22 +462,22 @@ public class OtherFragment extends Fragment implements OnItemClickListener
 						fiveKm = (RadioButton) radiusSettingDialog
 								.findViewById(R.id.fiveKilometerRadio);
 						
-						Button okRadiusBtn = (Button) radiusSettingDialog
+						ImageButton okRadiusBtn = (ImageButton) radiusSettingDialog
 								.findViewById(R.id.okRadiusBtn);
-						Button cancelRadiusBtn = (Button) radiusSettingDialog
+						ImageButton cancelRadiusBtn = (ImageButton) radiusSettingDialog
 								.findViewById(R.id.cancelRadiusBtn);
 						
-						//retrieve old radius state
-						if(radius.equals("1")){
+						// retrieve old radius state
+						if (radius.equals("1"))
+						{
 							oneKm.setChecked(true);
-						}
-						else if( radius.equals("3")){
+						} else if (radius.equals("3"))
+						{
 							threeKm.setChecked(true);
-						}
-						else if ( radius.equals("5")){
+						} else if (radius.equals("5"))
+						{
 							fiveKm.setChecked(true);
 						}
-						
 						
 						okRadiusBtn.setOnClickListener(new OnClickListener()
 						{
@@ -456,17 +487,17 @@ public class OtherFragment extends Fragment implements OnItemClickListener
 							{
 								Log.i(TAG, "select radius complete");
 								
-								if(oneKm.isChecked()){
-									radius = 1+"";
+								if (oneKm.isChecked())
+								{
+									radius = 1 + "";
+								} else if (threeKm.isChecked())
+								{
+									radius = 3 + "";
+									
+								} else if (fiveKm.isChecked())
+								{
+									radius = 5 + "";
 								}
-								else if( threeKm.isChecked()){
-									radius = 3+"";
-
-								}
-								else if ( fiveKm.isChecked()){
-									radius = 5+"";
-								}
-								
 								
 								TextView radiusShowAfterSettingsTv = (TextView) viewSelected
 										.findViewById(R.id.otherSelectedDataTv);
@@ -496,7 +527,7 @@ public class OtherFragment extends Fragment implements OnItemClickListener
 								oneKm.setChecked(true);
 								threeKm.setChecked(false);
 								fiveKm.setChecked(false);
-								//radius = 1 + "";
+								// radius = 1 + "";
 							}
 						});
 						
@@ -509,7 +540,7 @@ public class OtherFragment extends Fragment implements OnItemClickListener
 								oneKm.setChecked(false);
 								threeKm.setChecked(true);
 								fiveKm.setChecked(false);
-								//radius = 3 + "";
+								// radius = 3 + "";
 								
 							}
 						});
@@ -522,7 +553,7 @@ public class OtherFragment extends Fragment implements OnItemClickListener
 								oneKm.setChecked(false);
 								threeKm.setChecked(false);
 								fiveKm.setChecked(true);
-								//radius = 5 + "";
+								// radius = 5 + "";
 								
 							}
 						});

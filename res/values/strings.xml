@@ -27,6 +27,8 @@
     <string name="comment_hint_text">Comment</string>
 
     <!-- thai translate text -->
+    <string name="close_app_alert_text">คุณต้องการออกจากโปรแกรมใช่หรือไม่</string>
+    <string name="settins_text">การตั้งค่า</string>
     <string name="by_text">โดย</string>
     <string name="instart_place_setting_text">คุณยังไม่ได้ตั้งค่าสถานที่รับข่าวสาร กรุณาตั้งค่าที่ ​settings</string>
     <string name="search_here_text">ค้นหาที่นี่</string>

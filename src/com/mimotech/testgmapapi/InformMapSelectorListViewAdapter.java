@@ -30,8 +30,7 @@ public class InformMapSelectorListViewAdapter extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		
 		if(convertView == null)
-			convertView = inflater.inflate(R.layout.inform_listview_selector, parent,
-					false);
+			convertView = inflater.inflate(R.layout.inform_listview_selector,null);
 		
 		TextView tvTitle = (TextView) convertView.findViewById(R.id.placeDetail);
 		tvTitle.setText(nearbyList.get(position).title+"\n");

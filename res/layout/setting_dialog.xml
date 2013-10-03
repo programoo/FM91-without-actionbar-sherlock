@@ -5,27 +5,52 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/settingTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerInParent="true"
-        android:text="@string/radius_settings_text" />
+    <include
+        android:id="@+id/fmBanner"
+        layout="@layout/blank_activity" />
 
-    <TextView
-        android:id="@+id/settingReceiveNews"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/settingsHeaderOneLayout"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/fmBanner"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/settingTv"
-        android:text="@string/setting_dialog_setting_receivenews_text" />
+        android:background="@drawable/tabbar_img" >
+
+        <TextView
+            android:id="@+id/settingTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:paddingLeft="5dp"
+            android:text="@string/settins_text"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/settingsHeaderTwoLayout"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/settingsHeaderOneLayout"
+        android:layout_height="wrap_content"
+        android:background="@drawable/settings_listview_img" >
+
+        <TextView
+            android:id="@+id/settingReceiveNews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:paddingLeft="5dp"
+            android:text="@string/setting_dialog_setting_receivenews_text" />
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/crimeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/settingReceiveNews"
+        android:layout_below="@+id/settingsHeaderTwoLayout"
+        android:layout_centerVertical="true"
+        android:background="@drawable/settings_listview_img"
         android:orientation="vertical" >
 
         <TextView
@@ -33,6 +58,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:paddingLeft="5dp"
             android:text="@string/crime_dialog_text" >
         </TextView>
 
@@ -41,11 +68,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:contentDescription="@string/hello_world"
+            android:layout_centerVertical="true"
             android:background="@null"
-            android:src="@drawable/inactive_btn"/>
-    
-    
+            android:contentDescription="@string/hello_world"
+            android:padding="5dp"
+            android:src="@drawable/inactive_btn" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -53,6 +80,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/crimeLayout"
+        android:layout_centerVertical="true"
+        android:background="@drawable/settings_listview_img"
         android:orientation="vertical" >
 
         <TextView
@@ -60,6 +89,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:padding="5dp"
             android:text="@string/accident_dialog_text" >
         </TextView>
 
@@ -67,11 +98,12 @@
             android:id="@+id/accidentTgBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/hello_world"
             android:layout_alignParentRight="true"
-            android:src="@drawable/inactive_btn"
-            android:background="@null"/>
-        
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:contentDescription="@string/hello_world"
+            android:padding="5dp"
+            android:src="@drawable/inactive_btn" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -79,6 +111,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/accidentLayout"
+        android:layout_centerVertical="true"
+        android:background="@drawable/settings_listview_img"
         android:orientation="vertical" >
 
         <TextView
@@ -86,6 +120,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:paddingLeft="5dp"
             android:text="@string/other_dialog_text" >
         </TextView>
 
@@ -93,12 +129,12 @@
             android:id="@+id/otherTgBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/inactive_btn"
-            android:contentDescription="@string/hello_world"
             android:layout_alignParentRight="true"
-            android:background="@null"/>
-        
-        
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:contentDescription="@string/hello_world"
+            android:padding="5dp"
+            android:src="@drawable/inactive_btn" />
     </RelativeLayout>
 
     <ListView

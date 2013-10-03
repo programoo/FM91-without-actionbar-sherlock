@@ -51,7 +51,7 @@ public class InsertProfileActivity extends Activity implements OnClickListener
 		imgBtn = (ImageButton) findViewById(R.id.insertImgProfileBtn);
 		imgBtn.setOnClickListener(this);
 		
-		Button saveProfileBtn = (Button) findViewById(R.id.saveProfileBtn);
+		ImageButton saveProfileBtn = (ImageButton) findViewById(R.id.saveProfileBtn);
 		saveProfileBtn.setOnClickListener(this);
 		
 		// read old image
@@ -240,3 +240,4 @@ public class InsertProfileActivity extends Activity implements OnClickListener
 	}
 	
 }
+

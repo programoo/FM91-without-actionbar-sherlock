@@ -39,7 +39,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
@@ -76,9 +75,9 @@ public class InformFragment extends Fragment implements OnClickListener,
 	private Dialog dialog;
 	private ImageButton addImgImgBtn;
 	private ImageButton addPlaceImgBtn;
-	private Button sendBtn;
-	private Button clearBtn;
-
+	private ImageButton sendBtn;
+	private ImageButton clearBtn;
+	
 	// data for sending to server
 	private String pathImgSelected;
 	private String imgName;
@@ -112,19 +111,27 @@ public class InformFragment extends Fragment implements OnClickListener,
 		mainLayout = (RelativeLayout) v.findViewById(R.id.informMainLayout);
 		detailLayout = (RelativeLayout) v.findViewById(R.id.informDetailLayout);
 		
-		clearBtn = (Button) v.findViewById(R.id.clearBtn);
+		// for handle back press
+		Info.getInstance().mainLayout = mainLayout;
+		Info.getInstance().detailLayout = detailLayout;
+		
+		clearBtn = (ImageButton) v.findViewById(R.id.clearBtn);
 		clearBtn.setOnClickListener(new OnClickListener()
 		{
 			
 			@Override
 			public void onClick(View v)
 			{
-				mainLayout.setVisibility(View.VISIBLE);
-				detailLayout.setVisibility(View.GONE);
+				// mainLayout.setVisibility(View.VISIBLE);
+				// detailLayout.setVisibility(View.GONE);
+				
+				descriptionEdt.setText("");
+				addImgImgBtn.setImageResource(R.drawable.add_image);
+				addPlaceImgBtn.setImageResource(R.drawable.add_location);
 			}
 		});
 		
-		sendBtn = (Button) v.findViewById(R.id.sendBtn);
+		sendBtn = (ImageButton) v.findViewById(R.id.sendBtn);
 		sendBtn.setOnClickListener(new OnClickListener()
 		{
 			@Override
@@ -161,9 +168,13 @@ public class InformFragment extends Fragment implements OnClickListener,
 					}
 					
 				});
-
+				
 				mainLayout.setVisibility(View.VISIBLE);
 				detailLayout.setVisibility(View.GONE);
+				
+				descriptionEdt.setText("");
+				addImgImgBtn.setImageResource(R.drawable.add_image);
+				addPlaceImgBtn.setImageResource(R.drawable.add_location);
 				
 			}
 		});
@@ -497,7 +508,8 @@ public class InformFragment extends Fragment implements OnClickListener,
 		String userProfileSetting = this.readProfiles();
 		if (!userProfileSetting.equalsIgnoreCase("undefined"))
 		{
-			try{
+			try
+			{
 				// have user profile read it and share to
 				this.mainLayout.setVisibility(View.GONE);
 				this.detailLayout.setVisibility(View.VISIBLE);
@@ -509,11 +521,10 @@ public class InformFragment extends Fragment implements OnClickListener,
 				tv.setText(v.getTag().toString());
 				Log.i(TAG, "inform type: " + v.getTag().toString());
 				Log.i(TAG, "user settings data: " + userProfileSetting);
-			}
-			catch(Exception e){
+			} catch (Exception e)
+			{
 				e.printStackTrace();
 			}
-			
 			
 		} else
 		{
@@ -552,11 +563,11 @@ public class InformFragment extends Fragment implements OnClickListener,
 	private void showChooser()
 	{
 		// Use the GET_CONTENT intent from the utility class
-		/*Intent target = FileUtils.createGetContentIntent();
-		// Create the chooser Intent
-		Intent intent = Intent.createChooser(target,
-				getString(R.string.chooser_label));
-		*/
+		/*
+		 * Intent target = FileUtils.createGetContentIntent(); // Create the
+		 * chooser Intent Intent intent = Intent.createChooser(target,
+		 * getString(R.string.chooser_label));
+		 */
 		
 		Intent intent = new Intent();
 		intent.setType("image/*");
@@ -574,7 +585,7 @@ public class InformFragment extends Fragment implements OnClickListener,
 			if (resultCode == Info.RESULT_OK)
 			{
 				String result = data.getStringExtra("result");
-				addPlaceImgBtn.setImageResource(R.drawable.map_selected);
+				addPlaceImgBtn.setImageBitmap(Info.getInstance().snapShot);
 				Log.i(TAG, "result from selector" + result);
 				latLngSelected = result;
 			}
@@ -593,7 +604,8 @@ public class InformFragment extends Fragment implements OnClickListener,
 					try
 					{
 						// Create a file instance from the URI
-						String url = Info.getInstance().getRealPathFromURI(getActivity(), uri);
+						String url = Info.getInstance().getRealPathFromURI(
+								getActivity(), uri);
 						File file = new File(url);
 						Log.i(TAG, "path: " + url);
 						pathImgSelected = url;

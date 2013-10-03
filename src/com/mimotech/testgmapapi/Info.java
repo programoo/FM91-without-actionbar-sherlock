@@ -17,6 +17,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.widget.RelativeLayout;
 
 public class Info
 {
@@ -36,11 +37,20 @@ public class Info
 	public String latLnConfig;
 	public String radius;
 	public String rewind;
+	
+
+	public RelativeLayout mainLayout;
+	public RelativeLayout detailLayout;
+	
+	public Bitmap snapShot;
 	// singleton pattern
 	private static Info instance = null;
 	
 	private Info()
 	{
+		snapShot = null;
+		mainLayout = null;
+		detailLayout = null;
 	}
 	
 	public static Info getInstance()

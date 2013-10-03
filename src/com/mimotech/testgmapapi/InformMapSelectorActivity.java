@@ -20,6 +20,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -29,11 +30,11 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.AdapterView.OnItemClickListener;
 
 import com.androidquery.AQuery;
 import com.androidquery.util.XmlDom;
@@ -42,6 +43,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
 import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
+import com.google.android.gms.maps.GoogleMap.SnapshotReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
@@ -380,6 +382,8 @@ public class InformMapSelectorActivity extends FragmentActivity implements
 					+ getNearbyFromTitle(marker.getTitle()).lng;
 		}
 		
+		CaptureMapScreen();
+		
 		Intent returnIntent = new Intent();
 		returnIntent.putExtra("result", result);
 		setResult(Info.RESULT_OK, returnIntent);
@@ -389,6 +393,10 @@ public class InformMapSelectorActivity extends FragmentActivity implements
 	@Override
 	public void onMapClick(LatLng point)
 	{
+		//capture image
+		CaptureMapScreen();
+		Log.i(TAG,"Snapshot initialize");
+
 		String result = point.latitude + "," + point.longitude;
 		Intent returnIntent = new Intent();
 		returnIntent.putExtra("result", result);
@@ -435,6 +443,23 @@ public class InformMapSelectorActivity extends FragmentActivity implements
 	@Override
 	public void onTextChanged(CharSequence s, int start, int before, int count)
 	{
+	}
+
+	public void CaptureMapScreen()
+	{
+		Log.i(TAG,"Snapshot initialize");
+		SnapshotReadyCallback callback = new SnapshotReadyCallback()
+		{
+			
+			@Override
+			public void onSnapshotReady(Bitmap snapshot)
+			{
+				Info.getInstance().snapShot = snapshot;
+				Log.i(TAG,"Capture complete");
+			}
+		};
+		
+		mMap.snapshot(callback);
 	}
 	
 }

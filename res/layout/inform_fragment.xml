@@ -24,6 +24,9 @@
                 android:layout_weight="1"
                 android:background="@null"
                 android:contentDescription="@string/hello_world"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:paddingTop="5dp"
                 android:src="@drawable/traffic_img" />
 
             <ImageButton
@@ -33,6 +36,9 @@
                 android:layout_weight="1"
                 android:background="@null"
                 android:contentDescription="@string/hello_world"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:paddingTop="5dp"
                 android:src="@drawable/accident_img" />
 
             <ImageButton
@@ -42,6 +48,9 @@
                 android:layout_weight="1"
                 android:background="@null"
                 android:contentDescription="@string/hello_world"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:paddingTop="5dp"
                 android:src="@drawable/crime_img" />
         </LinearLayout>
 
@@ -58,6 +67,9 @@
                 android:layout_weight="1"
                 android:background="@null"
                 android:contentDescription="@string/hello_world"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:paddingTop="5dp"
                 android:src="@drawable/transport_img" />
 
             <ImageButton
@@ -67,6 +79,9 @@
                 android:layout_weight="1"
                 android:background="@null"
                 android:contentDescription="@string/hello_world"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:paddingTop="5dp"
                 android:src="@drawable/powershutdow_img" />
 
             <ImageButton
@@ -76,6 +91,9 @@
                 android:layout_weight="1"
                 android:background="@null"
                 android:contentDescription="@string/hello_world"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:paddingTop="5dp"
                 android:src="@drawable/hydrant_img" />
         </LinearLayout>
 
@@ -92,6 +110,9 @@
                 android:layout_weight="1"
                 android:background="@null"
                 android:contentDescription="@string/hello_world"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:paddingTop="5dp"
                 android:src="@drawable/firealarm_img" />
 
             <ImageButton
@@ -101,6 +122,9 @@
                 android:layout_weight="1"
                 android:background="@null"
                 android:contentDescription="@string/hello_world"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:paddingTop="5dp"
                 android:src="@drawable/other_img" />
 
             <View
@@ -115,13 +139,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/informMainLayout"
-        android:layout_centerHorizontal="true" >
+        android:layout_centerHorizontal="true"
+        android:padding="10dp" >
 
         <TextView
             android:id="@+id/typeOfInformTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:paddingBottom="10dp"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/informDetailEdt"
@@ -138,7 +165,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/informDetailEdt"
-            android:orientation="horizontal" >
+            android:orientation="horizontal"
+            android:paddingTop="10dp" >
 
             <ImageButton
                 android:id="@+id/addImgInformImgBtn"
@@ -159,27 +187,39 @@
                 android:src="@drawable/add_location" />
         </LinearLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/pushDataBtnDashboardInform"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/pushDataImgBtnDashboardInform"
-            android:orientation="horizontal" >
+            android:paddingTop="10dp" >
 
-            <Button
+            <View
+                android:id="@+id/horizontalRubber"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:layout_centerHorizontal="true" />
+
+            <ImageButton
                 android:id="@+id/clearBtn"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Clear" />
+                android:layout_toLeftOf="@+id/horizontalRubber"
+                android:background="@null"
+                android:contentDescription="@string/hello_world"
+                android:padding="15dp"
+                android:src="@drawable/clear_btn_img" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/sendBtn"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Send" />
-        </LinearLayout>
+                android:layout_toRightOf="@+id/horizontalRubber"
+                android:background="@null"
+                android:contentDescription="@string/hello_world"
+                android:padding="15dp"
+                android:src="@drawable/send_btn_img" />
+        </RelativeLayout>
     </RelativeLayout>
 
 </RelativeLayout>
