@@ -256,12 +256,12 @@ containing a value of this type.
         public static final int accident_active=0x7f020000;
         public static final int accident_img=0x7f020001;
         public static final int accident_inactive=0x7f020002;
-        public static final int active_btn=0x7f020003;
-        public static final int add_image=0x7f020004;
-        public static final int add_location=0x7f020005;
-        public static final int arrow_img=0x7f020006;
-        public static final int bitmap_titlebar_bg=0x7f020007;
-        public static final int camera_gmap_icon=0x7f020008;
+        public static final int accident_listview_icon_img=0x7f020003;
+        public static final int active_btn=0x7f020004;
+        public static final int add_image=0x7f020005;
+        public static final int add_location=0x7f020006;
+        public static final int arrow_img=0x7f020007;
+        public static final int bitmap_titlebar_bg=0x7f020008;
         public static final int camera_tabbar_img=0x7f020009;
         public static final int cancel_btn_img=0x7f02000a;
         public static final int cctv_active=0x7f02000b;
@@ -297,88 +297,95 @@ containing a value of this type.
         public static final int crime_active=0x7f020029;
         public static final int crime_img=0x7f02002a;
         public static final int crime_inactive=0x7f02002b;
-        public static final int emergency_btn_bg=0x7f02002c;
-        public static final int emergency_btn_img=0x7f02002d;
-        public static final int facebook=0x7f02002e;
-        public static final int firealarm_active=0x7f02002f;
-        public static final int firealarm_img=0x7f020030;
-        public static final int firealarm_inactive=0x7f020031;
-        public static final int fm91=0x7f020032;
-        public static final int header_bg=0x7f020033;
-        public static final int headpopup_img=0x7f020034;
-        public static final int hydrant_active=0x7f020035;
-        public static final int hydrant_img=0x7f020036;
-        public static final int hydrant_inactive=0x7f020037;
-        public static final int ic_launcher=0x7f020038;
-        public static final int icon_fm=0x7f020039;
-        public static final int inactive_btn=0x7f02003a;
-        public static final int inform_active=0x7f02003b;
-        public static final int inform_inactive=0x7f02003c;
-        public static final int inform_tabbar_img=0x7f02003d;
-        public static final int is_read=0x7f02003e;
-        public static final int layout_border_img=0x7f02003f;
-        public static final int line_cameranum_img=0x7f020040;
-        public static final int line_img=0x7f020041;
-        public static final int listview_emg_img=0x7f020042;
-        public static final int listview_img=0x7f020043;
-        public static final int location_active=0x7f020044;
-        public static final int location_inactive=0x7f020045;
-        public static final int logo=0x7f020046;
-        public static final int map_listview_img=0x7f020047;
-        public static final int map_mapview_img=0x7f020048;
-        public static final int map_selected=0x7f020049;
-        public static final int mapview_img=0x7f02004a;
-        public static final int max_sound_img=0x7f02004b;
-        public static final int menu_tabbar_img=0x7f02004c;
-        public static final int min_sound_img=0x7f02004d;
-        public static final int more_active=0x7f02004e;
-        public static final int more_inactive=0x7f02004f;
-        public static final int more_tabbar_img=0x7f020050;
-        public static final int news_active=0x7f020051;
-        public static final int news_inactive=0x7f020052;
-        public static final int news_submenu_active=0x7f020053;
-        public static final int news_submenu_inactive=0x7f020054;
-        public static final int news_tabbar_img=0x7f020055;
-        public static final int ok_btn_img=0x7f020056;
-        public static final int other_active=0x7f020057;
-        public static final int other_img=0x7f020058;
-        public static final int other_inactive=0x7f020059;
-        public static final int pause_img=0x7f02005a;
-        public static final int play_img=0x7f02005b;
-        public static final int play_radio_img=0x7f02005c;
-        public static final int position_submenu_active=0x7f02005d;
-        public static final int position_submenu_img=0x7f02005e;
-        public static final int position_submenu_inactive=0x7f02005f;
-        public static final int powershutdow_active=0x7f020060;
-        public static final int powershutdow_img=0x7f020061;
-        public static final int powershutdow_inactive=0x7f020062;
-        public static final int radio_active=0x7f020063;
-        public static final int radio_banner_img=0x7f020064;
-        public static final int radio_btn_img=0x7f020065;
-        public static final int radio_inactive=0x7f020066;
-        public static final int radio_tabbar_img=0x7f020067;
-        public static final int radiobutton_active=0x7f020068;
-        public static final int radiobutton_inactive=0x7f020069;
-        public static final int round_btn_bg=0x7f02006a;
-        public static final int send_btn_img=0x7f02006b;
-        public static final int settings_listview_img=0x7f02006c;
-        public static final int share_active=0x7f02006d;
-        public static final int share_img_btn=0x7f02006e;
-        public static final int sharebutton_icon=0x7f02006f;
-        public static final int star_active=0x7f020070;
-        public static final int star_inactive=0x7f020071;
-        public static final int submenu_img=0x7f020072;
-        public static final int tabbar_img=0x7f020073;
-        public static final int toggle_bookmark_btn=0x7f020074;
-        public static final int toggle_img_btn=0x7f020075;
-        public static final int toggle_playradio_btn=0x7f020076;
-        public static final int traffic_active=0x7f020077;
-        public static final int traffic_img=0x7f020078;
-        public static final int traffic_inactive=0x7f020079;
-        public static final int transport_img=0x7f02007a;
-        public static final int transportation_active=0x7f02007b;
-        public static final int transportation_inactive=0x7f02007c;
-        public static final int twitter=0x7f02007d;
+        public static final int crime_listview_icon_img=0x7f02002c;
+        public static final int emergency_btn_bg=0x7f02002d;
+        public static final int emergency_btn_img=0x7f02002e;
+        public static final int facebook=0x7f02002f;
+        public static final int firealarm_active=0x7f020030;
+        public static final int firealarm_img=0x7f020031;
+        public static final int firealarm_inactive=0x7f020032;
+        public static final int fm91=0x7f020033;
+        public static final int header_bg=0x7f020034;
+        public static final int headpopup_img=0x7f020035;
+        public static final int hydrant_active=0x7f020036;
+        public static final int hydrant_img=0x7f020037;
+        public static final int hydrant_inactive=0x7f020038;
+        public static final int ic_launcher=0x7f020039;
+        public static final int ic_plusone_medium_off_client=0x7f02003a;
+        public static final int ic_plusone_small_off_client=0x7f02003b;
+        public static final int ic_plusone_standard_off_client=0x7f02003c;
+        public static final int ic_plusone_tall_off_client=0x7f02003d;
+        public static final int icon_fm=0x7f02003e;
+        public static final int inactive_btn=0x7f02003f;
+        public static final int inform_active=0x7f020040;
+        public static final int inform_inactive=0x7f020041;
+        public static final int inform_tabbar_img=0x7f020042;
+        public static final int is_read=0x7f020043;
+        public static final int layout_border_img=0x7f020044;
+        public static final int line_cameranum_img=0x7f020045;
+        public static final int line_img=0x7f020046;
+        public static final int listview_emg_img=0x7f020047;
+        public static final int listview_img=0x7f020048;
+        public static final int location_active=0x7f020049;
+        public static final int location_inactive=0x7f02004a;
+        public static final int logo=0x7f02004b;
+        public static final int map_listview_img=0x7f02004c;
+        public static final int map_mapview_img=0x7f02004d;
+        public static final int map_selected=0x7f02004e;
+        public static final int mapview_img=0x7f02004f;
+        public static final int max_sound_img=0x7f020050;
+        public static final int menu_tabbar_img=0x7f020051;
+        public static final int min_sound_img=0x7f020052;
+        public static final int more_active=0x7f020053;
+        public static final int more_inactive=0x7f020054;
+        public static final int more_tabbar_img=0x7f020055;
+        public static final int news_active=0x7f020056;
+        public static final int news_inactive=0x7f020057;
+        public static final int news_submenu_active=0x7f020058;
+        public static final int news_submenu_inactive=0x7f020059;
+        public static final int news_tabbar_img=0x7f02005a;
+        public static final int ok_btn_img=0x7f02005b;
+        public static final int other_active=0x7f02005c;
+        public static final int other_img=0x7f02005d;
+        public static final int other_inactive=0x7f02005e;
+        public static final int other_listview_icon_img=0x7f02005f;
+        public static final int pause_img=0x7f020060;
+        public static final int play_img=0x7f020061;
+        public static final int play_radio_img=0x7f020062;
+        public static final int position_submenu_active=0x7f020063;
+        public static final int position_submenu_img=0x7f020064;
+        public static final int position_submenu_inactive=0x7f020065;
+        public static final int powershutdow_active=0x7f020066;
+        public static final int powershutdow_img=0x7f020067;
+        public static final int powershutdow_inactive=0x7f020068;
+        public static final int radio_active=0x7f020069;
+        public static final int radio_banner_img=0x7f02006a;
+        public static final int radio_btn_img=0x7f02006b;
+        public static final int radio_inactive=0x7f02006c;
+        public static final int radio_tabbar_img=0x7f02006d;
+        public static final int radiobutton_active=0x7f02006e;
+        public static final int radiobutton_inactive=0x7f02006f;
+        public static final int round_btn_bg=0x7f020070;
+        public static final int send_btn_img=0x7f020071;
+        public static final int settings_listview_img=0x7f020072;
+        public static final int share_active=0x7f020073;
+        public static final int share_img_btn=0x7f020074;
+        public static final int sharebutton_icon=0x7f020075;
+        public static final int star_active=0x7f020076;
+        public static final int star_inactive=0x7f020077;
+        public static final int submenu_img=0x7f020078;
+        public static final int tabbar_img=0x7f020079;
+        public static final int toggle_bookmark_btn=0x7f02007a;
+        public static final int toggle_img_btn=0x7f02007b;
+        public static final int toggle_playradio_btn=0x7f02007c;
+        public static final int traffic_active=0x7f02007d;
+        public static final int traffic_img=0x7f02007e;
+        public static final int traffic_inactive=0x7f02007f;
+        public static final int traffic_listview_icon_img=0x7f020080;
+        public static final int transport_img=0x7f020081;
+        public static final int transportation_active=0x7f020082;
+        public static final int transportation_inactive=0x7f020083;
+        public static final int twitter=0x7f020084;
     }
     public static final class id {
         public static final int RelativeLayout01=0x7f05001a;
@@ -585,43 +592,43 @@ containing a value of this type.
         public static final int other=0x7f090003;
     }
     public static final class string {
-        public static final int accident_dialog_text=0x7f060062;
-        public static final int accident_text=0x7f06005a;
-        public static final int action_settings=0x7f060016;
-        public static final int app_name=0x7f060015;
+        public static final int accident_dialog_text=0x7f060066;
+        public static final int accident_text=0x7f06005e;
+        public static final int action_settings=0x7f06001a;
+        public static final int app_name=0x7f060019;
         /**   Title for notification shown when GooglePlayServices needs to be
         enabled for a application to work. [CHAR LIMIT=70] 
          */
-        public static final int auth_client_needs_enabling_title=0x7f060010;
+        public static final int auth_client_needs_enabling_title=0x7f060014;
         /**   Title for notification shown when GooglePlayServices needs to be
         installed for a application to work. [CHAR LIMIT=70] 
          */
-        public static final int auth_client_needs_installation_title=0x7f060011;
+        public static final int auth_client_needs_installation_title=0x7f060015;
         /**   Title for notification shown when GooglePlayServices needs to be
         udpated for a application to work. [CHAR LIMIT=70] 
          */
-        public static final int auth_client_needs_update_title=0x7f060012;
+        public static final int auth_client_needs_update_title=0x7f060016;
         /**   Title for notification shown when GooglePlayServices is unavailable [CHAR LIMIT=42] 
          */
-        public static final int auth_client_play_services_err_notification_msg=0x7f060013;
+        public static final int auth_client_play_services_err_notification_msg=0x7f060017;
         /**   Requested by string saying which app requested the notification. [CHAR LIMIT=42] 
          */
-        public static final int auth_client_requested_by_msg=0x7f060014;
+        public static final int auth_client_requested_by_msg=0x7f060018;
         /**   Title for notification shown when a bad version of GooglePlayServices
         has been installed and needs correction for an application to work.
         [CHAR LIMIT=70] 
          */
-        public static final int auth_client_using_bad_version_title=0x7f06000f;
-        public static final int by_text=0x7f06002e;
-        public static final int camera_tabbar=0x7f06001d;
-        public static final int camera_textview1=0x7f06001e;
-        public static final int cctv_btn_text=0x7f06001f;
-        public static final int chooser_label=0x7f060045;
+        public static final int auth_client_using_bad_version_title=0x7f060013;
+        public static final int by_text=0x7f060032;
+        public static final int camera_tabbar=0x7f060021;
+        public static final int camera_textview1=0x7f060022;
+        public static final int cctv_btn_text=0x7f060023;
+        public static final int chooser_label=0x7f060049;
         /**  thai translate text 
          */
-        public static final int close_app_alert_text=0x7f06002c;
-        public static final int close_text=0x7f060029;
-        public static final int comment_hint_text=0x7f06002b;
+        public static final int close_app_alert_text=0x7f060030;
+        public static final int close_text=0x7f06002d;
+        public static final int comment_hint_text=0x7f06002f;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
         can enable it [CHAR LIMIT=40] 
@@ -650,19 +657,31 @@ containing a value of this type.
         Google Play services (from Play Store) [CHAR LIMIT=40] 
          */
         public static final int common_google_play_services_install_title=0x7f060000;
+        /**  Message in confirmation dialog informing the user that they provided an invalid account. [CHAR LIMIT=NONE] 
+         */
+        public static final int common_google_play_services_invalid_account_text=0x7f06000c;
+        /**  Title of confirmation dialog informing the user that they provided an invalid account. [CHAR LIMIT=40] 
+         */
+        public static final int common_google_play_services_invalid_account_title=0x7f06000b;
+        /**  Message in confirmation dialog informing the user that a network error occurred. [CHAR LIMIT=NONE] 
+         */
+        public static final int common_google_play_services_network_error_text=0x7f06000a;
+        /**  Title of confirmation dialog informing the user that a network error occurred. [CHAR LIMIT=40] 
+         */
+        public static final int common_google_play_services_network_error_title=0x7f060009;
         /**  Message in confirmation dialog informing user there is an unknown issue in Google Play
         services [CHAR LIMIT=NONE] 
          */
-        public static final int common_google_play_services_unknown_issue=0x7f060009;
+        public static final int common_google_play_services_unknown_issue=0x7f06000d;
         /**  Message in confirmation dialog informing user that Google Play services is not supported on their device [CHAR LIMIT=NONE] 
          */
-        public static final int common_google_play_services_unsupported_text=0x7f06000b;
+        public static final int common_google_play_services_unsupported_text=0x7f06000f;
         /**  Title of confirmation dialog informing user that Google Play services is not supported on their device [CHAR LIMIT=40] 
          */
-        public static final int common_google_play_services_unsupported_title=0x7f06000a;
+        public static final int common_google_play_services_unsupported_title=0x7f06000e;
         /**  Button in confirmation dialog for updating Google Play services [CHAR LIMIT=40] 
          */
-        public static final int common_google_play_services_update_button=0x7f06000c;
+        public static final int common_google_play_services_update_button=0x7f060010;
         /**  Message in confirmation dialog informing user that they need to update
         Google Play services (from Play Store) [CHAR LIMIT=NONE] 
          */
@@ -673,105 +692,105 @@ containing a value of this type.
         public static final int common_google_play_services_update_title=0x7f060007;
         /**  Sign-in button text [CHAR LIMIT=15] 
          */
-        public static final int common_signin_button_text=0x7f06000d;
+        public static final int common_signin_button_text=0x7f060011;
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
-        public static final int common_signin_button_text_long=0x7f06000e;
-        public static final int crime_dialog_text=0x7f060063;
-        public static final int crime_text=0x7f06005b;
-        public static final int day_text=0x7f060033;
-        public static final int default_img_describer=0x7f060025;
-        public static final int emergency_btn_text=0x7f060018;
-        public static final int event_btn_text=0x7f06001b;
-        public static final int farfromyou_msg=0x7f060047;
-        public static final int find_here_text=0x7f06003f;
-        public static final int firealarm_text=0x7f06005f;
-        public static final int five_kilo_text=0x7f06003a;
-        public static final int fm_banner_text=0x7f060022;
-        public static final int gps_disconnect_alert=0x7f06004d;
+        public static final int common_signin_button_text_long=0x7f060012;
+        public static final int crime_dialog_text=0x7f060067;
+        public static final int crime_text=0x7f06005f;
+        public static final int day_text=0x7f060037;
+        public static final int default_img_describer=0x7f060029;
+        public static final int emergency_btn_text=0x7f06001c;
+        public static final int event_btn_text=0x7f06001f;
+        public static final int farfromyou_msg=0x7f06004b;
+        public static final int find_here_text=0x7f060043;
+        public static final int firealarm_text=0x7f060063;
+        public static final int five_kilo_text=0x7f06003e;
+        public static final int fm_banner_text=0x7f060026;
+        public static final int gps_disconnect_alert=0x7f060051;
         /**  header 
          */
-        public static final int header_img_describer=0x7f060050;
-        public static final int hello_world=0x7f060017;
-        public static final int hydrant_text=0x7f06005e;
+        public static final int header_img_describer=0x7f060054;
+        public static final int hello_world=0x7f06001b;
+        public static final int hydrant_text=0x7f060062;
         /**  Image description 
          */
-        public static final int img_describer=0x7f060051;
+        public static final int img_describer=0x7f060055;
         /**  inform tabbar 
          */
-        public static final int inform_tabbar_text=0x7f060058;
-        public static final int insert_your_data=0x7f060044;
-        public static final int instart_place_setting_text=0x7f06002f;
-        public static final int internet_connect_alert=0x7f06004e;
-        public static final int internet_disconnect_alert=0x7f06004c;
-        public static final int kilometer_text=0x7f060038;
-        public static final int more_tabbar_text=0x7f06006a;
-        public static final int name_text=0x7f060042;
-        public static final int news_btn_text=0x7f06001a;
-        public static final int news_by_thai_text=0x7f060053;
+        public static final int inform_tabbar_text=0x7f06005c;
+        public static final int insert_your_data=0x7f060048;
+        public static final int instart_place_setting_text=0x7f060033;
+        public static final int internet_connect_alert=0x7f060052;
+        public static final int internet_disconnect_alert=0x7f060050;
+        public static final int kilometer_text=0x7f06003c;
+        public static final int more_tabbar_text=0x7f06006e;
+        public static final int name_text=0x7f060046;
+        public static final int news_btn_text=0x7f06001e;
+        public static final int news_by_thai_text=0x7f060057;
         /**  news details 
          */
-        public static final int news_details_share_btn_name=0x7f060055;
-        public static final int news_headline_text=0x7f06001c;
-        public static final int news_reporter_text=0x7f060024;
-        public static final int news_share_edittext_hint=0x7f06004f;
-        public static final int news_tabbar=0x7f060019;
+        public static final int news_details_share_btn_name=0x7f060059;
+        public static final int news_headline_text=0x7f060020;
+        public static final int news_reporter_text=0x7f060028;
+        public static final int news_share_edittext_hint=0x7f060053;
+        public static final int news_tabbar=0x7f06001d;
         /**  news tabbar 
          */
-        public static final int news_tabbar_icon=0x7f060052;
-        public static final int news_times_text=0x7f060023;
-        public static final int newstype_setting_text=0x7f060067;
-        public static final int one_day_text=0x7f060036;
-        public static final int one_kilo_text=0x7f06003c;
+        public static final int news_tabbar_icon=0x7f060056;
+        public static final int news_times_text=0x7f060027;
+        public static final int newstype_setting_text=0x7f06006b;
+        public static final int one_day_text=0x7f06003a;
+        public static final int one_kilo_text=0x7f060040;
         /**  more tabbar 
          */
-        public static final int other_dialog_text=0x7f060061;
-        public static final int other_tabbar_text=0x7f06003e;
-        public static final int other_text=0x7f060060;
-        public static final int pass_day_text=0x7f060048;
-        public static final int pass_hour_text=0x7f060049;
-        public static final int pass_minute_text=0x7f06004a;
-        public static final int pass_second_text=0x7f06004b;
-        public static final int phone_text=0x7f060043;
-        public static final int place_setting_text=0x7f060068;
-        public static final int position_btn_text=0x7f060020;
-        public static final int posttowall_text=0x7f06002a;
-        public static final int powershutdown_text=0x7f06005d;
-        public static final int profile_settings_text=0x7f060027;
+        public static final int other_dialog_text=0x7f060065;
+        public static final int other_tabbar_text=0x7f060042;
+        public static final int other_text=0x7f060064;
+        public static final int pass_day_text=0x7f06004c;
+        public static final int pass_hour_text=0x7f06004d;
+        public static final int pass_minute_text=0x7f06004e;
+        public static final int pass_second_text=0x7f06004f;
+        public static final int phone_text=0x7f060047;
+        public static final int place_setting_text=0x7f06006c;
+        public static final int position_btn_text=0x7f060024;
+        public static final int posttowall_text=0x7f06002e;
+        public static final int powershutdown_text=0x7f060061;
+        public static final int profile_settings_text=0x7f06002b;
         /**  radio tabbar 
          */
-        public static final int radio_tabbar_text=0x7f060057;
-        public static final int radious_setting_text=0x7f060066;
-        public static final int radius_settings_text=0x7f060039;
-        public static final int report_picture_text=0x7f060032;
-        public static final int rewind_setting_text=0x7f060065;
-        public static final int rewind_settings_dialog_text=0x7f060037;
-        public static final int save_text=0x7f060041;
-        public static final int search_emergency_text=0x7f060028;
-        public static final int search_here_text=0x7f060030;
-        public static final int search_hint=0x7f060021;
-        public static final int setting_dialog_setting_receivenews_text=0x7f060069;
-        public static final int setting_dialog_text=0x7f060064;
-        public static final int settins_text=0x7f06002d;
-        public static final int seven_day_text=0x7f060034;
-        public static final int share_btn_name=0x7f060054;
+        public static final int radio_tabbar_text=0x7f06005b;
+        public static final int radious_setting_text=0x7f06006a;
+        public static final int radius_settings_text=0x7f06003d;
+        public static final int report_picture_text=0x7f060036;
+        public static final int rewind_setting_text=0x7f060069;
+        public static final int rewind_settings_dialog_text=0x7f06003b;
+        public static final int save_text=0x7f060045;
+        public static final int search_emergency_text=0x7f06002c;
+        public static final int search_here_text=0x7f060034;
+        public static final int search_hint=0x7f060025;
+        public static final int setting_dialog_setting_receivenews_text=0x7f06006d;
+        public static final int setting_dialog_text=0x7f060068;
+        public static final int settins_text=0x7f060031;
+        public static final int seven_day_text=0x7f060038;
+        public static final int share_btn_name=0x7f060058;
         /**  camera tabbar 
          */
-        public static final int share_post_camera_name=0x7f060056;
-        public static final int support_by_text=0x7f060031;
-        public static final int three_day_text=0x7f060035;
-        public static final int three_kilo_text=0x7f06003b;
-        public static final int title_activity_infom_map_selector=0x7f06006c;
-        public static final int title_activity_insert_profile=0x7f06006b;
-        public static final int title_activity_other=0x7f06006d;
-        public static final int traffic_text=0x7f060059;
-        public static final int transport_text=0x7f06005c;
-        public static final int undefined_text=0x7f06003d;
-        public static final int what_about_text=0x7f060040;
-        public static final int you_here_msg=0x7f060046;
+        public static final int share_post_camera_name=0x7f06005a;
+        public static final int support_by_text=0x7f060035;
+        public static final int three_day_text=0x7f060039;
+        public static final int three_kilo_text=0x7f06003f;
+        public static final int title_activity_infom_map_selector=0x7f060070;
+        public static final int title_activity_insert_profile=0x7f06006f;
+        public static final int title_activity_other=0x7f060071;
+        public static final int traffic_text=0x7f06005d;
+        public static final int transport_text=0x7f060060;
+        public static final int undefined_text=0x7f060041;
+        public static final int what_about_text=0x7f060044;
+        public static final int you_here_msg=0x7f06004a;
         /**  eng translate text 
          */
-        public static final int zero_text=0x7f060026;
+        public static final int zero_text=0x7f06002a;
     }
     public static final class style {
         public static final int AppBaseTheme=0x7f080000;

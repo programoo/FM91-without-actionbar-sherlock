@@ -123,9 +123,9 @@ public class CameraFragment extends Fragment implements TextWatcher
 			Bundle savedInstanceState)
 	{
 		this.v = inflater.inflate(R.layout.camera_fragment, container, false);
-		camNum = (TextView)this.v.findViewById(R.id.cameraNumTv);
+		camNum = (TextView) this.v.findViewById(R.id.cameraNumTv);
 		gv = (GridView) v.findViewById(R.id.cameraGridView);
-		//gv.setExpanded(true);
+		// gv.setExpanded(true);
 		CameraGridViewAdapter ardap = new CameraGridViewAdapter(getActivity()
 				.getApplicationContext(), Info.getInstance().camList);
 		
@@ -266,8 +266,7 @@ public class CameraFragment extends Fragment implements TextWatcher
 			}
 		}
 		
-
-		camNum.setText(camListFilter.size()+"");
+		camNum.setText(camListFilter.size() + "");
 		reloadGridView();
 		
 		// request for gpis
@@ -496,14 +495,14 @@ public class CameraFragment extends Fragment implements TextWatcher
 				camListFilter.add(Info.getInstance().camList.get(i));
 			}
 		}
-		try{
-			camNum.setText(camListFilter.size());
-		}
-		catch(Exception e){
+		try
+		{
+			camNum.setText(camListFilter.size() + "");
+		} catch (Exception e)
+		{
 			e.printStackTrace();
 		}
 		reloadGridView();
-
 		
 	}
 	
@@ -547,15 +546,9 @@ public class CameraFragment extends Fragment implements TextWatcher
 	
 	public void asyncJson()
 	{
-		
-		// perform a Google search in just a few lines of code
-		
 		String url = "http://maps.googleapis.com/maps/api/geocode/json?latlng="
 				+ Info.lat + "," + Info.lng + "&sensor=true";
-		
-		// String url = "http://www.thairath.co.th/rss/news.xml";
 		aq.ajax(url, JSONObject.class, this, "jsonCallback");
-		
 	}
 	
 	public void jsonCallback(String url, JSONObject json, AjaxStatus status)

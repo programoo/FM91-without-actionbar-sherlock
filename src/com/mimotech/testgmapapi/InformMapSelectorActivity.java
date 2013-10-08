@@ -18,7 +18,6 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
@@ -36,7 +35,6 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
-import com.androidquery.AQuery;
 import com.androidquery.util.XmlDom;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -51,14 +49,13 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class InformMapSelectorActivity extends FragmentActivity implements
-		OnMarkerClickListener, OnInfoWindowClickListener, OnMapClickListener, TextWatcher
+		OnMarkerClickListener, OnInfoWindowClickListener, OnMapClickListener,
+		TextWatcher
 {
 	private String TAG = this.getClass().getSimpleName();
-	private AQuery aq;
-	private Context context;
 	private ArrayList<Nearby> nearbyList;
 	private ArrayList<Nearby> nearbyTemPlateList;
-
+	
 	private GoogleMap mMap;
 	private ListView lv;
 	private RelativeLayout mapViewLayout;
@@ -66,6 +63,7 @@ public class InformMapSelectorActivity extends FragmentActivity implements
 	boolean showMapView = true;
 	private EditText filterEdt;
 	private ImageButton imageDialog;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -77,7 +75,6 @@ public class InformMapSelectorActivity extends FragmentActivity implements
 		listViewLayout = (RelativeLayout) findViewById(R.id.mapSelectorListView);
 		filterEdt = (EditText) findViewById(R.id.mapFilterEdt);
 		filterEdt.addTextChangedListener(this);
-		
 		
 		lv = (ListView) findViewById(R.id.insertPositionListView);
 		lv.setOnItemClickListener(new OnItemClickListener()
@@ -127,7 +124,6 @@ public class InformMapSelectorActivity extends FragmentActivity implements
 		InformMapSelectorListViewAdapter ardap = new InformMapSelectorListViewAdapter(
 				InformMapSelectorActivity.this, this.nearbyList);
 		lv.setAdapter(ardap);
-		
 	}
 	
 	@Override
@@ -145,11 +141,40 @@ public class InformMapSelectorActivity extends FragmentActivity implements
 		Log.i(TAG, "set up map marker");
 		
 		// re-draw marker again
-		
-		if (mMap != null){
-			mMap.clear();
+		if (mMap == null)
+		{
+			
+			if (mMap == null)
+			{
+				mMap = ((SupportMapFragment) getSupportFragmentManager()
+						.findFragmentById(R.id.insertPositionMap)).getMap();
+				mMap.setOnMarkerClickListener(this);
+				mMap.setOnInfoWindowClickListener(this);
+				mMap.setOnMapClickListener(this);
+				
+			}
+			
 		}
-
+		
+		if (mMap != null)
+		{
+			mMap.clear();
+			// when load complete mark our position
+			mMap.getUiSettings().setZoomControlsEnabled(true);
+			Marker myMarker = mMap.addMarker(new MarkerOptions()
+					.position(new LatLng(Info.lat, Info.lng))
+					.title(getString(R.string.you_here_msg))
+					.snippet(Info.reverseGpsName)
+					.icon(BitmapDescriptorFactory
+							.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+			
+			myMarker.showInfoWindow();
+			
+			mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(
+					Info.lat, Info.lng), 15));
+			
+		}
+		
 		for (int i = 0; i < this.nearbyList.size(); i++)
 		{
 			myMarker(this.nearbyList.get(i).lat, this.nearbyList.get(i).lng,
@@ -176,52 +201,21 @@ public class InformMapSelectorActivity extends FragmentActivity implements
 			
 			accidentLatLng = new LatLng(Double.parseDouble(sLat),
 					Double.parseDouble(sLng));
-			
-		}
-		
-		if (mMap == null)
-		{
-			
-			if (mMap == null)
-			{
-				mMap = ((SupportMapFragment) getSupportFragmentManager()
-						.findFragmentById(R.id.insertPositionMap)).getMap();
-				mMap.setOnMarkerClickListener(this);
-				mMap.setOnInfoWindowClickListener(this);
-				mMap.setOnMapClickListener(this);
-				
-			}
-			
 		}
 		
 		if (mMap != null)
 		{
 			// calculate distance between user and event
-			double howFar = (int) (Info.getInstance().distance(accidentLatLng.latitude,
-					accidentLatLng.longitude, Info.lat, Info.lng, "K") * 100) / 100.0;
+			double howFar = (int) (Info.getInstance().distance(
+					accidentLatLng.latitude, accidentLatLng.longitude,
+					Info.lat, Info.lng, "K") * 100) / 100.0;
 			// news marker
 			String titileDetail = getString(R.string.farfromyou_msg) + ": "
 					+ howFar + " km";
 			
-			Marker marker = mMap.addMarker(new MarkerOptions()
+			mMap.addMarker(new MarkerOptions()
 					.position(accidentLatLng).title(title)
 					.snippet(titileDetail));
-			
-			mMap.getUiSettings().setZoomControlsEnabled(true);
-			// marker.showInfoWindow();
-			// when load complete mark our position
-			Marker myMarker = mMap.addMarker(new MarkerOptions()
-					.position(new LatLng(Info.lat, Info.lng))
-					.title(getString(R.string.you_here_msg))
-					.snippet(Info.reverseGpsName)
-					.icon(BitmapDescriptorFactory
-							.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
-			
-			myMarker.showInfoWindow();
-			
-			mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(
-					Info.lat, Info.lng), 15));
-			
 		}
 		
 	}
@@ -270,8 +264,9 @@ public class InformMapSelectorActivity extends FragmentActivity implements
 			{
 				XmlDom xmlJa = new XmlDom(inputStreamAsString);
 				nearByParsingToObj(xmlJa);
-				//copy to template nearby;
-				for(int i=0;i<nearbyList.size();i++){
+				// copy to template nearby;
+				for (int i = 0; i < nearbyList.size(); i++)
+				{
 					nearbyTemPlateList.add(nearbyList.get(i).clone());
 				}
 				// after get nearby obj then draw to gMap
@@ -393,10 +388,10 @@ public class InformMapSelectorActivity extends FragmentActivity implements
 	@Override
 	public void onMapClick(LatLng point)
 	{
-		//capture image
+		// capture image
 		CaptureMapScreen();
-		Log.i(TAG,"Snapshot initialize");
-
+		Log.i(TAG, "Snapshot initialize");
+		
 		String result = point.latitude + "," + point.longitude;
 		Intent returnIntent = new Intent();
 		returnIntent.putExtra("result", result);
@@ -415,39 +410,41 @@ public class InformMapSelectorActivity extends FragmentActivity implements
 		}
 		return null;
 	}
-
+	
 	@Override
 	public void afterTextChanged(Editable s)
 	{
 		
 		nearbyList = new ArrayList<Nearby>();
 		
-		for(int i=0;i<this.nearbyTemPlateList.size();i++){
-			if(this.nearbyTemPlateList.get(i).title.indexOf(this.filterEdt.getText().toString()) != -1){
-				//found add it
+		for (int i = 0; i < this.nearbyTemPlateList.size(); i++)
+		{
+			if (this.nearbyTemPlateList.get(i).title.indexOf(this.filterEdt
+					.getText().toString()) != -1)
+			{
+				// found add it
 				nearbyList.add(this.nearbyTemPlateList.get(i));
 			}
 		}
 		
-		
 		this.reloadView();
 		this.markAll();
 	}
-
+	
 	@Override
 	public void beforeTextChanged(CharSequence s, int start, int count,
 			int after)
 	{
 	}
-
+	
 	@Override
 	public void onTextChanged(CharSequence s, int start, int before, int count)
 	{
 	}
-
+	
 	public void CaptureMapScreen()
 	{
-		Log.i(TAG,"Snapshot initialize");
+		Log.i(TAG, "Snapshot initialize");
 		SnapshotReadyCallback callback = new SnapshotReadyCallback()
 		{
 			
@@ -455,7 +452,7 @@ public class InformMapSelectorActivity extends FragmentActivity implements
 			public void onSnapshotReady(Bitmap snapshot)
 			{
 				Info.getInstance().snapShot = snapshot;
-				Log.i(TAG,"Capture complete");
+				Log.i(TAG, "Capture complete");
 			}
 		};
 		

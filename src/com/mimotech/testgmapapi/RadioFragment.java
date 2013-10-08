@@ -17,11 +17,10 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
-import android.widget.ToggleButton;
 
 public class RadioFragment extends Fragment 
 {
-	private String tag = this.getClass().getSimpleName();
+	private String TAG = this.getClass().getSimpleName();
 	private View viewMainFragment;
 	private MediaPlayer player;
 	private ImageButton playTg;
@@ -101,32 +100,32 @@ public class RadioFragment extends Fragment
 			}
 		});
 		
-		Log.d(tag, "onCreateView");
+		Log.d(TAG, "onCreateView");
 		return viewMainFragment;
 	}
 	
 	public void onViewCreated(View view, Bundle savedInstanceState)
 	{
-		Log.d(tag, "onViewCreated");
+		Log.d(TAG, "onViewCreated");
 		super.onViewCreated(view, savedInstanceState);
 	}
 	
 	public void onStart()
 	{
 		super.onStart();
-		Log.d(tag, "onStart");
+		Log.d(TAG, "onStart");
 		
 	}
 	
 	public void onActivityCreated(final Bundle savedInstanceState)
 	{
 		super.onActivityCreated(savedInstanceState);
-		Log.d(tag, "onActivityCreated");
+		Log.d(TAG, "onActivityCreated");
 	}
 	
 	public void reloadViewAfterRequestTaskComplete()
 	{
-		Log.d(tag, "reloadViewAfterRequestTaskComplete");
+		Log.d(TAG, "reloadViewAfterRequestTaskComplete");
 		
 	}
 	
@@ -227,6 +226,22 @@ public class RadioFragment extends Fragment
 				Log.i("Buffering", "" + percent);
 			}
 		});
+	}
+	
+	@Override
+	public void onStop()
+	{
+		super.onStop();
+		Log.i(TAG,"onStop");
+	}
+
+	@Override
+	public void onDestroy()
+	{
+		isPlay = false;
+		stopPlaying();
+		playTg.setImageResource(R.drawable.play_img);
+		super.onDestroy();
 	}
 	
 	@Override

@@ -8,6 +8,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import org.json.JSONObject;
+
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -25,11 +27,14 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
+
+import com.androidquery.AQuery;
+import com.androidquery.callback.AjaxCallback;
+import com.androidquery.callback.AjaxStatus;
 
 public class OtherFragment extends Fragment implements OnItemClickListener
 {
@@ -57,7 +62,7 @@ public class OtherFragment extends Fragment implements OnItemClickListener
 	private RadioButton fiveKm;
 	private Dialog settingDialog;
 	private Context ctx;
-	
+	private AQuery aq;
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -70,7 +75,7 @@ public class OtherFragment extends Fragment implements OnItemClickListener
 		rewind = "1";
 		ctx = getActivity();
 		strList = new ArrayList<String>();
-		
+		aq = new AQuery(getActivity());
 		strList.add("Profile");
 		strList.add("facebook");
 		strList.add("twitter");
@@ -180,6 +185,8 @@ public class OtherFragment extends Fragment implements OnItemClickListener
 					getActivity(), strSettingList,
 					R.layout.other_fragment_settings_listview);
 			lvSettingDialog.setAdapter(settingsAdapter);
+			//async set reverse gps name
+			getReverseGPSName();
 			
 			crimTg = (ImageButton) settingDialog.findViewById(R.id.crimeTgBtn);
 			
@@ -296,7 +303,7 @@ public class OtherFragment extends Fragment implements OnItemClickListener
 					writeSettings(writeStrCsv);
 				}
 			});
-			// LEVEL 2 LISTVEIW
+			// LEVEL 2 LISTVEIW place radius rewind
 			lvSettingDialog.setOnItemClickListener(new OnItemClickListener()
 			{
 				@Override
@@ -585,6 +592,10 @@ public class OtherFragment extends Fragment implements OnItemClickListener
 				TextView tv = (TextView) this.viewSelected
 						.findViewById(R.id.otherSelectedDataTv);
 				tv.setText(latLnConfig);
+				
+				//reverse GPS
+				getReverseGPSName();
+				
 			}
 			if (resultCode == Info.RESULT_CANCELED)
 			{
@@ -639,6 +650,42 @@ public class OtherFragment extends Fragment implements OnItemClickListener
 		}
 		
 		return read;
+		
+	}
+	
+	public void getReverseGPSName()
+	{
+		String url = "http://maps.googleapis.com/maps/api/geocode/json?latlng="
+				+ latLnConfig.split(" ")[0] + "," + latLnConfig.split(" ")[1]+ "&sensor=true";
+		aq.ajax(url, JSONObject.class, this, "jsonCallback");
+	}
+	
+	public void jsonCallback(String url, JSONObject json, AjaxStatus status)
+	{
+		
+		if (json != null)
+		{
+			Log.i(TAG, "json: " + json.toString());
+			String reverseGpsName = json.toString().split(
+					"\"formatted_address\":\"")[1].split("\",\"")[0];
+			reverseGpsName = reverseGpsName.replaceAll(",", " ");
+
+			ArrayList<String> strSettingList = new ArrayList<String>();
+			strSettingList.add(getString(R.string.place_setting_text) + ","
+					+ reverseGpsName);
+			strSettingList.add(getString(R.string.radious_setting_text) + ","
+					+ radius + " " + getString(R.string.kilometer_text));
+			strSettingList.add(getString(R.string.rewind_setting_text) + ","
+					+ rewind + " " + getString(R.string.day_text));
+			
+			OtherListViewAdapter settingsAdapter = new OtherListViewAdapter(
+					getActivity(), strSettingList,
+					R.layout.other_fragment_settings_listview);
+			lvSettingDialog.setAdapter(settingsAdapter);
+		} else
+		{
+			// ajax error
+		}
 		
 	}
 	

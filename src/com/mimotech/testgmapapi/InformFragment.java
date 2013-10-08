@@ -497,7 +497,6 @@ public class InformFragment extends Fragment implements OnClickListener,
 			return "undefined";
 			
 		}
-		
 		return read;
 		
 	}

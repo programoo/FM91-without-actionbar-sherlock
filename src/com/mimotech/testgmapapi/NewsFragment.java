@@ -757,9 +757,8 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 				
 				String settingCsv = Info.getInstance().readProfiles(
 						getActivity(), "settings.csv");
-				if (!settingCsv.equalsIgnoreCase("undefined")
-						&& !settingCsv
-								.equalsIgnoreCase("false,false,false,0 0,0,0"))
+				if(settingCsv.split(",").length >=4 )
+				if (!settingCsv.split(",")[3].equalsIgnoreCase("0 0") )
 				{
 					Log.i(TAG, "read profile: " + settingCsv);
 					

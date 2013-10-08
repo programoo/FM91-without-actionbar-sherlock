@@ -16,10 +16,11 @@ public class NewsListViewAdapter extends BaseAdapter
 	private String tag = getClass().getSimpleName();
 	private ArrayList<News> newsList;
 	private LayoutInflater inflater;
-	
+	private Context mCtx;
 	public NewsListViewAdapter(Context context, ArrayList<News> newsList)
 	{
 		super();
+		mCtx = context;
 		// TODO Auto-generated constructor stub
 		this.newsList = newsList;
 		inflater = (LayoutInflater) context
@@ -37,15 +38,11 @@ public class NewsListViewAdapter extends BaseAdapter
 			convertView = inflater.inflate(R.layout.news_fragment_listview,
 					parent, false);
 		
-		ImageView imageView = (ImageView) convertView
-				.findViewById(R.id.newsLogo);
 		TextView description = (TextView) convertView
 				.findViewById(R.id.newsText);
 		TextView reporter = (TextView) convertView.findViewById(R.id.reporter);
 		
 		TextView endTime = (TextView) convertView.findViewById(R.id.newsTime);
-		
-		imageView.setImageResource(R.drawable.ic_launcher);
 		
 		description.setText(newsList.get(position).description);
 		
@@ -66,6 +63,21 @@ public class NewsListViewAdapter extends BaseAdapter
 					.findViewById(R.id.isRead);
 			isReadImg.setVisibility(View.VISIBLE);
 		}
+		
+		
+		ImageView imageView = (ImageView) convertView
+				.findViewById(R.id.newsLogo);
+		
+		if(newsList.get(position).title.indexOf( mCtx.getString(R.string.traffic_text)  ) != -1 ){
+			imageView.setImageResource(R.drawable.traffic_listview_icon_img);
+		}
+		else if(newsList.get(position).title.indexOf( mCtx.getString(R.string.accident_text)  ) != -1 ){
+			imageView.setImageResource(R.drawable.accident_listview_icon_img);
+		}
+		else{
+			imageView.setImageResource(R.drawable.other_listview_icon_img);
+		}
+		
 		
 		return convertView;
 		

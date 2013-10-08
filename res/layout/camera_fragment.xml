@@ -52,23 +52,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:textColor="@color/grey_light"
             android:text="@string/zero_text" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
             android:layout_centerVertical="true"
+            android:layout_margin="10dp"
             android:layout_toRightOf="@+id/cameraNumTv"
-            android:contentDescription="@string/hello_world"
-            android:src="@drawable/line_cameranum_img" />
+            android:background="@color/grey_light" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
             android:layout_centerVertical="true"
+            android:layout_margin="10dp"
             android:layout_toLeftOf="@+id/cameraNumTv"
-            android:contentDescription="@string/hello_world"
-            android:src="@drawable/line_cameranum_img" />
+            android:background="@color/grey_light" />
     </RelativeLayout>
 
     <GridView
