@@ -109,5 +109,6 @@
     <string name="title_activity_insert_profile">InsertProfileActivity</string>
     <string name="title_activity_infom_map_selector">InfomMapSelectorActivity</string>
     <string name="title_activity_other">OtherActivity</string>
+    <string name="title_activity_splash_screen">SplashScreenActivity</string>
 
 </resources>

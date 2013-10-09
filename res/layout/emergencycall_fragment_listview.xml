@@ -6,9 +6,10 @@
     android:orientation="vertical" >
 
     <ImageView
-        android:id="@+id/newsLogo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/logoEmergencyIv"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleType="fitCenter"
         android:contentDescription="@string/hello_world"
         android:src="@drawable/ic_launcher" />
 
@@ -17,7 +18,7 @@
         android:layout_width="wrap_content"
         android:paddingTop="10dp"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/newsLogo"
+        android:layout_toRightOf="@+id/logoEmergencyIv"
         android:singleLine="true"
         android:textSize="16sp" />
 
@@ -26,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/phoneEmergencyTv"
-        android:layout_toRightOf="@+id/newsLogo"
+        android:layout_toRightOf="@+id/logoEmergencyIv"
         android:textColor="@color/grey_light"
         android:singleLine="true"
         android:textSize="12sp" />

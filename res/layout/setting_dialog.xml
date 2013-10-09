@@ -60,7 +60,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:paddingLeft="5dp"
-            android:text="@string/crime_dialog_text" >
+            android:text="@string/traffic_text" >
         </TextView>
 
         <ImageButton
@@ -91,7 +91,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:padding="5dp"
-            android:text="@string/accident_dialog_text" >
+            android:text="@string/accident_text" >
         </TextView>
 
         <ImageButton

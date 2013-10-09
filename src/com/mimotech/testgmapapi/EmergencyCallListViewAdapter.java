@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class EmergencyCallListViewAdapter extends BaseAdapter
@@ -34,13 +35,14 @@ public class EmergencyCallListViewAdapter extends BaseAdapter
 		if (convertView == null)
 			convertView = inflater.inflate(R.layout.emergencycall_fragment_listview,
 					parent, false);
+		
 		TextView phoneNumTv = (TextView) convertView.findViewById(R.id.phoneEmergencyTv);
 		TextView nameNumTv = (TextView) convertView.findViewById(R.id.nameEmergencyTv);
-
-		
+		ImageView iv = (ImageView) convertView.findViewById(R.id.logoEmergencyIv);
 		
 		phoneNumTv.setText(this.contactList.get(position).phoneNum);
 		nameNumTv.setText(this.contactList.get(position).name);
+		iv.setImageBitmap(this.contactList.get(position).imgUrl);
 		
 		return convertView;
 		

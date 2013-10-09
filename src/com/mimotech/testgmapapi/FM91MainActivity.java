@@ -78,8 +78,6 @@ public class FM91MainActivity extends FragmentActivity
 		tabArgs.putString("collection", "tab_other");
 		tabArgs.putInt("id", 5);
 		
-		Class<OtherFragment> ot = OtherFragment.class;
-		
 		mTabsAdapter.addTab(mTabHost.newTabSpec("tab_other"), getResources()
 				.getDrawable(R.drawable.more_tabbar_img), OtherFragment.class,
 				tabArgs, getString(R.string.other_tabbar_text));
@@ -144,10 +142,8 @@ public class FM91MainActivity extends FragmentActivity
 							dialog.cancel();
 						}
 					});
-			
 			AlertDialog alert11 = builder1.create();
 			alert11.show();
-			
 		}
 		//super.onBackPressed();
 	}

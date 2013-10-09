@@ -171,7 +171,7 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 		if (lastFocusOnMainListView)
 		{
 			this.reloadViewAfterRequestTaskComplete(this.newsList);
-
+			
 			newsBtn.setImageResource(R.drawable.news_submenu_active);
 			eventBtn.setImageResource(R.drawable.location_inactive);
 			
@@ -312,6 +312,26 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 						.getInstance().rewind))
 				{
 					this.uniqueAdd(n);
+					
+					if (Info.crimTick
+							&& n.title
+									.indexOf(getString(R.string.traffic_text)) != -1)
+					{
+						this.uniqueAdd(n);
+					} else if (Info.accidentTick
+							&& n.title
+									.indexOf(getString(R.string.accident_text)) != -1)
+					{
+						this.uniqueAdd(n);
+					} else if (Info.otherTick
+							&& n.title
+									.indexOf(getString(R.string.traffic_text)) == -1
+							&& n.title
+									.indexOf(getString(R.string.accident_text)) == -1)
+					{
+						this.uniqueAdd(n);
+					}
+					
 				}
 				
 			}
@@ -588,72 +608,75 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 				e.printStackTrace();
 			}
 			
-			if(nList != null)
-			for (int temp = 0; temp < nList.getLength(); temp++)
-			{
-				
-				Node nNode = nList.item(temp);
-				
-				if (nNode.getNodeType() == Node.ELEMENT_NODE)
+			if (nList != null)
+				for (int temp = 0; temp < nList.getLength(); temp++)
 				{
 					
-					Element eElement = (Element) nNode;
-					String id = eElement.getAttribute("id");
-					String type = eElement.getAttribute("type");
-					String primarySource = eElement
-							.getAttribute("primarysource");
-					String secondarySource = eElement
-							.getAttribute("secondarysource");
-					String startTime = eElement.getAttribute("starttime");
-					String endTime = eElement.getAttribute("endtime");
+					Node nNode = nList.item(temp);
 					
-					String mediaType = eElement.getElementsByTagName("media")
-							.item(0).getAttributes().getNamedItem("type")
-							.getNodeValue();
-					String mediaPath = eElement.getElementsByTagName("media")
-							.item(0).getAttributes().getNamedItem("path")
-							.getNodeValue();
-					
-					String title = eElement.getElementsByTagName("title")
-							.item(0).getTextContent();
-					String description = eElement
-							.getElementsByTagName("description").item(0)
-							.getTextContent();
-					
-					String locationType = eElement
-							.getElementsByTagName("location").item(0)
-							.getAttributes().getNamedItem("type")
-							.getNodeValue();
-					
-					String roadName = getStringValueFromExistElement(eElement,
-							"road", "name");
-					String startPointName = getStringValueFromExistElement(
-							eElement, "startpoint", "name");
-					String startPointLat = getStringValueFromExistElement(
-							eElement, "startpoint", "latitude");
-					String startPointLong = getStringValueFromExistElement(
-							eElement, "startpoint", "longitude");
-					
-					String endPointName = getStringValueFromExistElement(
-							eElement, "endpoint", "name");
-					String endPointLat = getStringValueFromExistElement(
-							eElement, "endpoint", "latitude");
-					String endPointLong = getStringValueFromExistElement(
-							eElement, "endpoint", "longitude");
-					
-					// reformat to unix time
-					News n = new News(id, type, primarySource, secondarySource,
-							startTime, endTime, mediaType, mediaPath, title,
-							description, locationType, roadName,
-							startPointName, startPointLat, startPointLong,
-							endPointName, endPointLat, endPointLong, false,
-							getHumanLanguageTime(formatter
-									.parseDateTime(startTime)), formatter
-									.parseDateTime(startTime).getMillis());
-					uniqueAdd(n);
-					
+					if (nNode.getNodeType() == Node.ELEMENT_NODE)
+					{
+						
+						Element eElement = (Element) nNode;
+						String id = eElement.getAttribute("id");
+						String type = eElement.getAttribute("type");
+						String primarySource = eElement
+								.getAttribute("primarysource");
+						String secondarySource = eElement
+								.getAttribute("secondarysource");
+						String startTime = eElement.getAttribute("starttime");
+						String endTime = eElement.getAttribute("endtime");
+						
+						String mediaType = eElement
+								.getElementsByTagName("media").item(0)
+								.getAttributes().getNamedItem("type")
+								.getNodeValue();
+						String mediaPath = eElement
+								.getElementsByTagName("media").item(0)
+								.getAttributes().getNamedItem("path")
+								.getNodeValue();
+						
+						String title = eElement.getElementsByTagName("title")
+								.item(0).getTextContent();
+						String description = eElement
+								.getElementsByTagName("description").item(0)
+								.getTextContent();
+						
+						String locationType = eElement
+								.getElementsByTagName("location").item(0)
+								.getAttributes().getNamedItem("type")
+								.getNodeValue();
+						
+						String roadName = getStringValueFromExistElement(
+								eElement, "road", "name");
+						String startPointName = getStringValueFromExistElement(
+								eElement, "startpoint", "name");
+						String startPointLat = getStringValueFromExistElement(
+								eElement, "startpoint", "latitude");
+						String startPointLong = getStringValueFromExistElement(
+								eElement, "startpoint", "longitude");
+						
+						String endPointName = getStringValueFromExistElement(
+								eElement, "endpoint", "name");
+						String endPointLat = getStringValueFromExistElement(
+								eElement, "endpoint", "latitude");
+						String endPointLong = getStringValueFromExistElement(
+								eElement, "endpoint", "longitude");
+						
+						// reformat to unix time
+						News n = new News(id, type, primarySource,
+								secondarySource, startTime, endTime, mediaType,
+								mediaPath, title, description, locationType,
+								roadName, startPointName, startPointLat,
+								startPointLong, endPointName, endPointLat,
+								endPointLong, false,
+								getHumanLanguageTime(formatter
+										.parseDateTime(startTime)), formatter
+										.parseDateTime(startTime).getMillis());
+						uniqueAdd(n);
+						
+					}
 				}
-			}
 			
 		}// end xml parser
 		
@@ -748,7 +771,6 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 			case R.id.eventBtn:
 				Log.d(TAG, "eventBtn btn click");
 				
-
 				newsBtn.setImageResource(R.drawable.news_submenu_inactive);
 				eventBtn.setImageResource(R.drawable.location_active);
 				
@@ -757,8 +779,15 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 				
 				String settingCsv = Info.getInstance().readProfiles(
 						getActivity(), "settings.csv");
-				if(settingCsv.split(",").length >=4 )
-				if (!settingCsv.split(",")[3].equalsIgnoreCase("0 0") )
+				String alreadySetProfile = "0 0";
+				
+				if (settingCsv.split(",").length >= 4)
+				{
+					alreadySetProfile = settingCsv.split(",")[3];
+				}
+				
+				
+				if (!alreadySetProfile.equalsIgnoreCase("0 0"))
 				{
 					Log.i(TAG, "read profile: " + settingCsv);
 					
@@ -790,9 +819,32 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 									lng1, lat2, lng2, "k");
 							double maxAllow = Double.parseDouble(Info
 									.getInstance().radius);
+							News n = this.newsList.get(i);
+							
 							if (howFar <= maxAllow)
 							{
-								filterByDistanceList.add(this.newsList.get(i));
+								
+								if (Info.crimTick
+										&& n.title
+												.indexOf(getString(R.string.traffic_text)) != -1)
+								{
+									filterByDistanceList.add(n);
+									
+								} else if (Info.accidentTick
+										&& n.title
+												.indexOf(getString(R.string.accident_text)) != -1)
+								{
+									
+									filterByDistanceList.add(n);
+								} else if (Info.otherTick
+										&& n.title
+												.indexOf(getString(R.string.traffic_text)) == -1
+										&& n.title
+												.indexOf(getString(R.string.accident_text)) == -1)
+								{
+									filterByDistanceList.add(n);
+								}
+								
 							}
 						} catch (Exception e)
 						{	// if cannot cast this mean is zero point
@@ -839,11 +891,11 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 										int id)
 								{
 									/*
-									newsBtn.setTextColor(Color
-											.parseColor("#8dc342"));
-									eventBtn.setTextColor(Color
-											.parseColor("#808080"));
-											*/
+									 * newsBtn.setTextColor(Color
+									 * .parseColor("#8dc342"));
+									 * eventBtn.setTextColor(Color
+									 * .parseColor("#808080"));
+									 */
 									dialog.cancel();
 								}
 							});

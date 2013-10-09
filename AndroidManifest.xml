@@ -35,7 +35,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/app_icon_img"
         android:label="@string/app_name"
         android:theme="@style/FM91CustomTheme" >
         <meta-data
@@ -45,14 +45,10 @@
         <activity
             android:name="com.mimotech.testgmapapi.FM91MainActivity"
             android:screenOrientation="portrait" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="com.mimotech.testgmapapi.NewsDetailsActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.mimotech.testgmapapi.CameraDetailsActivity"
             android:screenOrientation="portrait" />
@@ -72,6 +68,15 @@
         <activity
             android:name="com.mimotech.testgmapapi.InformMapSelectorActivity"
             android:label="@string/title_activity_infom_map_selector" >
+        </activity>
+        <activity
+            android:name="com.mimotech.testgmapapi.SplashScreenActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
