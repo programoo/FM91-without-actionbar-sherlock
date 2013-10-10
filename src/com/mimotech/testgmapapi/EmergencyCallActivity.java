@@ -56,7 +56,7 @@ public class EmergencyCallActivity extends Activity implements
 		}
 		
 		contactList.get(0).imgUrl = BitmapFactory.decodeResource(getResources(),
-                R.drawable.phonenumber_default_logo_img);
+                R.drawable.e1644);
 		contactList.get(1).imgUrl = BitmapFactory.decodeResource(getResources(),
                 R.drawable.e1100);
 		contactList.get(2).imgUrl = BitmapFactory.decodeResource(getResources(),
@@ -72,9 +72,9 @@ public class EmergencyCallActivity extends Activity implements
 		contactList.get(7).imgUrl = BitmapFactory.decodeResource(getResources(),
                 R.drawable.e1130);
 		contactList.get(8).imgUrl = BitmapFactory.decodeResource(getResources(),
-                R.drawable.phonenumber_default_logo_img);
+                R.drawable.e1135);
 		contactList.get(9).imgUrl = BitmapFactory.decodeResource(getResources(),
-                R.drawable.phonenumber_default_logo_img);
+                R.drawable.e1138);
 		contactList.get(10).imgUrl = BitmapFactory.decodeResource(getResources(),
                 R.drawable.e1146);
 		contactList.get(11).imgUrl = BitmapFactory.decodeResource(getResources(),
@@ -96,13 +96,13 @@ public class EmergencyCallActivity extends Activity implements
 		contactList.get(19).imgUrl = BitmapFactory.decodeResource(getResources(),
                 R.drawable.e1200);
 		contactList.get(20).imgUrl = BitmapFactory.decodeResource(getResources(),
-                R.drawable.phonenumber_default_logo_img);
+                R.drawable.e1322);
 		contactList.get(21).imgUrl = BitmapFactory.decodeResource(getResources(),
                 R.drawable.e1356);
 		contactList.get(22).imgUrl = BitmapFactory.decodeResource(getResources(),
                 R.drawable.e1543);
 		contactList.get(23).imgUrl = BitmapFactory.decodeResource(getResources(),
-                R.drawable.phonenumber_default_logo_img);
+                R.drawable.e1554);
 		contactList.get(24).imgUrl = BitmapFactory.decodeResource(getResources(),
                 R.drawable.e1556);
 		contactList.get(25).imgUrl = BitmapFactory.decodeResource(getResources(),
