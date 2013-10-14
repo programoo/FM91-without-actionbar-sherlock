@@ -9,6 +9,7 @@
         android:layout_height="wrap_content"
         android:background="@null"
         android:layout_alignParentRight="true"
+        android:padding="5dp"
         android:contentDescription="@string/hello_world"
         android:src="@drawable/map_listview_img" >
     </ImageButton>
@@ -17,6 +18,7 @@
         android:id="@+id/mapFilterEdt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="5dp"
         android:layout_toLeftOf="@+id/imageDialog"
         android:hint="@string/find_here_text" />
 
@@ -24,7 +26,7 @@
         android:id="@+id/mapSelectorMapView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/imageDialog" >
+        android:layout_below="@+id/mapFilterEdt" >
 
         <fragment
             android:id="@+id/insertPositionMap"
@@ -37,7 +39,7 @@
         android:id="@+id/mapSelectorListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/imageDialog" >
+        android:layout_below="@+id/mapFilterEdt" >
 
         <ListView
             android:id="@+id/insertPositionListView"

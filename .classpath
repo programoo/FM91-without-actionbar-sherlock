@@ -2,13 +2,6 @@
 <classpath>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
-	<classpathentry exported="true" kind="lib" path="/ProgramFile/adt-bundle-mac-x86_64-20130717/sdk/extras/google/google_play_services/libproject/google-play-services_lib/libs/google-play-services.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="file:/ProgramFile/adt-bundle-mac-x86_64-20130717/sdk/extras/google/google_play_services/libproject/google-play-services_lib/libs/../../../docs/reference/"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry exported="true" kind="lib" path="/ProgramFile/adt-bundle-mac-x86_64-20130717/sdk/extras/SocialAuthenShareButton/libs/socialauth-4.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="/ProgramFile/adt-bundle-mac-x86_64-20130717/sdk/extras/SocialAuthenShareButton/libs/socialauth-android-2.6.jar"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>

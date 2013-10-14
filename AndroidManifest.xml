@@ -35,12 +35,12 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/app_icon_img"
+        android:icon="@drawable/fm91"
         android:label="@string/app_name"
         android:theme="@style/FM91CustomTheme" >
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyDSMjsZ_6XahM-4wYTBBPa0qsI5wTqk7kU" />
+            android:value="AIzaSyClLFvM0xTlsti5KqE6ZPVKG1D6IzXA5s8" />
 
         <activity
             android:name="com.mimotech.testgmapapi.FM91MainActivity"

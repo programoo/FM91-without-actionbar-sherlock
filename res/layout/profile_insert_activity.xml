@@ -34,7 +34,7 @@
             android:background="@null"
             android:contentDescription="@string/hello_world"
             android:padding="10dp"
-            android:src="@drawable/done_img_btn"
+            android:src="@drawable/done_img"
             android:text="@string/save_text" />
     </RelativeLayout>
 
