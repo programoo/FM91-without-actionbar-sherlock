@@ -27,15 +27,17 @@
         android:id="@+id/badge_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/badge_icon"
+		android:layout_toRightOf="@+id/badge_icon"
+		android:layout_alignParentTop="true"
+		android:layout_alignParentRight="true"
         android:background="@drawable/circle"
         android:paddingBottom="2dp"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
+        android:paddingLeft="2dp"
+        android:paddingRight="2dp"
         android:paddingTop="2dp"
         android:textColor="@color/badge_count_color"
-        android:textSize="@dimen/tabbar_title_text_size"
+        android:textSize="8dp"
         android:textStyle="bold" />
 
 </RelativeLayout>

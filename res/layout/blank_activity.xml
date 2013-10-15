@@ -13,7 +13,7 @@
         android:contentDescription="@string/default_img_describer"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
-        android:src="@drawable/icon_fm" />
+        android:src="@drawable/logo" />
 
     <com.ais.sand.helper.AisTextView
         android:id="@+id/fm91_header"

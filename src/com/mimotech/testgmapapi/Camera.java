@@ -9,10 +9,10 @@ public class Camera {
 	public String lat;
 	public String lng;
 	public String updateStatus;
-	public String imgUrl;
+	public String imgUrl; 
 	public String lastUpdate;
 	public String description;
-	public String source;
+	public String source; 
 	public String imgList;
 	// handle graphic logic
 	
