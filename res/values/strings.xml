@@ -62,7 +62,7 @@
     <string name="pass_second_text">วินาทีที่แล้ว</string>
     <string name="internet_disconnect_alert">การเชื่อมต่อมีปัญหา กรุณาตรวจสอบการเชื่อมต่ออีกครั้ง</string>
     <string name="gps_disconnect_alert">การเชื่อมต่อจีพีเอสมีปัญหา กรุณาตรวจสอบการเชื่อมต่ออีกครั้ง</string>
-    <string name="internet_connect_alert">การเชื่อมต่อสำเร็จ</string>
+    <string name="internet_connect_alert">server connected complete</string>
     <string name="news_share_edittext_hint">แสดงความคิดเห็นของคุณ</string>
     <!-- header -->
     <string name="header_img_describer">header_img_describer</string>

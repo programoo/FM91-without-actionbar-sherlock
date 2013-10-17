@@ -93,7 +93,6 @@ public class CameraDetailsActivity extends FragmentActivity
 		
 		bookMarkImgBtn = (ImageButton) findViewById(R.id.bookmarkBookMarkImgBtn);
 		
-		
 		if(cam.isBookmark){
 			bookMarkImgBtn.setImageResource(R.drawable.star_active);
 			isCheck = true;
@@ -311,15 +310,11 @@ public class CameraDetailsActivity extends FragmentActivity
 		public void onComplete(Bundle values)
 		{
 			
-			Log.d("ShareButton", "Authentication Successful");
-			
 			// Get name of provider after authentication
 			final String providerName = values
 					.getString(SocialAuthAdapter.PROVIDER);
-			Log.d("ShareButton", "Provider Name = " + providerName);
 			Toast.makeText(CameraDetailsActivity.this,
 					providerName + " connected", Toast.LENGTH_LONG).show();
-			
 			//hide main layout
 			mainCameraLayout.setVisibility(View.GONE);
 			mainSharedLayout.setVisibility(View.VISIBLE);
@@ -329,19 +324,19 @@ public class CameraDetailsActivity extends FragmentActivity
 		@Override
 		public void onError(SocialAuthError error)
 		{
-			Log.d("ShareButton", "Authentication Error: " + error.getMessage());
+			//Log.d("ShareButton", "Authentication Error: " + error.getMessage());
 		}
 		
 		@Override
 		public void onCancel()
 		{
-			Log.d("ShareButton", "Authentication Cancelled");
+			//Log.d("ShareButton", "Authentication Cancelled");
 		}
 		
 		@Override
 		public void onBack()
 		{
-			Log.d("Share-Button", "Dialog Closed by pressing Back Key");
+			//Log.d("Share-Button", "Dialog Closed by pressing Back Key");
 		}
 		
 	}

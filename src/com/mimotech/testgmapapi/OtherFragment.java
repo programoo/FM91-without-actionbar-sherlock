@@ -77,8 +77,8 @@ public class OtherFragment extends Fragment implements OnItemClickListener
 		strList = new ArrayList<String>();
 		aq = new AQuery(getActivity());
 		strList.add("Profile");
-		strList.add("facebook");
-		strList.add("twitter");
+		strList.add("Facebook");
+		strList.add("Twitter");
 		strList.add("Setting");
 		
 	}
@@ -118,12 +118,12 @@ public class OtherFragment extends Fragment implements OnItemClickListener
 		{
 			Intent it = new Intent(getActivity(), InsertProfileActivity.class);
 			startActivity(it);
-		} else if (dialogName.equalsIgnoreCase("facebook"))
+		} else if (dialogName.equalsIgnoreCase("Facebook"))
 		{
 			Intent it = new Intent(getActivity(), WebViewActivity.class);
 			it.putExtra("provider", "https://www.facebook.com/trafficradiofm91");
 			startActivity(it);
-		} else if (dialogName.equalsIgnoreCase("twitter"))
+		} else if (dialogName.equalsIgnoreCase("Twitter"))
 		{
 			Intent it = new Intent(getActivity(), WebViewActivity.class);
 			it.putExtra("provider", "https://twitter.com/fm91trafficpro");

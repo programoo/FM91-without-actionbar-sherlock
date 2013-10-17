@@ -50,12 +50,11 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class InformMapSelectorActivity extends FragmentActivity implements
 		OnMarkerClickListener, OnInfoWindowClickListener, OnMapClickListener,
-		TextWatcher
-{
+		TextWatcher {
 	private String TAG = this.getClass().getSimpleName();
 	private ArrayList<Nearby> nearbyList;
 	private ArrayList<Nearby> nearbyTemPlateList;
-	
+
 	private GoogleMap mMap;
 	private ListView lv;
 	private RelativeLayout mapViewLayout;
@@ -63,10 +62,9 @@ public class InformMapSelectorActivity extends FragmentActivity implements
 	boolean showMapView = true;
 	private EditText filterEdt;
 	private ImageButton imageDialog;
-	
+
 	@Override
-	protected void onCreate(Bundle savedInstanceState)
-	{
+	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		nearbyList = new ArrayList<Nearby>();
 		nearbyTemPlateList = new ArrayList<Nearby>();
@@ -75,14 +73,12 @@ public class InformMapSelectorActivity extends FragmentActivity implements
 		listViewLayout = (RelativeLayout) findViewById(R.id.mapSelectorListView);
 		filterEdt = (EditText) findViewById(R.id.mapFilterEdt);
 		filterEdt.addTextChangedListener(this);
-		
+
 		lv = (ListView) findViewById(R.id.insertPositionListView);
-		lv.setOnItemClickListener(new OnItemClickListener()
-		{
+		lv.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> arg0, View view, int arg2,
-					long arg3)
-			{
-				
+					long arg3) {
+
 				Log.d(TAG, "arg2: " + arg2 + "," + "arg3: " + arg3);
 				Nearby nearby = (Nearby) lv.getItemAtPosition(arg2);
 				Log.i(TAG, "list select: " + nearby.title + "," + nearby.lat
@@ -92,22 +88,18 @@ public class InformMapSelectorActivity extends FragmentActivity implements
 				returnIntent.putExtra("result", result);
 				setResult(Info.RESULT_OK, returnIntent);
 				finish();
-				
+
 			}
 		});
 		imageDialog = (ImageButton) findViewById(R.id.imageDialog);
-		imageDialog.setOnClickListener(new OnClickListener()
-		{
-			public void onClick(View view)
-			{
-				if (showMapView)
-				{
+		imageDialog.setOnClickListener(new OnClickListener() {
+			public void onClick(View view) {
+				if (showMapView) {
 					mapViewLayout.setVisibility(View.GONE);
 					listViewLayout.setVisibility(View.VISIBLE);
 					imageDialog.setImageResource(R.drawable.map_mapview_img);
 					showMapView = false;
-				} else
-				{
+				} else {
 					mapViewLayout.setVisibility(View.VISIBLE);
 					listViewLayout.setVisibility(View.GONE);
 					imageDialog.setImageResource(R.drawable.map_listview_img);
@@ -116,48 +108,35 @@ public class InformMapSelectorActivity extends FragmentActivity implements
 				reloadView();
 			}
 		});
-		
+
 	}
-	
-	public void reloadView()
-	{
+
+	public void reloadView() {
 		InformMapSelectorListViewAdapter ardap = new InformMapSelectorListViewAdapter(
 				InformMapSelectorActivity.this, this.nearbyList);
 		lv.setAdapter(ardap);
 	}
-	
+
 	@Override
-	protected void onStart()
-	{
+	protected void onStart() {
 		super.onStart();
 		this.mapViewLayout.setVisibility(View.VISIBLE);
 		this.listViewLayout.setVisibility(View.GONE);
 		new RetreiveFeedTask().execute("defined in doInBackground");
 	}
-	
-	private void markAll()
-	{
-		
-		Log.i(TAG, "set up map marker");
-		
+
+	private void markAll() {
 		// re-draw marker again
-		if (mMap == null)
-		{
-			
-			if (mMap == null)
-			{
-				mMap = ((SupportMapFragment) getSupportFragmentManager()
-						.findFragmentById(R.id.insertPositionMap)).getMap();
-				mMap.setOnMarkerClickListener(this);
-				mMap.setOnInfoWindowClickListener(this);
-				mMap.setOnMapClickListener(this);
-				
-			}
-			
+		if (mMap == null) {
+			mMap = ((SupportMapFragment) getSupportFragmentManager()
+					.findFragmentById(R.id.insertPositionMap)).getMap();
+			mMap.setOnMarkerClickListener(this);
+			mMap.setOnInfoWindowClickListener(this);
+			mMap.setOnMapClickListener(this);
+
 		}
-		
-		if (mMap != null)
-		{
+
+		if (mMap != null) {
 			mMap.clear();
 			// when load complete mark our position
 			mMap.getUiSettings().setZoomControlsEnabled(true);
@@ -167,44 +146,39 @@ public class InformMapSelectorActivity extends FragmentActivity implements
 					.snippet(Info.reverseGpsName)
 					.icon(BitmapDescriptorFactory
 							.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
-			
+
 			myMarker.showInfoWindow();
-			
+
 			mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(
 					Info.lat, Info.lng), 15));
-			
+
 		}
-		
-		for (int i = 0; i < this.nearbyList.size(); i++)
-		{
+
+		for (int i = 0; i < this.nearbyList.size(); i++) {
 			myMarker(this.nearbyList.get(i).lat, this.nearbyList.get(i).lng,
 					this.nearbyList.get(i).title);
 		}
-		
+
 		Log.i(TAG, "nearby num: " + nearbyList.size());
-		
+
 	}
-	
-	private void myMarker(String sLat, String sLng, String title)
-	{
+
+	private void myMarker(String sLat, String sLng, String title) {
 		Log.i(TAG, "re-mark num: " + nearbyList.size());
-		
+
 		LatLng accidentLatLng;
 		// set accident lat long
 		if (sLat.equalsIgnoreCase("undefined")
-				|| sLng.equalsIgnoreCase("undefined"))
-		{
+				|| sLng.equalsIgnoreCase("undefined")) {
 			accidentLatLng = new LatLng(0, 0);
-			
-		} else
-		{
-			
+
+		} else {
+
 			accidentLatLng = new LatLng(Double.parseDouble(sLat),
 					Double.parseDouble(sLng));
 		}
-		
-		if (mMap != null)
-		{
+
+		if (mMap != null) {
 			// calculate distance between user and event
 			double howFar = (int) (Info.getInstance().distance(
 					accidentLatLng.latitude, accidentLatLng.longitude,
@@ -212,22 +186,17 @@ public class InformMapSelectorActivity extends FragmentActivity implements
 			// news marker
 			String titileDetail = getString(R.string.farfromyou_msg) + ": "
 					+ howFar + " km";
-			
-			mMap.addMarker(new MarkerOptions()
-					.position(accidentLatLng).title(title)
-					.snippet(titileDetail));
+
+			mMap.addMarker(new MarkerOptions().position(accidentLatLng)
+					.title(title).snippet(titileDetail));
 		}
-		
 	}
-	
-	class RetreiveFeedTask extends AsyncTask<String, String, String>
-	{
-		protected String doInBackground(String... urls)
-		{
+
+	class RetreiveFeedTask extends AsyncTask<String, String, String> {
+		protected String doInBackground(String... urls) {
 			HttpResponse response = null;
 			String inputStreamAsString = "undefined";
-			try
-			{
+			try {
 				HttpClient client = new DefaultHttpClient();
 				HttpGet request = new HttpGet();
 				request.setURI(new URI(
@@ -239,94 +208,77 @@ public class InformMapSelectorActivity extends FragmentActivity implements
 				response = client.execute(request);
 				inputStreamAsString = convertStreamToString(response
 						.getEntity().getContent());
-				
-			} catch (URISyntaxException e)
-			{
+
+			} catch (URISyntaxException e) {
 				e.printStackTrace();
-			} catch (ClientProtocolException e)
-			{
+			} catch (ClientProtocolException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} catch (IOException e)
-			{
+			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			return inputStreamAsString;
 		}
-		
-		protected void onPostExecute(String inputStreamAsString)
-		{
+
+		protected void onPostExecute(String inputStreamAsString) {
 			// TODO: check this.exception
 			// TODO: do something with the feed
 			Log.i(TAG, "inputStreamAsString: " + inputStreamAsString);
-			try
-			{
+			try {
 				XmlDom xmlJa = new XmlDom(inputStreamAsString);
 				nearByParsingToObj(xmlJa);
 				// copy to template nearby;
-				for (int i = 0; i < nearbyList.size(); i++)
-				{
+				for (int i = 0; i < nearbyList.size(); i++) {
 					nearbyTemPlateList.add(nearbyList.get(i).clone());
 				}
 				// after get nearby obj then draw to gMap
 				markAll();
-				
-			} catch (Exception e)
-			{
+
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
+
 		}
 	}
-	
+
 	public String convertStreamToString(InputStream inputStream)
-			throws IOException
-	{
-		if (inputStream != null)
-		{
+			throws IOException {
+		if (inputStream != null) {
 			Writer writer = new StringWriter();
-			
+
 			char[] buffer = new char[1024];
-			try
-			{
+			try {
 				Reader reader = new BufferedReader(new InputStreamReader(
 						inputStream, "UTF-8"), 1024);
 				int n;
-				while ((n = reader.read(buffer)) != -1)
-				{
+				while ((n = reader.read(buffer)) != -1) {
 					writer.write(buffer, 0, n);
 				}
-			} finally
-			{
+			} finally {
 				inputStream.close();
 			}
 			return writer.toString();
-		} else
-		{
+		} else {
 			return "";
 		}
 	}
-	
-	public void nearByParsingToObj(XmlDom xml)
-	{
-		
+
+	public void nearByParsingToObj(XmlDom xml) {
+
 		List<XmlDom> entries;
 		// tempList = new ArrayList<News>();
 		// List<String> titles = new ArrayList<String>();
-		
-		try
-		{
+
+		try {
 			entries = xml.tags("result");
-		} catch (NullPointerException e)
-		{
+		} catch (NullPointerException e) {
 			e.printStackTrace();
 			return;
 		}
-		
-		for (XmlDom entry : entries)
-		{
-			
+
+		for (XmlDom entry : entries) {
+
 			String name = entry.text("name");
 			String vicinity = entry.text("vicinity");
 			String type = entry.text("type");
@@ -335,128 +287,109 @@ public class InformMapSelectorActivity extends FragmentActivity implements
 					.text();
 			String lng = entry.child("geometry").child("location").child("lng")
 					.text();
-			
+
 			uniqueAddBearby(new Nearby(name + " " + vicinity + " " + type, lat,
 					lng));
-			
+
 			Log.i(TAG, "nearby Obj: " + name + "," + vicinity + "," + type
 					+ "," + geometry + "," + lat + "," + lng);
 		}
 	}
-	
-	public void uniqueAddBearby(Nearby nb)
-	{
-		for (int i = 0; i < this.nearbyList.size(); i++)
-		{
-			if (this.nearbyList.get(i).title.equalsIgnoreCase(nb.title))
-			{
+
+	public void uniqueAddBearby(Nearby nb) {
+		for (int i = 0; i < this.nearbyList.size(); i++) {
+			if (this.nearbyList.get(i).title.equalsIgnoreCase(nb.title)) {
 				return;
 			}
 		}
 		this.nearbyList.add(nb);
 	}
-	
+
 	@Override
-	public boolean onMarkerClick(Marker marker)
-	{
+	public boolean onMarkerClick(Marker marker) {
 		return false;
 	}
-	
+
 	@Override
-	public void onInfoWindowClick(Marker marker)
-	{
+	public void onInfoWindowClick(Marker marker) {
 		String result = "undefined";
-		
+
 		if (marker.getTitle()
-				.equalsIgnoreCase(getString(R.string.you_here_msg)))
-		{
+				.equalsIgnoreCase(getString(R.string.you_here_msg))) {
 			result = Info.lat + "," + Info.lng;
-		} else
-		{
+		} else {
 			result = getNearbyFromTitle(marker.getTitle()).lat + ","
 					+ getNearbyFromTitle(marker.getTitle()).lng;
 		}
-		
+
 		CaptureMapScreen();
-		
+
 		Intent returnIntent = new Intent();
 		returnIntent.putExtra("result", result);
 		setResult(Info.RESULT_OK, returnIntent);
 		finish();
 	}
-	
+
 	@Override
-	public void onMapClick(LatLng point)
-	{
+	public void onMapClick(LatLng point) {
 		// capture image
 		CaptureMapScreen();
 		Log.i(TAG, "Snapshot initialize");
-		
+
 		String result = point.latitude + "," + point.longitude;
 		Intent returnIntent = new Intent();
 		returnIntent.putExtra("result", result);
 		setResult(Info.RESULT_OK, returnIntent);
 		finish();
 	}
-	
-	public Nearby getNearbyFromTitle(String title)
-	{
-		for (int i = 0; i < this.nearbyList.size(); i++)
-		{
-			if (this.nearbyList.get(i).title.equalsIgnoreCase(title))
-			{
+
+	public Nearby getNearbyFromTitle(String title) {
+		for (int i = 0; i < this.nearbyList.size(); i++) {
+			if (this.nearbyList.get(i).title.equalsIgnoreCase(title)) {
 				return this.nearbyList.get(i);
 			}
 		}
 		return null;
 	}
-	
+
 	@Override
-	public void afterTextChanged(Editable s)
-	{
-		
+	public void afterTextChanged(Editable s) {
+
 		nearbyList = new ArrayList<Nearby>();
-		
-		for (int i = 0; i < this.nearbyTemPlateList.size(); i++)
-		{
+
+		for (int i = 0; i < this.nearbyTemPlateList.size(); i++) {
 			if (this.nearbyTemPlateList.get(i).title.indexOf(this.filterEdt
-					.getText().toString()) != -1)
-			{
+					.getText().toString()) != -1) {
 				// found add it
 				nearbyList.add(this.nearbyTemPlateList.get(i));
 			}
 		}
-		
+
 		this.reloadView();
 		this.markAll();
 	}
-	
+
 	@Override
 	public void beforeTextChanged(CharSequence s, int start, int count,
-			int after)
-	{
+			int after) {
 	}
-	
+
 	@Override
-	public void onTextChanged(CharSequence s, int start, int before, int count)
-	{
+	public void onTextChanged(CharSequence s, int start, int before, int count) {
 	}
-	
-	public void CaptureMapScreen()
-	{
+
+	public void CaptureMapScreen() {
 		Log.i(TAG, "Snapshot initialize");
-		SnapshotReadyCallback callback = new SnapshotReadyCallback()
-		{
-			
+		SnapshotReadyCallback callback = new SnapshotReadyCallback() {
+
 			@Override
-			public void onSnapshotReady(Bitmap snapshot)
-			{
+			public void onSnapshotReady(Bitmap snapshot) {
 				Info.getInstance().snapShot = snapshot;
 				Log.i(TAG, "Capture complete");
 			}
 		};
-		
+
 		mMap.snapshot(callback);
 	}
-	
+
 }

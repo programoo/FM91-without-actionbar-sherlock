@@ -22,8 +22,8 @@ import android.widget.RelativeLayout;
 public class Info
 {
 	// Bangkok as default
-	public static double lat = 13.724714;
-	public static double lng = 100.633111;
+	public static double lat = 0;
+	public static double lng = 0;
 	public static String reverseGpsName = "";
 	public ArrayList<Camera> camList;
 	public static final int RESULT_OK = 500;

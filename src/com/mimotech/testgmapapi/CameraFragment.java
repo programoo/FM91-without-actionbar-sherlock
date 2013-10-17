@@ -84,17 +84,17 @@ public class CameraFragment extends Fragment implements TextWatcher
 		}
 		locationManager = (LocationManager) getActivity().getSystemService(
 				Context.LOCATION_SERVICE);
-		
+		/*
 		locationListener = new MyLocationListener();
 		Log.d(TAG, "Request location");
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
 				5000, 10, locationListener);
+				*/
 	}
 	
 	public boolean isBookMark(String camId)
 	{
 		String camBookList[] = camSaveState.split(",");
-		Log.i(TAG, "read camera.csv: " + camSaveState);
 		for (int i = 0; i < camBookList.length; i++)
 		{
 			try
@@ -144,9 +144,7 @@ public class CameraFragment extends Fragment implements TextWatcher
 					long arg3)
 			{
 				
-				Log.d(TAG, "arg2: " + arg2 + "," + "arg3: " + arg3);
 				Camera cam = (Camera) gv.getItemAtPosition(arg2);
-				
 				Intent cameraDetail = new Intent(getActivity(),
 						CameraDetailsActivity.class);
 				
@@ -166,7 +164,6 @@ public class CameraFragment extends Fragment implements TextWatcher
 			@Override
 			public void onClick(View v)
 			{
-				Log.d(TAG, "positionBtnsetOnClickListener ja");
 				Intent cameraMap = new Intent(getActivity(),
 						CameraPositionMapActivity.class);
 				
@@ -205,10 +202,6 @@ public class CameraFragment extends Fragment implements TextWatcher
 			}
 		});
 		
-		// cctvBtn.setTextColor(Color.parseColor("#8dc342"));
-		// positionBtn.setTextColor(Color.parseColor("#808080"));
-		
-		Log.i(TAG, "onCreateView");
 		return v;
 	}
 	
@@ -219,7 +212,6 @@ public class CameraFragment extends Fragment implements TextWatcher
 		
 		new RequestTask("getRandomStr")
 				.execute("http://api.traffy.in.th/apis/getKey.php?appid=abcb6710");
-		
 	}
 	
 	public void onStart()
@@ -250,10 +242,8 @@ public class CameraFragment extends Fragment implements TextWatcher
 	private void reloadViewAfterRequestTaskComplete()
 	{
 		// get current location by gps
-		
-		Log.d(TAG, "Request location");
-		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
-				5000, 10, locationListener);
+		//locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+		//		5000, 10, locationListener);
 		// filter with
 		camListFilter = new ArrayList<Camera>();
 		
@@ -268,7 +258,6 @@ public class CameraFragment extends Fragment implements TextWatcher
 		
 		camNum.setText(camListFilter.size() + "");
 		reloadGridView();
-		
 		// request for gpis
 		asyncJson();
 	}
@@ -322,9 +311,6 @@ public class CameraFragment extends Fragment implements TextWatcher
 		protected void onPostExecute(String result)
 		{
 			super.onPostExecute(result);
-			Log.d(this.getClass().getSimpleName(), "cctv onPostExecute");
-			// Log.i(tag, "result: " + result);
-			
 			// Do anything with response..
 			if (requestType.equalsIgnoreCase("getRandomStr"))
 			{
@@ -355,7 +341,6 @@ public class CameraFragment extends Fragment implements TextWatcher
 				new RequestTask("getData").execute(traffy_request_url);
 			} else if (requestType.equalsIgnoreCase("getData"))
 			{
-				// Log.i(tag, "result cctv: " + result);
 				// this mean we get real data from traffy already
 				this.traffyCameraXmlParser(result);
 				reloadViewAfterRequestTaskComplete();
@@ -482,9 +467,6 @@ public class CameraFragment extends Fragment implements TextWatcher
 	@Override
 	public void afterTextChanged(Editable s)
 	{
-		// TODO Auto-generated method stub
-		Log.i(TAG, "afterTextChanged" + s.toString());
-		// re-create new list for show only user
 		camListFilter = new ArrayList<Camera>();
 		
 		for (int i = 0; i < Info.getInstance().camList.size(); i++)
@@ -509,7 +491,6 @@ public class CameraFragment extends Fragment implements TextWatcher
 	public void reloadGridView()
 	{
 		camListFilter = new ArrayList<Camera>();
-		Log.i(TAG, "Reload Gridview");
 		for (int i = 0; i < Info.getInstance().camList.size(); i++)
 		{
 			if (Info.getInstance().camList.get(i).toString()
@@ -532,7 +513,7 @@ public class CameraFragment extends Fragment implements TextWatcher
 			int after)
 	{
 		// TODO Auto-generated method stub
-		Log.i(TAG, "beforeTextChanged" + s.toString());
+		//Log.i(TAG, "beforeTextChanged" + s.toString());
 		
 	}
 	
@@ -540,7 +521,7 @@ public class CameraFragment extends Fragment implements TextWatcher
 	public void onTextChanged(CharSequence s, int start, int before, int count)
 	{
 		// TODO Auto-generated method stub
-		Log.i(TAG, "onTextChanged" + s.toString());
+		//Log.i(TAG, "onTextChanged" + s.toString());
 		
 	}
 	
@@ -557,14 +538,12 @@ public class CameraFragment extends Fragment implements TextWatcher
 		if (json != null)
 		{
 			// successful ajax call
-			Log.i(TAG, "json: " + json.toString());
 			String reverseGpsName = json.toString().split(
 					"\"formatted_address\":\"")[1].split("\",\"")[0];
 			Info.reverseGpsName = reverseGpsName;
 			
 		} else
 		{
-			// ajax error
 		}
 		
 	}
@@ -575,16 +554,6 @@ public class CameraFragment extends Fragment implements TextWatcher
 		@Override
 		public void onLocationChanged(Location loc)
 		{
-			/*
-			 * Toast.makeText( getActivity().getBaseContext(),
-			 * "Location changed: Lat: " + loc.getLatitude() + " Lng: " +
-			 * loc.getLongitude(), Toast.LENGTH_SHORT).show();
-			 */
-			String longitude = "Longitude: " + loc.getLongitude();
-			String latitude = "Latitude: " + loc.getLatitude();
-			
-			Log.i(TAG, "your current location:" + latitude + "," + longitude);
-			
 			Info.lat = loc.getLatitude();
 			Info.lng = loc.getLongitude();
 		}
@@ -592,33 +561,19 @@ public class CameraFragment extends Fragment implements TextWatcher
 		@Override
 		public void onProviderDisabled(String provider)
 		{
-			Toast.makeText(getActivity(),
-					"onProviderDisabled" + R.string.gps_disconnect_alert,
-					Toast.LENGTH_LONG).show();
+
 		}
 		
 		@Override
 		public void onProviderEnabled(String provider)
 		{
-			Toast.makeText(getActivity(),
-					"onProviderEnabled" + R.string.gps_disconnect_alert,
-					Toast.LENGTH_LONG).show();
-			
+
 		}
 		
 		@Override
 		public void onStatusChanged(String provider, int status, Bundle extras)
 		{
-			try
-			{
-				
-				Toast.makeText(getActivity(),
-						"onStatusChanged" + R.string.gps_disconnect_alert,
-						Toast.LENGTH_LONG).show();
-			} catch (Exception e)
-			{
-				e.printStackTrace();
-			}
+
 		}
 	}
 	

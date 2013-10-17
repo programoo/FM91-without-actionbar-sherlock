@@ -91,11 +91,9 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 				"settings.csv");
 		if (!settingCsv.equalsIgnoreCase("undefined"))
 		{
-			Log.i(TAG, "read profile: " + settingCsv);
 			Info.getInstance().latLnConfig = settingCsv.split(",")[3];
 			Info.getInstance().radius = settingCsv.split(",")[4];
 			Info.getInstance().rewind = settingCsv.split(",")[5];
-			// reload new view
 		}
 		
 	}
@@ -113,7 +111,7 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 		
 		lv.setAdapter(ardap);
 		
-		Log.d(TAG, "onCreateView");
+		//d(TAG, "onCreateView");
 		
 		lv.setOnItemClickListener(this);
 		
@@ -131,7 +129,6 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 	
 	public void onViewCreated(View view, Bundle savedInstanceState)
 	{
-		Log.d(TAG, "onViewCreated");
 		super.onViewCreated(view, savedInstanceState);
 		if (!alreadyFire)
 		{
@@ -154,11 +151,8 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 					R.id.badge_count);
 			tvBadgeCount.setText(this.unReadNumber(this.newsList) + "");
 			
-			// get current location by gps
-			Log.d(TAG, "Request location");
 			locationManager.requestLocationUpdates(
 					LocationManager.GPS_PROVIDER, 5000, 10, locationListener);
-			
 			alreadyFire = true;
 		}
 		
@@ -167,7 +161,6 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 	public void onStart()
 	{
 		super.onStart();
-		Log.d(TAG, "onStart");
 		if (lastFocusOnMainListView)
 		{
 			this.reloadViewAfterRequestTaskComplete(this.newsList);
@@ -205,13 +198,10 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 	public void onActivityCreated(final Bundle savedInstanceState)
 	{
 		super.onActivityCreated(savedInstanceState);
-		Log.d(TAG, "onActivityCreated");
-		
 	}
 	
 	public void reloadViewAfterRequestTaskComplete(ArrayList<News> listForLoad)
 	{
-		Log.d(TAG, "reloadViewAfterRequestTaskComplete");
 		try
 		{
 			this.sortNewsList(listForLoad);
@@ -278,7 +268,6 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 			
 			while ((read = bufferedReader.readLine()) != null)
 			{
-				// Log.i(tag, read);
 				String tmpNews[] = read.split(",");
 				String startTime = tmpNews[4];
 				
@@ -353,9 +342,7 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 	@Override
 	public void onPause()
 	{
-		// TODO Auto-generated method stub
 		super.onPause();
-		// this.reloadViewAfterRequestTaskComplete();
 	}
 	
 	public int unReadNumber(ArrayList<News> unCountList)
@@ -394,8 +381,6 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 			}
 		}
 		newsList.add(0, news);
-		// after add sort it
-		
 	}
 	
 	private class MyLocationListener implements LocationListener
@@ -404,19 +389,8 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 		@Override
 		public void onLocationChanged(Location loc)
 		{
-			/*
-			 * Toast.makeText( getActivity().getBaseContext(),
-			 * "Location changed: Lat: " + loc.getLatitude() + " Lng: " +
-			 * loc.getLongitude(), Toast.LENGTH_SHORT).show();
-			 */
-			String longitude = "Longitude: " + loc.getLongitude();
-			String latitude = "Latitude: " + loc.getLatitude();
-			
-			Log.i(TAG, "your current location:" + latitude + "," + longitude);
-			
 			Info.lat = loc.getLatitude();
 			Info.lng = loc.getLongitude();
-			
 		}
 		
 		@Override
@@ -487,7 +461,7 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 		protected void onPostExecute(String result)
 		{
 			super.onPostExecute(result);
-			Log.d(this.getClass().getSimpleName(), "onPostExecute");
+			//d(this.getClass().getSimpleName(), "onPostExecute");
 			
 			if (requestType.equalsIgnoreCase("getRandomStr"))
 			{
@@ -588,7 +562,7 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 		{
 			if (xmlString == null)
 			{
-				Log.e(tag, "traffyNewsXmlParser: nullString");
+				//e(tag, "traffyNewsXmlParser: nullString");
 				return;
 			}
 			
@@ -733,7 +707,7 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3)
 	{
 		// TODO Auto-generated method stub
-		Log.d(TAG, "item click: " + arg1 + "," + arg2);
+		//d(TAG, "item click: " + arg1 + "," + arg2);
 		// mark as read
 		News n = getNews(arg3 + "");
 		n.isRead = true;
@@ -756,12 +730,9 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 	@Override
 	public void onClick(View v)
 	{
-		// TODO Auto-generated method stub
-		Log.d(TAG, "btn id" + v.getId());
 		switch (v.getId())
 		{
 			case R.id.newsBtn:
-				Log.d(TAG, "news btn click");
 				newsBtn.setImageResource(R.drawable.news_submenu_active);
 				eventBtn.setImageResource(R.drawable.location_inactive);
 				reloadViewAfterRequestTaskComplete(this.newsList);
@@ -769,8 +740,6 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 				
 				break;
 			case R.id.eventBtn:
-				Log.d(TAG, "eventBtn btn click");
-				
 				newsBtn.setImageResource(R.drawable.news_submenu_inactive);
 				eventBtn.setImageResource(R.drawable.location_active);
 				
@@ -789,13 +758,12 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 				
 				if (!alreadySetProfile.equalsIgnoreCase("0 0"))
 				{
-					Log.i(TAG, "read profile: " + settingCsv);
+					//i(TAG, "read profile: " + settingCsv);
 					
 					Info.getInstance().latLnConfig = settingCsv.split(",")[3];
 					Info.getInstance().radius = settingCsv.split(",")[4];
 					Info.getInstance().rewind = settingCsv.split(",")[5];
 					// reload new view
-					
 					filterByDistanceList = new ArrayList<News>();
 					
 					for (int i = 0; i < this.newsList.size(); i++)
@@ -861,8 +829,6 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 					
 				} else
 				{
-					// force to settings page ja
-					Log.i(TAG, "force to settings page ja");
 					// redirect to user profile page
 					AlertDialog.Builder builder1 = new AlertDialog.Builder(
 							getActivity());
@@ -875,13 +841,8 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 										int id)
 								{
 									dialog.cancel();
-									
 									FM91MainActivity mainObj = (FM91MainActivity) getActivity();
-									// setting tab at index 4
 									mainObj.mTabHost.setCurrentTab(4);
-									// Intent it = new Intent(getActivity(),
-									// InsertProfileActivity.class);
-									// startActivity(it);
 								}
 							});
 					builder1.setNegativeButton("No",
@@ -889,13 +850,7 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 							{
 								public void onClick(DialogInterface dialog,
 										int id)
-								{
-									/*
-									 * newsBtn.setTextColor(Color
-									 * .parseColor("#8dc342"));
-									 * eventBtn.setTextColor(Color
-									 * .parseColor("#808080"));
-									 */
+								{ 
 									dialog.cancel();
 								}
 							});
