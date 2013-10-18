@@ -43,34 +43,34 @@
             android:value="AIzaSyClLFvM0xTlsti5KqE6ZPVKG1D6IzXA5s8" />
 
         <activity
-            android:name="com.mimotech.testgmapapi.FM91MainActivity"
+            android:name="co.th.mimo.fm91.FM91MainActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.mimotech.testgmapapi.NewsDetailsActivity"
+            android:name="co.th.mimo.fm91.NewsDetailsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.mimotech.testgmapapi.CameraDetailsActivity"
+            android:name="co.th.mimo.fm91.CameraDetailsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.mimotech.testgmapapi.EmergencyCallActivity"
+            android:name="co.th.mimo.fm91.EmergencyCallActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.mimotech.testgmapapi.CameraPositionMapActivity"
+            android:name="co.th.mimo.fm91.CameraPositionMapActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.mimotech.testgmapapi.WebViewActivity"
+            android:name="co.th.mimo.fm91.WebViewActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.mimotech.testgmapapi.InsertProfileActivity"
+            android:name="co.th.mimo.fm91.InsertProfileActivity"
             android:label="@string/title_activity_insert_profile" >
         </activity>
         <activity
-            android:name="com.mimotech.testgmapapi.InformMapSelectorActivity"
+            android:name="co.th.mimo.fm91.InformMapSelectorActivity"
             android:label="@string/title_activity_infom_map_selector" >
         </activity>
         <activity
-            android:name="com.mimotech.testgmapapi.SplashScreenActivity"
+            android:name="co.th.mimo.fm91.SplashScreenActivity"
             android:screenOrientation="portrait"
             android:label="@string/app_name" >
             <intent-filter>

@@ -1,0 +1,83 @@
+package co.th.mimo.fm91;
+
+import java.util.ArrayList;
+
+import android.content.Context;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.androidquery.AQuery;
+import com.mimotech.testgmapapi.R;
+
+public class CameraGridViewAdapter extends BaseAdapter {
+	String tag = this.getClass().getSimpleName();
+	Context mainContext;
+	private ArrayList<Camera> camList;
+	private AQuery aq;
+	private LayoutInflater lf;
+
+	public CameraGridViewAdapter(Context context, ArrayList<Camera> camList) {
+		mainContext = context;
+		this.camList = camList;
+		aq = new AQuery(this.mainContext);
+		lf = (LayoutInflater) mainContext
+				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+	}
+
+	@Override
+	public int getCount() {
+		// TODO Auto-generated method stub
+		return camList.size();
+	}
+
+	@Override
+	public Camera getItem(int position) {
+		// TODO Auto-generated method stub
+		return this.camList.get(position);
+	}
+
+	@Override
+	public long getItemId(int position) {
+		// TODO Auto-generated method stub
+		return position;
+	}
+
+	@Override
+	public View getView(int position, View convertView, ViewGroup parent) {
+		if (convertView == null)
+			convertView = lf.inflate(R.layout.camera_fragment_gridview, null);
+		
+		TextView tv = (TextView) convertView.findViewById(R.id.cameraTextView1);
+		ImageView iv = (ImageView) convertView
+				.findViewById(R.id.cameraImageView1);
+		/*
+		iv.setLayoutParams(new GridView.LayoutParams(85, 85));
+		iv.setScaleType(ImageView.ScaleType.CENTER_CROP);
+		iv.setPadding(8, 8, 8, 8);
+//		*/
+		
+		ImageView boomarkIv = (ImageView) convertView.findViewById(R.id.cameraBookmarkIv);
+		
+		if(camList.get(position).isBookmark){
+			//set visible
+			boomarkIv.setVisibility(View.VISIBLE);
+		}
+		else{
+			boomarkIv.setVisibility(View.GONE);
+		}
+		
+		
+		tv.setText(camList.get(position).thaiName);
+		aq.id(iv).image(camList.get(position).imgUrl, true, true, 200, 0);
+
+		return convertView;
+	}
+
+}

@@ -31,7 +31,7 @@
     <string name="close_app_alert_text">คุณต้องการออกจากโปรแกรมใช่หรือไม่</string>
     <string name="settins_text">การตั้งค่า</string>
     <string name="by_text">โดย</string>
-    <string name="instart_place_setting_text">คุณยังไม่ได้ตั้งค่าสถานที่รับข่าวสาร กรุณาตั้งค่าที่ ​settings</string>
+    <string name="instart_place_setting_text">คุณยังไม่ได้ตั้งค่าสถานที่รับข่าวสาร กรุณาตั้งค่าที่ ​Setting</string>
     <string name="search_here_text">ค้นหาที่นี่</string>
     <string name="support_by_text">สนับสนุนโดย</string>
     <string name="report_picture_text">ภาพรายงาน</string>
@@ -57,12 +57,16 @@
     <string name="you_here_msg">คุณอยู่ที่นี่</string>
     <string name="farfromyou_msg">ห่างจากคุณ</string>
     <string name="pass_day_text">วัน</string>
+    <string name="update_profile_complete_text">บันทึกโปรไฟล์สำเร็จ</string>
+    <string name="sending_data_complete_text">ส่งข้อมูลสำเร็จ</string>
     <string name="pass_hour_text">ชั่วโมง</string>
     <string name="pass_minute_text">นาที</string>
     <string name="pass_second_text">วินาทีที่แล้ว</string>
+        <string name="gps_close_alert_text">คุณไม่ได้เปิด GPS คุณต้องการเปิดหรือไม่</string>
+    
     <string name="internet_disconnect_alert">การเชื่อมต่อมีปัญหา กรุณาตรวจสอบการเชื่อมต่ออีกครั้ง</string>
     <string name="gps_disconnect_alert">การเชื่อมต่อจีพีเอสมีปัญหา กรุณาตรวจสอบการเชื่อมต่ออีกครั้ง</string>
-    <string name="internet_connect_alert">server connected complete</string>
+    <string name="internet_connect_alert">การเชื่อมต่อสำเร็จ</string>
     <string name="news_share_edittext_hint">แสดงความคิดเห็นของคุณ</string>
     <!-- header -->
     <string name="header_img_describer">header_img_describer</string>
