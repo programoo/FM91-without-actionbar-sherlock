@@ -2,8 +2,6 @@ package co.th.mimo.fm91;
 
 import java.util.ArrayList;
 
-import com.mimotech.testgmapapi.R;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -13,7 +11,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;

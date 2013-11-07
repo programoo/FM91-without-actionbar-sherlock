@@ -2,10 +2,7 @@ package co.th.mimo.fm91;
 
 import java.util.ArrayList;
 
-import com.mimotech.testgmapapi.R;
-
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

@@ -2,17 +2,13 @@ package co.th.mimo.fm91;
 
 import java.util.ArrayList;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -25,7 +21,6 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.mimotech.testgmapapi.R;
 
 public class CameraPositionMapActivity extends FragmentActivity implements
 		OnMarkerClickListener, OnInfoWindowClickListener {

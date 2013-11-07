@@ -23,7 +23,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -35,7 +34,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.androidquery.AQuery;
-import com.mimotech.testgmapapi.R;
 
 public class CameraDetailsActivity extends FragmentActivity
 {
@@ -188,7 +186,6 @@ public class CameraDetailsActivity extends FragmentActivity
 					+ Info.getInstance().camList.get(i).isBookmark + ",";
 		}
 		Info.getInstance().writeProfile(this, "camera.csv", bufferCameraCSV);
-		
 	}
 	
 	@Override
@@ -238,7 +235,6 @@ public class CameraDetailsActivity extends FragmentActivity
 	
 	private class HelloRunnable implements Runnable
 	{
-		
 		public void run()
 		{
 			int i = 1;
@@ -255,7 +251,6 @@ public class CameraDetailsActivity extends FragmentActivity
 				i++;
 			}
 		}
-		
 	}
 	
 	public void emergencyBtnOnClick(View view)

@@ -18,7 +18,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager.LayoutParams;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,9 +32,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.androidquery.AQuery;
-import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
-import com.mimotech.testgmapapi.R;
 
 public class OtherFragment extends Fragment implements OnItemClickListener
 {

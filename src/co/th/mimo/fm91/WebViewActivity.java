@@ -1,7 +1,5 @@
 package co.th.mimo.fm91;
 
-import com.mimotech.testgmapapi.R;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Window;

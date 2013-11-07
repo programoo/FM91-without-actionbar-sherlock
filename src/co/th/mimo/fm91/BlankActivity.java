@@ -1,7 +1,5 @@
 package co.th.mimo.fm91;
 
-import com.mimotech.testgmapapi.R;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;

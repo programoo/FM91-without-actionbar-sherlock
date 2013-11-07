@@ -27,18 +27,15 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -52,7 +49,6 @@ import android.widget.TextView;
 
 import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxStatus;
-import com.mimotech.testgmapapi.R;
 
 public class CameraFragment extends Fragment implements TextWatcher
 {

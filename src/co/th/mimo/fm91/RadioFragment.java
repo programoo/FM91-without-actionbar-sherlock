@@ -2,8 +2,6 @@ package co.th.mimo.fm91;
 
 import java.io.IOException;
 
-import com.mimotech.testgmapapi.R;
-
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -11,7 +9,6 @@ import android.media.MediaPlayer.OnBufferingUpdateListener;
 import android.media.MediaPlayer.OnPreparedListener;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;

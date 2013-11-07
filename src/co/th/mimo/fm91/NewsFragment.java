@@ -38,8 +38,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
-import com.mimotech.testgmapapi.R;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -75,14 +73,15 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 	private LocationListener locationListener;
 	private boolean alreadyFire = false;
 	private boolean lastFocusOnMainListView = true;
+	private boolean run = true;
 	private ArrayList<News> filterByDistanceList;
+	public static int REQUEST_PERIOD = 5;// 5 min
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		formatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
-		// force user open GPS
 		// force user to open GPS
 		LocationManager manager = (LocationManager) getActivity()
 				.getSystemService(Context.LOCATION_SERVICE);
@@ -94,7 +93,7 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 				Context.LOCATION_SERVICE);
 		newsList = new ArrayList<News>();
 		locationListener = new MyLocationListener();
-		
+
 		// read config
 		String settingCsv = Info.getInstance().readProfiles(getActivity(),
 				"settings.csv");
@@ -103,6 +102,9 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 			Info.getInstance().radius = settingCsv.split(",")[4];
 			Info.getInstance().rewind = settingCsv.split(",")[5];
 		}
+
+		// start reading request period
+		new Thread(new RequestPeriodNews()).start();
 
 	}
 
@@ -135,28 +137,7 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 		if (!alreadyFire) {
-			new RequestTask("getRandomStr")
-					.execute("http://api.traffy.in.th/apis/getKey.php?appid=abcb6710");
-
-			// update from old memory
-			readNews();
-			writeNews();
-			reloadViewAfterRequestTaskComplete(this.newsList);
-
-			// update already read list
-			lv = (ListView) viewMainFragment.findViewById(R.id.list1Fragment);
-			NewsListViewAdapter ardap = new NewsListViewAdapter(getActivity(),
-					newsList);
-			lv.setAdapter(ardap);
-
-			// update badge count unRead
-			TextView tvBadgeCount = (TextView) getActivity().findViewById(
-					R.id.badge_count);
-			tvBadgeCount.setText(this.unReadNumber(this.newsList) + "");
-
-			locationManager.requestLocationUpdates(
-					LocationManager.GPS_PROVIDER, 5000, 10, locationListener);
-			alreadyFire = true;
+			requestAndUpdateNews();
 		}
 
 	}
@@ -175,17 +156,15 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 			eventBtn.setImageResource(R.drawable.location_active);
 
 		}
-		//i(TAG,"Request for GPRS");
-		locationManager.requestLocationUpdates(
-				LocationManager.GPS_PROVIDER, 5000, 10, locationListener);
+		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+				5000, 10, locationListener);
 	}
 
 	private void buildAlertMessageNoGps() {
 
 		final AlertDialog.Builder builder = new AlertDialog.Builder(
 				getActivity());
-		builder.setMessage(
-				getString(R.string.gps_close_alert_text))
+		builder.setMessage(getString(R.string.gps_close_alert_text))
 				.setCancelable(false)
 				.setPositiveButton("Yes",
 						new DialogInterface.OnClickListener() {
@@ -382,9 +361,6 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 		public void onLocationChanged(Location loc) {
 			Info.lat = loc.getLatitude();
 			Info.lng = loc.getLongitude();
-			//i(TAG,"GPRS response: "+Info.lat);
-			//i(TAG,"GPRS response: "+Info.lng);
-			
 		}
 
 		@Override
@@ -401,7 +377,6 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 	}
 
 	private class RequestTask extends AsyncTask<String, String, String> {
-		private String tag = getClass().getSimpleName();
 		public String AppID = "abcb6710";
 		public String hiddenkey = "TxLYP6j1Ee";
 		public String randomStr = "undefined";
@@ -473,7 +448,7 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 
 				String traffy_request_url = "http://api.traffy.in.th/apis/apitraffy.php?api=getIncident&key="
 						+ passKey
-						+ "&format=XML&limit=10&offset=5&type=all&from="
+						+ "&format=XML&limit=100&offset=5&type=all&from="
 						+ dateStart + "&to=" + dateEnd;
 				new RequestTask("getData").execute(traffy_request_url);
 			} else if (requestType.equalsIgnoreCase("getData")) {
@@ -799,4 +774,50 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 			break;
 		}
 	}
+
+	private class RequestPeriodNews implements Runnable {
+		public void run() {
+			int i = 1;
+			while (run) {
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				// period request
+				if (i % REQUEST_PERIOD == 0) {
+					//requestAndUpdateNews();
+					Log.i(TAG,"request for getNewsInfo");
+					i=1;
+				}
+				i++;
+			}
+		}
+	}
+
+	public void requestAndUpdateNews() {
+		new RequestTask("getRandomStr")
+				.execute("http://api.traffy.in.th/apis/getKey.php?appid=abcb6710");
+
+		// update from old memory
+		readNews();
+		writeNews();
+		reloadViewAfterRequestTaskComplete(this.newsList);
+
+		// update already read list
+		lv = (ListView) viewMainFragment.findViewById(R.id.list1Fragment);
+		NewsListViewAdapter ardap = new NewsListViewAdapter(getActivity(),
+				newsList);
+		lv.setAdapter(ardap);
+
+		// update badge count unRead
+		TextView tvBadgeCount = (TextView) getActivity().findViewById(
+				R.id.badge_count);
+		tvBadgeCount.setText(this.unReadNumber(this.newsList) + "");
+
+		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+				5000, 10, locationListener);
+		alreadyFire = true;
+	}
+
 }

@@ -3,17 +3,14 @@ package co.th.mimo.fm91;
 import java.util.ArrayList;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.androidquery.AQuery;
-import com.mimotech.testgmapapi.R;
 
 public class CameraGridViewAdapter extends BaseAdapter {
 	String tag = this.getClass().getSimpleName();

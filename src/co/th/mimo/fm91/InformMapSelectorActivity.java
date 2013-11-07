@@ -25,7 +25,6 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -47,7 +46,6 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.mimotech.testgmapapi.R;
 
 public class InformMapSelectorActivity extends FragmentActivity implements
 		OnMarkerClickListener, OnInfoWindowClickListener, OnMapClickListener,
@@ -198,7 +196,7 @@ public class InformMapSelectorActivity extends FragmentActivity implements
 								+ Info.lat
 								+ ","
 								+ Info.lng
-								+ "&rankby=prominence&radius=500&sensor=false&key=AIzaSyCGwL4iF8lgumHDZvWmwArYtZknFZeGuYY"));
+								+ "&rankby=prominence&radius=500&sensor=false&key=AIzaSyDbFHwreraPnnNYb4jn98kbYa-zTSx7IHU"));
 				response = client.execute(request);
 				inputStreamAsString = convertStreamToString(response
 						.getEntity().getContent());

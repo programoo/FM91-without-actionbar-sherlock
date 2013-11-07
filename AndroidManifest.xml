@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.mimotech.testgmapapi"
+    package="co.th.mimo.fm91"
     android:versionCode="3"
     android:versionName="2.2.1" >
 
     <permission
-        android:name="com.mimotech.testgmapapi.permission.MAPS_RECEIVE"
+        android:name="co.th.mimo.fm91.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
 
-    <uses-permission android:name="com.mimotech.testgmapapi.permission.MAPS_RECEIVE" />
+    <uses-permission android:name="co.th.mimo.fm91.permission.MAPS_RECEIVE" />
 
     <uses-sdk
         android:minSdkVersion="9"
@@ -40,7 +40,7 @@
         android:theme="@style/FM91CustomTheme" >
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyClLFvM0xTlsti5KqE6ZPVKG1D6IzXA5s8" />
+            android:value="AIzaSyBFZ98zFSiF8g2Lw7PVdNK0G6v3r1OLbmI" />
 
         <activity
             android:name="co.th.mimo.fm91.FM91MainActivity"

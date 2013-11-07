@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
@@ -15,7 +14,6 @@ import android.widget.TabHost;
 import android.widget.TextView;
 
 import com.androidquery.util.AQUtility;
-import com.mimotech.testgmapapi.R;
 
 public class FM91MainActivity extends FragmentActivity
 {
@@ -141,7 +139,6 @@ public class FM91MainActivity extends FragmentActivity
 			AlertDialog alert11 = builder1.create();
 			alert11.show();
 		}
-		//super.onBackPressed();
 	}
 	
 	public void emergencyBtnOnClick(View view)

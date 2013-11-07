@@ -15,16 +15,13 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.androidquery.AQuery;
-import com.mimotech.testgmapapi.R;
 
 public class InsertProfileActivity extends Activity implements OnClickListener
 {
@@ -54,7 +51,6 @@ public class InsertProfileActivity extends Activity implements OnClickListener
 		
 		ImageButton saveProfileBtn = (ImageButton) findViewById(R.id.saveProfileBtn);
 		saveProfileBtn.setOnClickListener(this);
-		
 		// read old image
 		// read profile if can for showing only
 		String temProfile = readProfiles();
