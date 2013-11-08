@@ -48,7 +48,6 @@ import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -58,14 +57,13 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class NewsFragment extends Fragment implements OnItemClickListener,
 		OnClickListener {
 	private String TAG = this.getClass().getSimpleName();
 	private View viewMainFragment;
 	private ListView lv;
-	private ArrayList<News> newsList;
+	public ArrayList<News> newsList;
 	private ImageButton newsBtn;
 	private ImageButton eventBtn;
 	private DateTimeFormatter formatter;
@@ -73,14 +71,16 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 	private LocationListener locationListener;
 	private boolean alreadyFire = false;
 	private boolean lastFocusOnMainListView = true;
-	private boolean run = true;
+	public boolean run = true;
 	private ArrayList<News> filterByDistanceList;
-	public static int REQUEST_PERIOD = 5;// 5 min
+	public static int REQUEST_PERIOD = 300;// 5 min
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		// keep news instance variable
+
 		formatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
 		// force user to open GPS
 		LocationManager manager = (LocationManager) getActivity()
@@ -105,6 +105,7 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 
 		// start reading request period
 		new Thread(new RequestPeriodNews()).start();
+		((FM91MainActivity) getActivity()).newsFragmentObj = this;
 
 	}
 
@@ -206,9 +207,6 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 	public void reloadViewAfterRequestTaskComplete(ArrayList<News> listForLoad) {
 		try {
 			this.sortNewsList(listForLoad);
-			NewsListViewAdapter ardap = new NewsListViewAdapter(getActivity(),
-					listForLoad);
-			lv.setAdapter(ardap);
 
 			TextView tvBadgeCount = (TextView) getActivity().findViewById(
 					R.id.badge_count);
@@ -219,6 +217,10 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 				tvBadgeCount.setVisibility(View.VISIBLE);
 			}
 			tvBadgeCount.setText(this.unReadNumber(newsList) + "");
+
+			NewsListViewAdapter ardap = new NewsListViewAdapter(getActivity(),
+					listForLoad);
+			lv.setAdapter(ardap);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -249,7 +251,13 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 		// sort before writh
 		writeNews();
 	}
-
+	
+	@Override
+	public void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+	}
+	
 	public void readNews() {
 		BufferedReader bufferedReader;
 		try {
@@ -335,6 +343,20 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 			}
 		}
 		return count;
+	}
+
+	public void updateBadgeCount() {
+		// update badge count unRead
+		TextView tvBadgeCount = (TextView) getActivity().findViewById(
+				R.id.badge_count);
+		tvBadgeCount.setText(this.unReadNumber(this.newsList) + "");
+
+		if (this.unReadNumber(newsList) == 0) {
+			tvBadgeCount.setVisibility(View.GONE);
+		} else {
+			tvBadgeCount.setVisibility(View.VISIBLE);
+		}
+
 	}
 
 	public News getNews(String newsId) {
@@ -472,10 +494,11 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 											}
 										}).show();
 					} else {
-
-						Toast.makeText(getActivity().getBaseContext(),
-								R.string.internet_connect_alert,
-								Toast.LENGTH_LONG).show();
+						/*
+						 * Toast.makeText(getActivity().getBaseContext(),
+						 * R.string.internet_connect_alert,
+						 * Toast.LENGTH_LONG).show();
+						 */
 					}
 
 				} catch (Exception e) {
@@ -787,8 +810,9 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 				// period request
 				if (i % REQUEST_PERIOD == 0) {
 					//requestAndUpdateNews();
-					Log.i(TAG,"request for getNewsInfo");
-					i=1;
+					new RequestTask("getRandomStr")
+					.execute("http://api.traffy.in.th/apis/getKey.php?appid=abcb6710");
+					i = 1;
 				}
 				i++;
 			}
@@ -796,28 +820,35 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 	}
 
 	public void requestAndUpdateNews() {
-		new RequestTask("getRandomStr")
-				.execute("http://api.traffy.in.th/apis/getKey.php?appid=abcb6710");
 
-		// update from old memory
-		readNews();
-		writeNews();
-		reloadViewAfterRequestTaskComplete(this.newsList);
+		try {
+			new RequestTask("getRandomStr")
+					.execute("http://api.traffy.in.th/apis/getKey.php?appid=abcb6710");
 
-		// update already read list
-		lv = (ListView) viewMainFragment.findViewById(R.id.list1Fragment);
-		NewsListViewAdapter ardap = new NewsListViewAdapter(getActivity(),
-				newsList);
-		lv.setAdapter(ardap);
+			// update from old memory
+			readNews();
+			writeNews();
+			reloadViewAfterRequestTaskComplete(this.newsList);
 
-		// update badge count unRead
-		TextView tvBadgeCount = (TextView) getActivity().findViewById(
-				R.id.badge_count);
-		tvBadgeCount.setText(this.unReadNumber(this.newsList) + "");
+			// update already read list
+			lv = (ListView) viewMainFragment.findViewById(R.id.list1Fragment);
+			NewsListViewAdapter ardap = new NewsListViewAdapter(getActivity(),
+					newsList);
+			lv.setAdapter(ardap);
 
-		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
-				5000, 10, locationListener);
-		alreadyFire = true;
+			// update badge count unRead
+			TextView tvBadgeCount = (TextView) getActivity().findViewById(
+					R.id.badge_count);
+			tvBadgeCount.setText(this.unReadNumber(this.newsList) + "");
+
+			locationManager.requestLocationUpdates(
+					LocationManager.GPS_PROVIDER, 5000, 10, locationListener);
+			alreadyFire = true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 	}
 
 }

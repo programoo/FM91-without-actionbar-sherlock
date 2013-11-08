@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
@@ -23,6 +24,7 @@ public class FM91MainActivity extends FragmentActivity
 	private int badgeCount = 0;
 	private Context ctx;
 	private boolean exitRqt;
+	public NewsFragment newsFragmentObj;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -124,6 +126,8 @@ public class FM91MainActivity extends FragmentActivity
 					{
 						public void onClick(DialogInterface dialog, int id)
 						{
+							Log.i(TAG,"request On destroy ja");
+							newsFragmentObj.run = false;
 							dialog.cancel();
 							finish();
 						}

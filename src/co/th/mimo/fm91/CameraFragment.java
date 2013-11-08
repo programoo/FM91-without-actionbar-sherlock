@@ -492,11 +492,17 @@ public class CameraFragment extends Fragment implements TextWatcher
 			}
 		}
 		
-		Info.getInstance().sortCamByBookmark(camListFilter);
-		CameraGridViewAdapter ardap = new CameraGridViewAdapter(getActivity()
-				.getApplicationContext(), camListFilter);
+		try{
+			Info.getInstance().sortCamByBookmark(camListFilter);
+			CameraGridViewAdapter ardap = new CameraGridViewAdapter(getActivity()
+					.getApplicationContext(), camListFilter);
+			
+			gv.setAdapter(ardap);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 		
-		gv.setAdapter(ardap);
 		
 	}
 	

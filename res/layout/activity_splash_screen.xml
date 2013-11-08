@@ -15,16 +15,26 @@
         android:contentDescription="@string/hello_world"/>
    
      <ImageView 
-        android:id="@+id/logoSplashScreenIv"
+        android:id="@+id/aisLogoSplashScreenIv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:padding="5dp"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
         android:scaleType="fitCenter"
-        android:src="@drawable/sp_logo"
+        android:src="@drawable/sp_nectec_logo"
         android:contentDescription="@string/hello_world"/>
-   
+     
+     <ImageView 
+        android:id="@+id/nectecLogoSplashScreenIv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:padding="5dp"
+        android:layout_alignParentTop="true"
+        android:scaleType="fitCenter"
+        android:src="@drawable/sp_ais_logo"
+        android:contentDescription="@string/hello_world"/>
     
     
 </RelativeLayout>

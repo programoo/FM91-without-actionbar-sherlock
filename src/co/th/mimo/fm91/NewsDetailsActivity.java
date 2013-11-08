@@ -179,8 +179,6 @@ public class NewsDetailsActivity extends FragmentActivity implements
 		}
 	}
 	
-	
-	
 	private final class ResponseListener implements DialogListener
 	{
 		@Override

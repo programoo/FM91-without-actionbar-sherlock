@@ -35,8 +35,8 @@ public class Info
 	public static boolean accidentTick = false;
 	public static boolean otherTick = false;
 	public String latLnConfig;
-	public String radius;
-	public String rewind;
+	public String radius="1";
+	public String rewind="1";
 
 	public RelativeLayout mainLayout;
 	public RelativeLayout detailLayout;

@@ -125,9 +125,27 @@ public class TabsAdapter extends FragmentPagerAdapter implements
 	}
 
 	public void onTabChanged(String tabId) {
-		int position = mTabHost.getCurrentTab();
-		mViewPager.setCurrentItem(position);
-		notifyDataSetChanged();
+		
+		try{
+			int position = mTabHost.getCurrentTab();
+			mViewPager.setCurrentItem(position);
+			//notifyDataSetChanged();
+			
+			FM91MainActivity fm91Activity = ((FM91MainActivity) mContext);
+			if(fm91Activity.newsFragmentObj != null){
+				fm91Activity.newsFragmentObj.newsList.size();
+				System.out.println("tabchange :"+position+","+fm91Activity.newsFragmentObj.newsList.size() );
+				//if tab change mark all isRead true
+				for(int i=0;i<fm91Activity.newsFragmentObj.newsList.size();i++){
+					fm91Activity.newsFragmentObj.newsList.get(i).isRead = true;
+					fm91Activity.newsFragmentObj.updateBadgeCount();
+				}
+			}
+			
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 
 	public void onPageScrolled(int position, float positionOffset,
@@ -156,7 +174,6 @@ public class TabsAdapter extends FragmentPagerAdapter implements
 
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
-		// TODO Auto-generated method stub
 		return true;
 	}
 }
