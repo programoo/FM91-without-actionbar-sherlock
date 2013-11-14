@@ -208,15 +208,7 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 		try {
 			this.sortNewsList(listForLoad);
 
-			TextView tvBadgeCount = (TextView) getActivity().findViewById(
-					R.id.badge_count);
-			// if zero hide it
-			if (this.unReadNumber(newsList) == 0) {
-				tvBadgeCount.setVisibility(View.GONE);
-			} else {
-				tvBadgeCount.setVisibility(View.VISIBLE);
-			}
-			tvBadgeCount.setText(this.unReadNumber(newsList) + "");
+			updateBadgeCount();
 
 			NewsListViewAdapter ardap = new NewsListViewAdapter(getActivity(),
 					listForLoad);
@@ -351,6 +343,10 @@ public class NewsFragment extends Fragment implements OnItemClickListener,
 				R.id.badge_count);
 		tvBadgeCount.setText(this.unReadNumber(this.newsList) + "");
 
+		if(this.unReadNumber(this.newsList) > 999){
+			tvBadgeCount.setText("...");
+		}
+		
 		if (this.unReadNumber(newsList) == 0) {
 			tvBadgeCount.setVisibility(View.GONE);
 		} else {
