@@ -90,7 +90,7 @@ public class CameraPositionMapActivity extends FragmentActivity implements
 		}
 
 		if (mMap != null) {
-			// mMap.clear();
+			mMap.clear();
 			// when load complete mark our position
 			
 			  mMap.getUiSettings().setZoomControlsEnabled(true); Marker

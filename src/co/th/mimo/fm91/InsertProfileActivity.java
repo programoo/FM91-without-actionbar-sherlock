@@ -56,8 +56,9 @@ public class InsertProfileActivity extends Activity implements OnClickListener
 		String temProfile = readProfiles();
 		if (!temProfile.equalsIgnoreCase("undefined"))
 		{
+			pathImgSelected = temProfile.split(",")[0];
 			aq = new AQuery(this);
-			aq.id(imgBtn).image(temProfile.split(",")[0], true, true, 200, 0);
+			aq.id(imgBtn).image(pathImgSelected, true, true, 200, 0);
 			usernameEdt.setText(temProfile.split(",")[1]);
 			userPhoneNumberEdt.setText(temProfile.split(",")[2]);
 		}

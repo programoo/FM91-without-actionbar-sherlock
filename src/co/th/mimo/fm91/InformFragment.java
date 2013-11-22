@@ -683,7 +683,7 @@ public class InformFragment extends Fragment implements OnClickListener,
 				int serverResponseCode = connection.getResponseCode();
 				String serverResponseMessage = connection.getResponseMessage();
 				
-				responseString = serverResponseCode + "";
+				responseString = serverResponseMessage + "";
 				
 				fileInputStream.close();
 				outputStream.flush();
@@ -701,8 +701,14 @@ public class InformFragment extends Fragment implements OnClickListener,
 		protected void onPostExecute(String result)
 		{
 			super.onPostExecute(result);
+			
+			Toast.makeText(getActivity(),result,
+					Toast.LENGTH_LONG).show();
+			
+			/*
 			Toast.makeText(getActivity(), getString(R.string.sending_data_complete_text),
 					Toast.LENGTH_LONG).show();
+			*/
 			
 		}
 	}

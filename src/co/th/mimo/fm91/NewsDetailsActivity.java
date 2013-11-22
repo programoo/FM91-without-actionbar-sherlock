@@ -281,6 +281,8 @@ public class NewsDetailsActivity extends FragmentActivity implements
 			} catch (Exception e)
 			{
 				e.printStackTrace();
+				Toast.makeText(NewsDetailsActivity.this, "Post fail",
+						Toast.LENGTH_LONG).show();
 				return null;
 			}
 			return "ok";
@@ -290,6 +292,8 @@ public class NewsDetailsActivity extends FragmentActivity implements
 		protected void onPostExecute(String result)
 		{
 			super.onPostExecute(result);
+			Toast.makeText(NewsDetailsActivity.this, "Posted",
+					Toast.LENGTH_LONG).show();
 		}
 		
 	}
